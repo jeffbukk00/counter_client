@@ -1,5 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import useUserContext from "@/contexts/user/hooks/useUserContext";
+
 import MainPage from "@/pages/after-login/MainPage";
 import BucketsPage from "@/pages/after-login/BucketsPage";
 import CountersPage from "@/pages/after-login/CountersPage";
@@ -21,6 +23,9 @@ const afterLoginAppRouter = createBrowserRouter([
   },
 ]);
 const AfterLoginApp = () => {
+  const { isLoading } = useUserContext();
+
+  if (isLoading) return <p>유저 데이터를 불러오는 중...</p>;
   return <RouterProvider router={afterLoginAppRouter} />;
 };
 

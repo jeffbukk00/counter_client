@@ -1,7 +1,7 @@
 import { createContext, ReactNode } from "react";
 
 import { UserContextType } from "@/contexts/user/types";
-import useQueryUserData from "@/contexts/user/hooks/useQueryUserData";
+import useQueryUserData from "@/contexts/user/hooks/http/useQueryUserData";
 
 export const UserContext = createContext<UserContextType>({
   email: "",

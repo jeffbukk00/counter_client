@@ -7,7 +7,7 @@ import BeforeLoginApp from "@/components/app/BeforeLoginApp";
 const App = () => {
   const { loggedIn, isLoading } = useAuthContext();
 
-  if (isLoading) return <p>로딩...</p>;
+  if (isLoading) return <p>로그인 상태 확인 중...</p>;
 
   const app = loggedIn ? (
     <UserContextProvider>

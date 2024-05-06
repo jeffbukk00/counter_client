@@ -1,7 +1,7 @@
 import { createContext, ReactNode } from "react";
 
 import { AuthContextType } from "@/contexts/auth/types";
-import useQueryLoggedIn from "@/contexts/auth/hooks/useQueryLoggedIn";
+import useQueryLoggedIn from "@/contexts/auth/hooks/http/useQueryLoggedIn";
 
 export const AuthContext = createContext<AuthContextType>({
   loggedIn: false,
