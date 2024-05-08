@@ -12,3 +12,18 @@ export interface ChangeBucketBackTypeButtonPropsType {
   currentBucketBackType: number;
   setCurrentBucketBackType: React.Dispatch<React.SetStateAction<number>>;
 }
+
+export interface BucketBackBodyPropsType {
+  currentBucketBackType: number;
+  bucketBackData: { id: string; title: string | undefined };
+}
+
+export interface BucketEditPhasePropsType {
+  closeBucketEditPhase: () => void;
+  bucketBackData: { id: string; title: string | undefined };
+}
+
+export interface BucketControllerpPropsType {
+  openBucketEditPhase: () => void;
+  bucketBackData: { id: string; title: string | undefined };
+}

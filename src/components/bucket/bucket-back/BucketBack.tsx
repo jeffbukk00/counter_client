@@ -17,7 +17,10 @@ const BucketBack = ({ bucketBackData }: BucketBackPropsType) => {
         currentBucketBackType={currentBucketBackType}
         setCurrentBucketBackType={setCurrentBucketBackType}
       />
-      <BucketBackBody />
+      <BucketBackBody
+        currentBucketBackType={currentBucketBackType}
+        bucketBackData={bucketBackData}
+      />
     </>
   );
 };

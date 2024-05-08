@@ -14,6 +14,7 @@ export const api = {
     changeBucketPosition: "/buckets/position",
     createBucket: "buckets",
     getBucket: (bucketId: string) => `/bucket/${bucketId}`,
+    editBucket: (bucketId: string) => `/bucket/${bucketId}`,
   },
   counter: {
     changeCounterPosition: (bucketId: string) =>
