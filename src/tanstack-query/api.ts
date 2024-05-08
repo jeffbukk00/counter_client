@@ -13,6 +13,7 @@ export const api = {
     getBucketIds: "/buckets/ids",
     changeBucketPosition: "/buckets/position",
     createBucket: "buckets",
+    getBucket: (bucketId: string) => `/bucket/${bucketId}`,
   },
   counter: {
     changeCounterPosition: (bucketId: string) =>

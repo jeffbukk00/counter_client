@@ -87,7 +87,7 @@ const useChangeBoxPosition = (
   });
 
   useEffect(() => {
-    mutateChangeBoxPosition();
+    if (orderedIds && orderedIds.length > 0) mutateChangeBoxPosition();
   }, [orderedIds, mutateChangeBoxPosition]);
 
   return {

@@ -6,7 +6,7 @@ import CounterCreator from "@/components/counter-creator/CounterCreator";
 
 const BoxCreator = ({ boxCreatorType, bucketId }: BoxCreatorPropsType) => {
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full h-40vh flex justify-center items-center">
       <div className="w-80 h-40 border">
         {boxCreatorType ===
           boxCreatorConstants.boxCreatorType.bucketCreator && <BucketCreator />}

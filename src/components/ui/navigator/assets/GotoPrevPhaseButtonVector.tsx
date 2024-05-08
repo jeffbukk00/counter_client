@@ -10,18 +10,11 @@ const GotoPrevPhaseButtonVector = () => {
       <title>Triangle-left</title>
       <desc>Created with Sketch.</desc>
       <defs></defs>
-      <g
-        id="Page-1"
-        stroke="none"
-        stroke-width="1"
-        fill="none"
-        fill-rule="evenodd"
-      >
+      <g id="Page-1" stroke="none" fill="none">
         <path
           d="M45,3 C45,1.9 44.2,1 43.1,1 L2.9,29 C1.3,30.1 1,31.3 1,32.1 L1,32.1 C1,32.1 1.1,33.8 2.9,35.1 L43.1,63 C44.1,63 45,62.1 45,61 L45,3 L45,3 Z"
           id="Triangle-left"
-          stroke="#6B6C6E"
-          stroke-width="2"
+          stroke="#000"
         ></path>
       </g>
     </svg>
