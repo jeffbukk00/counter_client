@@ -1,7 +1,7 @@
-import { UsingChildrenProps } from "@/shared-types/props";
+import { HasChildren } from "@/shared-types/props";
 
-const Top = ({ children }: UsingChildrenProps) => {
-  return <header className="w-screen h-10vh">{children}</header>;
+const Top = ({ children }: HasChildren) => {
+  return <header className="w-screen h-1/10">{children}</header>;
 };
 
 export default Top;

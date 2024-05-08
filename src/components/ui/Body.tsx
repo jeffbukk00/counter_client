@@ -1,7 +1,7 @@
-import { UsingChildrenProps } from "@/shared-types/props";
+import { HasChildren } from "@/shared-types/props";
 
-const Body = ({ children }: UsingChildrenProps) => {
-  return <main className="w-90vw h-90vh ml-5vw mr-5vw">{children}</main>;
+const Body = ({ children }: HasChildren) => {
+  return <main className="w-full h-9/10 overflow-y-scroll">{children}</main>;
 };
 
 export default Body;

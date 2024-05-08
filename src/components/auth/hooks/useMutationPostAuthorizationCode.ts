@@ -3,13 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import { axiosInstance } from "@/axios/axiosInstance";
 import { constantsInQueryKeys } from "@/tanstack-query/queryKeys";
+import { api } from "@/tanstack-query/api";
 
 const postAuthorizationCode: (provider: string) => Promise<void> = async (
   provider: string
 ) => {
-  await axiosInstance.post(
-    `/auth/oauth/token/${provider}${window.location.search}`
-  );
+  await axiosInstance.post(api.auth.postAuthorizationCode(provider));
 };
 
 const useMutationPostAuthorizationCode = () => {

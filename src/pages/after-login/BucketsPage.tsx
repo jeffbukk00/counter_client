@@ -1,5 +1,7 @@
+import Buckets from "@/components/bucket/Buckets";
+
 const BucketsPage = () => {
-  return <h1>Buckets</h1>;
+  return <Buckets />;
 };
 
 export default BucketsPage;

@@ -2,10 +2,10 @@ import SharingButtonVector from "./assets/SharingButtonVector";
 
 const OpenSharingModalButton = () => {
   return (
-    <span>
+    <button>
       <SharingButtonVector />
-      <button>공유</button>
-    </span>
+      <span>공유</span>
+    </button>
   );
 };
 

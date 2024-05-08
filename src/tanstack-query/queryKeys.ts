@@ -1,13 +1,21 @@
 export const queryKeys = {
-  useQueryLoggedIn: ["auth", "logged-in"],
-  useQueryUserData: ["user", "user-data"],
-  useQueryBuckets: ["buckets"],
-  useQueryBucketIds: ["buckets", "ids"],
-  useQueryBucket: (bucketId: string) => ["bucket", bucketId],
-  useQueryCounterIds: (bucketId: string) => ["counters", bucketId, "ids"],
-  useQueryCounter: (counterId: string) => ["counter", counterId],
-  useQueryMotivationIds: (boxId: string) => ["motivations", boxId, "ids"],
-  useQueryMotivation: (motivationId: string) => ["motivation", motivationId],
+  auth: {
+    useQueryLoggedIn: ["auth", "logged-in"],
+  },
+  user: { useQueryUserData: ["user", "user-data"] },
+  bucket: {
+    useQueryBuckets: ["buckets"],
+    useQueryBucketIds: ["buckets", "ids"],
+    useQueryBucket: (bucketId: string) => ["bucket", bucketId],
+  },
+  counter: {
+    useQueryCounterIds: (bucketId: string) => ["counters", bucketId, "ids"],
+    useQueryCounter: (counterId: string) => ["counter", counterId],
+  },
+  motivation: {
+    useQueryMotivationIds: (boxId: string) => ["motivations", boxId, "ids"],
+    useQueryMotivation: (motivationId: string) => ["motivation", motivationId],
+  },
 };
 
 export const constantsInQueryKeys = {

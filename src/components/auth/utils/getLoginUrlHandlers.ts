@@ -1,25 +1,10 @@
 import { axiosInstance } from "@/axios/axiosInstance";
+import { api } from "@/tanstack-query/api";
 
-export const handleGoogleLogin = async () => {
+export const getOauthLoginPage = async (provider: string) => {
   const {
     data: { loginUrl },
-  } = await axiosInstance.get("/auth/oauth/url/google");
-
-  window.location.assign(loginUrl);
-};
-
-export const handleNaverLogin = async () => {
-  const {
-    data: { loginUrl },
-  } = await axiosInstance.get("/auth/oauth/url/naver");
-
-  window.location.assign(loginUrl);
-};
-
-export const handleKakaoLogin = async () => {
-  const {
-    data: { loginUrl },
-  } = await axiosInstance.get("/auth/oauth/url/kakao");
+  } = await axiosInstance.get(api.auth.getOauthLoginPage(provider));
 
   window.location.assign(loginUrl);
 };

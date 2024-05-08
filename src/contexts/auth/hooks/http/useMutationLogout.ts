@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 import { axiosInstance } from "@/axios/axiosInstance";
 import { constantsInQueryKeys } from "@/tanstack-query/queryKeys";
+import { api } from "@/tanstack-query/api";
 
 const postLogout: () => Promise<void> = async () => {
-  await axiosInstance.post("/auth/logout");
+  await axiosInstance.post(api.auth.postLogout);
 };
 
 const useMutationLogout = () => {

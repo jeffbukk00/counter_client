@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
 
-export interface UsingChildrenProps {
+export interface HasChildren {
   children: ReactNode;
 }
