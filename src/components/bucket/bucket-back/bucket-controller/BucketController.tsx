@@ -1,6 +1,7 @@
 import { BucketControllerpPropsType } from "../types";
 
 import BucketEditControl from "./BucketEditControl";
+import BucketDuplicateControl from "./BucketDuplicateControl";
 
 const BucketController = ({
   openBucketEditPhase,
@@ -9,6 +10,7 @@ const BucketController = ({
   return (
     <>
       <BucketEditControl openBucketEditPhase={openBucketEditPhase} />
+      <BucketDuplicateControl bucketId={bucketBackData.id} />
     </>
   );
 };
