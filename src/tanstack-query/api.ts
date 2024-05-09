@@ -19,6 +19,7 @@ export const api = {
     duplicateBucket: (bucketId: string) => `/buckets/duplicate/${bucketId}`,
     mergeBucket: (bucketIdSubject: string) =>
       `/buckets/merge/${bucketIdSubject}`,
+    deleteBucket: (bucketId: string) => `/buckets/${bucketId}`,
   },
   counter: {
     changeCounterPosition: (bucketId: string) =>
