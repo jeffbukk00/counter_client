@@ -40,11 +40,13 @@ const CountCircle = ({
     if (!ctx) return;
 
     ctx.beginPath();
+
     const whole = 2 * Math.PI;
-    const arcEnd = whole * (quantity / total);
+    const arcStart = (Math.PI / 2) * -1;
+    const arcEnd = whole * (quantity / total) - Math.PI / 2;
 
     ctx.moveTo(150, 75);
-    ctx.arc(150, 75, 75, 0, arcEnd);
+    ctx.arc(150, 75, 75, arcStart, arcEnd);
     ctx.closePath();
     ctx.fillStyle = isPositive ? "#7FD69D" : "#FA7070";
     ctx.fill();
