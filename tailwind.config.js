@@ -16,9 +16,9 @@ export default {
       margin: {
         "1/20": "5%",
       },
-      zIndex: {
-        "modal-backdrop": "z-index: 99",
-        modal: "z-index: 100",
+      colors: {
+        positive: "#7FD69D",
+        negative: "#FA7070",
       },
     },
   },

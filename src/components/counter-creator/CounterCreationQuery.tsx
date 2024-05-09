@@ -1,20 +1,20 @@
 import { useState, useEffect, ChangeEventHandler } from "react";
 
-import { BucketCreationQueryPropsType } from "./types";
+import { CounterCreationQueryPropsType } from "./types";
+import { counterCreationConstants } from "./constants";
 import { creationActionConstants } from "../ui/creation-action/constants";
-import { bucketCreationConstants } from "./constants";
 
 import CreationActionButton from "../ui/creation-action/CreationActionButton";
 
-const BucketCreationQuery = ({
+const CounterCreationQuery = ({
   currentPhase,
   isInLastPhase,
   userAnswers,
   updateUserAnswers,
-  submitBucketCreation,
-}: BucketCreationQueryPropsType) => {
-  const [userAnswerInCurrentPhase, setUserAnswerInCurrentPhase] =
-    useState<string>("");
+  submitCounterCreation,
+}: CounterCreationQueryPropsType) => {
+  const [userAnswerInCurrentPhase, setUserAnswerInCurrentPhase] = useState("");
+
   const [queryIsFocused, setQueryIsFocused] = useState(false);
 
   const changeUserAnswerInCurrentPhase: ChangeEventHandler<HTMLInputElement> = (
@@ -28,21 +28,30 @@ const BucketCreationQuery = ({
       setUserAnswerInCurrentPhase(userAnswers.title);
       setQueryIsFocused(true);
     }
+    if (currentPhase === 1 && userAnswers.title.length > 0) {
+      setUserAnswerInCurrentPhase(userAnswers.startCount);
+      setQueryIsFocused(true);
+    }
+    if (currentPhase === 2 && userAnswers.title.length > 0) {
+      setUserAnswerInCurrentPhase(userAnswers.endCount);
+      setQueryIsFocused(true);
+    }
   }, [currentPhase, userAnswers]);
+
   return (
     <>
       {isInLastPhase && (
         <>
           <p>
             {
-              bucketCreationConstants.bucketCreationPhaseQueryData
+              counterCreationConstants.counterCreationPhaseQueryData
                 .lastPhaseComment
             }
           </p>
           <CreationActionButton
-            isInLastPhase={isInLastPhase}
+            isInLastPhase={true}
             type={creationActionConstants.creationActionType.submit}
-            actionHandler={submitBucketCreation}
+            actionHandler={submitCounterCreation}
           />
         </>
       )}
@@ -51,7 +60,7 @@ const BucketCreationQuery = ({
           <input
             type="text"
             placeholder={
-              bucketCreationConstants.bucketCreationPhaseQueryData.placeholder
+              counterCreationConstants.counterCreationPhaseQueryData.placeholder
             }
             onChange={changeUserAnswerInCurrentPhase}
             onFocus={() => setQueryIsFocused(true)}
@@ -66,7 +75,7 @@ const BucketCreationQuery = ({
             }
           >
             {
-              bucketCreationConstants.bucketCreationPhaseQueryData.queries[
+              counterCreationConstants.counterCreationPhaseQueryData.queries[
                 currentPhase
               ].queryText
             }
@@ -86,4 +95,4 @@ const BucketCreationQuery = ({
   );
 };
 
-export default BucketCreationQuery;
+export default CounterCreationQuery;

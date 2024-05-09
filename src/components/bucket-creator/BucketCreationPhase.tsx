@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { BucketCreationPhasePropsType, UserAnswersStateType } from "./types";
-import { bucketCreatorConstants } from "./constants";
+import { bucketCreationConstants } from "./constants";
 
 import useMutationCreateBuckets from "./hooks/http/useMutationCreateBucket";
 import useNavigator from "../ui/navigator/hooks/useNavigator";
@@ -26,8 +26,8 @@ const BucketCreationPhase = ({
     gotoPrevPhase,
     gotoNextPhase,
   } = useNavigator(
-    bucketCreatorConstants.bucketCreationPhase.first,
-    bucketCreatorConstants.bucketCreationPhase.last
+    bucketCreationConstants.bucketCreationPhase.first,
+    bucketCreationConstants.bucketCreationPhase.last
   );
 
   const updateUserAnswers = (userAnswerInCurrentPhase: string) => {

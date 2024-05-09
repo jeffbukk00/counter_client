@@ -30,7 +30,7 @@ const Box = ({
       >
         {isVisible && <FlipButton flip={flip} />}
         {boxType === boxConstants.boxType.bucket && (
-          <Bucket bucketId={boxId} isFront={isFront} />
+          <Bucket bucketId={boxId} isFront={isFront} isVisible={isVisible} />
         )}
         {boxType === boxConstants.boxType.counter && (
           <Counter counterId={boxId} bucketId={bucketId} isFront={isFront} />

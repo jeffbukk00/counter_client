@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
+
+import Counters from "@/components/counter/Counters";
+
 const CountersPage = () => {
   const { bucketId } = useParams();
 
-  return <h1>Counters {bucketId}</h1>;
+  return <Counters bucketId={bucketId!} />;
 };
 
 export default CountersPage;

@@ -10,10 +10,10 @@ const BoxCreator = ({ boxCreatorType, bucketId }: BoxCreatorPropsType) => {
       <div className="w-80 h-40 border">
         {boxCreatorType ===
           boxCreatorConstants.boxCreatorType.bucketCreator && <BucketCreator />}
-        {/* {boxCreatorType ===
+        {boxCreatorType ===
           boxCreatorConstants.boxCreatorType.counterCreator && (
-          <CounterCreator bucketId={bucketId} />
-        )} */}
+          <CounterCreator bucketId={bucketId!} />
+        )}
       </div>
     </div>
   );

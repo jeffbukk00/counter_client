@@ -22,7 +22,9 @@ export const api = {
     deleteBucket: (bucketId: string) => `/buckets/${bucketId}`,
   },
   counter: {
+    getCounterIds: (bucketId: string) => `/counters/${bucketId}/ids`,
     changeCounterPosition: (bucketId: string) =>
       `/counters/${bucketId}/position`,
+    createCounter: (bucketId: string) => `/counters/${bucketId}`,
   },
 };

@@ -1,3 +1,4 @@
 export interface BucketFrontPropsType {
-  bucketFrontData: { title: string | undefined };
+  bucketFrontData: { id: string; title: string | undefined };
+  isVisible: boolean;
 }

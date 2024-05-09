@@ -4,7 +4,7 @@ const bucketCreationPhaseQueryData = {
   lastPhaseComment: "버킷을 만듭니다",
 };
 
-export const bucketCreatorConstants = {
+export const bucketCreationConstants = {
   bucketCreationPhase: {
     first: 0,
     last: 1,
