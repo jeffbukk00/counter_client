@@ -1,16 +1,18 @@
-import { BucketControllerpPropsType } from "../types";
+import { BucketControllerPropsType } from "./types";
 
 import BucketEditControl from "./BucketEditControl";
 import BucketDuplicateControl from "./BucketDuplicateControl";
+import BucketMergeControl from "./BucketMergeControl";
 
 const BucketController = ({
   openBucketEditPhase,
   bucketBackData,
-}: BucketControllerpPropsType) => {
+}: BucketControllerPropsType) => {
   return (
     <>
       <BucketEditControl openBucketEditPhase={openBucketEditPhase} />
       <BucketDuplicateControl bucketId={bucketBackData.id} />
+      <BucketMergeControl bucketBackData={bucketBackData} />
     </>
   );
 };

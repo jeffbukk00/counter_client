@@ -11,11 +11,14 @@ export const api = {
   },
   bucket: {
     getBucketIds: "/buckets/ids",
+    getBuckets: "/buckets",
     changeBucketPosition: "/buckets/position",
     createBucket: "/buckets",
     getBucket: (bucketId: string) => `/bucket/${bucketId}`,
     editBucket: (bucketId: string) => `/bucket/${bucketId}`,
     duplicateBucket: (bucketId: string) => `/buckets/duplicate/${bucketId}`,
+    mergeBucket: (bucketIdSubject: string) =>
+      `/buckets/merge/${bucketIdSubject}`,
   },
   counter: {
     changeCounterPosition: (bucketId: string) =>

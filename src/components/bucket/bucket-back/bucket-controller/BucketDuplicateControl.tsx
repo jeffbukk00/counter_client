@@ -1,7 +1,7 @@
 import useMutationDuplicateBucket from "./hooks/http/useMutationDuplicateBucket";
 
 import Control from "@/components/ui/control/Control";
-import BucketDuplicateControlVector from "./assets/BucketDuplicateVector";
+import BucketDuplicateControlVector from "./assets/BucketDuplicateControlVector";
 
 const BucketDuplicateControl = ({ bucketId }: { bucketId: string }) => {
   const { mutateDuplicateBucket } = useMutationDuplicateBucket(bucketId);

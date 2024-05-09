@@ -16,7 +16,6 @@ const BucketBackBody = ({
   const openBucketEditPhase = () => setIsBucketEditPhase(true);
   const closeBucketEditPhase = () => setIsBucketEditPhase(false);
 
-  console.log(currentBucketBackType);
   return (
     <>
       {isBucketEditPhase && (

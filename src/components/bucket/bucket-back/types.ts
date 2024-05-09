@@ -22,8 +22,3 @@ export interface BucketEditPhasePropsType {
   closeBucketEditPhase: () => void;
   bucketBackData: { id: string; title: string | undefined };
 }
-
-export interface BucketControllerpPropsType {
-  openBucketEditPhase: () => void;
-  bucketBackData: { id: string; title: string | undefined };
-}
