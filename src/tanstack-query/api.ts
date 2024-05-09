@@ -26,5 +26,10 @@ export const api = {
     changeCounterPosition: (bucketId: string) =>
       `/counters/${bucketId}/position`,
     createCounter: (bucketId: string) => `/counters/${bucketId}`,
+    getCounter: (counterId: string) => `/counter/${counterId}`,
+    updateCount: (counterId: string) => `/counter/count/${counterId}`,
+    updateAchievementStack: (counterId: string) =>
+      `/counter/achievement-stack/${counterId}`,
+    resetCount: (counterId: string) => `/counter/count/reset/${counterId}`,
   },
 };
