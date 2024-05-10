@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { BucketBackBodyPropsType } from "./types";
 import { bucketBackConstants } from "./constants";
+import { boxConstants } from "@/components/ui/box/constants";
 
 import BucketEditPhase from "./BucketEditPhase";
 import BucketController from "./bucket-controller/BucketController";
@@ -18,12 +19,14 @@ const BucketBackBody = ({
 
   return (
     <>
-      {isBucketEditPhase && (
-        <BucketEditPhase
-          closeBucketEditPhase={closeBucketEditPhase}
-          bucketBackData={bucketBackData}
-        />
-      )}
+      {isBucketEditPhase &&
+        currentBucketBackType ===
+          bucketBackConstants.bucketBackType.controller && (
+          <BucketEditPhase
+            closeBucketEditPhase={closeBucketEditPhase}
+            bucketBackData={bucketBackData}
+          />
+        )}
       {!isBucketEditPhase &&
         currentBucketBackType ===
           bucketBackConstants.bucketBackType.controller && (
@@ -32,11 +35,13 @@ const BucketBackBody = ({
             bucketBackData={bucketBackData}
           />
         )}
-      {!isBucketEditPhase &&
-        currentBucketBackType ===
-          bucketBackConstants.bucketBackType.motivation && (
-          <Motivations boxId={bucketBackData.id} />
-        )}
+      {currentBucketBackType ===
+        bucketBackConstants.bucketBackType.motivation && (
+        <Motivations
+          boxType={boxConstants.boxType.bucket}
+          boxId={bucketBackData.id}
+        />
+      )}
     </>
   );
 };

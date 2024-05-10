@@ -1,4 +1,4 @@
-import { HasChildren } from "@/shared-types/props";
+import { HasChildren } from "@/shared/types";
 
 const CenterContainer = ({ children }: HasChildren) => {
   return (

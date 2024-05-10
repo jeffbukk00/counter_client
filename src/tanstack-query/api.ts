@@ -31,5 +31,14 @@ export const api = {
     updateAchievementStack: (counterId: string) =>
       `/counter/achievement-stack/${counterId}`,
     resetCount: (counterId: string) => `/counter/count/reset/${counterId}`,
+    resetAchievementStack: (counterId: string) =>
+      `/counter/achievement-stack/reset/${counterId}`,
+    editCounter: (counterId: string) => `/counter/${counterId}`,
+    duplicateCounter: (bucketId: string, counterId: string) =>
+      `/counters/${bucketId}/duplicate/${counterId}`,
+    moveCounter: (bucketIdSubject: string, counterId: string) =>
+      `/counters/${bucketIdSubject}/move/${counterId}`,
+    removeCounter: (bucketId: string, counterId: string) =>
+      `/counters/${bucketId}/${counterId}`,
   },
 };

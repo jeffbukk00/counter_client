@@ -1,4 +1,4 @@
-const BucketRemoveControlVector = () => {
+const RemoveControlVector = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,4 +17,4 @@ const BucketRemoveControlVector = () => {
   );
 };
 
-export default BucketRemoveControlVector;
+export default RemoveControlVector;

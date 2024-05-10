@@ -11,14 +11,16 @@ import BoxCreator from "../ui/box-creator/BoxCreator";
 const Buckets = () => {
   const { bucketIds, isLoading } = useQueryBucketIds();
 
-  const { orderedIds, draggableAttributes, droppableAttributes } =
-    useChangeBoxPosition(boxConstants.boxType.bucket, bucketIds);
+  const { draggableAttributes, droppableAttributes } = useChangeBoxPosition(
+    boxConstants.boxType.bucket,
+    bucketIds
+  );
 
   if (isLoading) return <p>버킷 아이디들을 요청 중입니다</p>;
 
   return (
     <BoxesContainer>
-      {orderedIds?.map((e) => (
+      {bucketIds?.map((e) => (
         <Box
           key={e}
           boxType={boxConstants.boxType.bucket}

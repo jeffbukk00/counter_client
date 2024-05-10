@@ -3,7 +3,7 @@ import { useState } from "react";
 import { CountDigitPropsType } from "./types";
 import { counterFrontConstants } from "./constants";
 
-import SelectedDigitalNumberVector from "./assets/SelectedDigitalNumberVector";
+import SelectedDigitalNumberVector from "../../../shared/assets/digital-numbers/SelectedDigitalNumberVector";
 import CountButton from "./CountButton";
 
 const CountDigit = ({

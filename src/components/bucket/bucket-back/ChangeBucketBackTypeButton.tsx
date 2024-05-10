@@ -1,8 +1,8 @@
 import { ChangeBucketBackTypeButtonPropsType } from "./types";
 import { bucketBackConstants } from "./constants";
 
-import ChangeToControllerButtonVector from "./assets/ChangeToControllerButtonVector";
-import ChangeToMotivationButtonVector from "./assets/ChangeToMotivationButtonVector";
+import ChangeToControllerButtonVector from "../../../shared/assets/box-back-types/ChangeToControllerButtonVector";
+import ChangeToMotivationButtonVector from "../../../shared/assets/box-back-types/ChangeToMotivationButtonVector";
 
 const ChangeBucketBackTypeButton = ({
   type,

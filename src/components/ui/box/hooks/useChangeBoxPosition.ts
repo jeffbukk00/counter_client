@@ -1,4 +1,4 @@
-import { useState, useEffect, DragEventHandler } from "react";
+import { DragEventHandler } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { axiosInstance } from "@/axios/axiosInstance";
@@ -7,25 +7,20 @@ import { api } from "@/tanstack-query/api";
 import { queryKeys, constantsInQueryKeys } from "@/tanstack-query/queryKeys";
 import { EventTargetHasId } from "../types";
 
-const changeBoxPosition = async (
-  boxType: number,
-  boxIds: string[] | undefined,
-  bucketId?: string
-) => {
+const changeBoxPosition = (boxType: number, bucketId?: string) => {
   const url =
     boxType === boxConstants.boxType.counter && bucketId
       ? api.counter.changeCounterPosition(bucketId)
       : api.bucket.changeBucketPosition;
 
-  const body =
-    boxConstants.boxType.counter && bucketId
-      ? { counterIds: boxIds }
-      : { bucketIds: boxIds };
+  return async (boxIds: string[]) => {
+    const body =
+      boxConstants.boxType.counter && bucketId
+        ? { counterIds: boxIds }
+        : { bucketIds: boxIds };
 
-  return await axiosInstance.post(url, {
-    headers: { "Content-Type": "application/json" },
-    data: body,
-  });
+    return await axiosInstance.post(url, body);
+  };
 };
 
 const useChangeBoxPosition = (
@@ -33,46 +28,9 @@ const useChangeBoxPosition = (
   boxIds: string[] | undefined,
   bucketId?: string
 ) => {
-  const [orderedIds, setOrderedIds] = useState(boxIds);
-
-  useEffect(() => {
-    setOrderedIds(boxIds);
-  }, [boxIds]);
-
-  const dragStartHandler: DragEventHandler<HTMLDivElement> = (event) => {
-    event.dataTransfer?.clearData();
-
-    const target = event.target as EventTargetHasId;
-    event.dataTransfer?.setData("text/plain", target.id);
-  };
-
-  const dragOverHandler: DragEventHandler<HTMLDivElement> = (event) => {
-    event.preventDefault();
-  };
-
-  const dropHandler: DragEventHandler<HTMLDivElement> = (event) => {
-    const draggableId = event.dataTransfer?.getData("text");
-    const target = event.target as EventTargetHasId;
-    const droppableId = target.id;
-
-    return setOrderedIds((prevOrderedIds) => {
-      const updatedOrderedIds = prevOrderedIds?.filter(
-        (e) => e !== draggableId
-      );
-      const droppableIdIndex = updatedOrderedIds?.findIndex(
-        (e) => e === droppableId
-      );
-
-      if (typeof droppableIdIndex === "number")
-        updatedOrderedIds?.splice(droppableIdIndex, 0, draggableId);
-
-      return updatedOrderedIds;
-    });
-  };
-
   const queryClient = useQueryClient();
   const { mutate: mutateChangeBoxPosition } = useMutation({
-    mutationFn: () => changeBoxPosition(boxType, orderedIds, bucketId),
+    mutationFn: changeBoxPosition(boxType, bucketId),
     onSuccess: () => {
       if (boxType === boxConstants.boxType.bucket) {
         queryClient.invalidateQueries({
@@ -86,12 +44,32 @@ const useChangeBoxPosition = (
     },
   });
 
-  useEffect(() => {
-    if (orderedIds && orderedIds.length > 0) mutateChangeBoxPosition();
-  }, [orderedIds, mutateChangeBoxPosition]);
+  const dragStartHandler: DragEventHandler<HTMLDivElement> = (event) => {
+    event.dataTransfer?.clearData();
+
+    const target = event.target as EventTargetHasId;
+    event.dataTransfer?.setData("text/plain", target.id);
+  };
+
+  const dragOverHandler: DragEventHandler<HTMLDivElement> = (event) => {
+    event.preventDefault();
+  };
+
+  const dropHandler: DragEventHandler<HTMLDivElement> = (event) => {
+    if (!boxIds) return;
+
+    const draggableId = event.dataTransfer?.getData("text");
+    const target = event.target as EventTargetHasId;
+    const droppableId = target.id;
+
+    const orderedBoxIds = boxIds.filter((e) => e !== draggableId);
+    const droppableIdIndex = orderedBoxIds.findIndex((e) => e === droppableId);
+    orderedBoxIds?.splice(droppableIdIndex, 0, draggableId);
+
+    mutateChangeBoxPosition(orderedBoxIds);
+  };
 
   return {
-    orderedIds,
     draggableAttributes: { draggable: true, onDragStart: dragStartHandler },
     droppableAttributes: {
       onDragOver: dragOverHandler,

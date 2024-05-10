@@ -1,4 +1,4 @@
-const BucketMergeControlVector = () => {
+const MergeControlVector = () => {
   return (
     <svg
       fill="#000000"
@@ -11,4 +11,4 @@ const BucketMergeControlVector = () => {
   );
 };
 
-export default BucketMergeControlVector;
+export default MergeControlVector;

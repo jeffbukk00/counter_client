@@ -1,7 +1,7 @@
 import { OnEndCountButtonPropsType } from "./types";
 import { counterFrontConstants } from "./constants";
 
-import OnEndCountButtonVector from "./assets/OnEndCountButtonVector";
+import ResetControlVector from "../../ui/control/assets/ResetControlVector";
 import Control from "@/components/ui/control/Control";
 
 const OnEndCountButton = ({
@@ -18,7 +18,7 @@ const OnEndCountButton = ({
         resetCurrentCount();
       }}
     >
-      <OnEndCountButtonVector />
+      <ResetControlVector />
     </Control>
   );
 };

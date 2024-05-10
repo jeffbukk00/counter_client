@@ -1,4 +1,4 @@
-const BucketDuplicateControlVector = () => {
+const DuplicateControlVector = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,4 +17,4 @@ const BucketDuplicateControlVector = () => {
   );
 };
 
-export default BucketDuplicateControlVector;
+export default DuplicateControlVector;

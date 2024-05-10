@@ -3,7 +3,7 @@ import { BucketBackData } from "./types";
 import useModal from "@/components/ui/modal/hooks/useModal";
 
 import Control from "@/components/ui/control/Control";
-import BucketMergeControlVector from "./assets/BucketMergeControlVector";
+import MergeControlVector from "../../../ui/control/assets/MergeControlVector";
 import Modal from "@/components/ui/modal/Modal";
 import BucketMergePhase from "./BucketMergePhase";
 
@@ -17,7 +17,7 @@ const BucketMergeControl = ({
   return (
     <>
       <Control title="병합" action={openModal}>
-        <BucketMergeControlVector />
+        <MergeControlVector />
       </Control>
       {modalIsOpened && (
         <Modal closeModal={closeModal}>

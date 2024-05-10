@@ -1,9 +1,11 @@
-import CounterBack from "./counter-back/CounterBack";
-import { CounterBackDataType } from "./counter-back/types";
-import CounterFront from "./counter-front/CounterFront";
-import { CounterFrontDataType } from "./counter-front/types";
-import useQueryCounter from "./hooks/http/useQueryCounter";
 import { CounterPropsType } from "./types";
+import { CounterBackDataType } from "./counter-back/types";
+import { CounterFrontDataType } from "./counter-front/types";
+
+import useQueryCounter from "./hooks/http/useQueryCounter";
+
+import CounterBack from "./counter-back/CounterBack";
+import CounterFront from "./counter-front/CounterFront";
 
 const Counter = ({ counterId, bucketId, isFront }: CounterPropsType) => {
   const { counterData, isLoading } = useQueryCounter(counterId);

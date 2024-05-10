@@ -1,4 +1,4 @@
-import { HasChildren } from "@/shared-types/props";
+import { HasChildren } from "@/shared/types";
 
 export interface ModalPropsType extends HasChildren {
   closeModal: () => void;

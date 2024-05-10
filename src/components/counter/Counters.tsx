@@ -11,14 +11,17 @@ import BoxCreator from "../ui/box-creator/BoxCreator";
 const Counters = ({ bucketId }: { bucketId: string }) => {
   const { counterIds, isLoading } = useQueryCounterIds(bucketId);
 
-  const { orderedIds, draggableAttributes, droppableAttributes } =
-    useChangeBoxPosition(boxConstants.boxType.counter, counterIds, bucketId);
+  const { draggableAttributes, droppableAttributes } = useChangeBoxPosition(
+    boxConstants.boxType.counter,
+    counterIds,
+    bucketId
+  );
 
   if (isLoading) return <p>카운터 아이디들을 요청 중입니다...</p>;
 
   return (
     <BoxesContainer>
-      {orderedIds?.map((e) => (
+      {counterIds?.map((e) => (
         <Box
           key={e}
           boxType={boxConstants.boxType.counter}

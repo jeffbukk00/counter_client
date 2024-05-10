@@ -1,5 +1,5 @@
 import Control from "@/components/ui/control/Control";
-import BucketEditControlVector from "./assets/BucketEditControlVector";
+import EditControlVector from "../../../ui/control/assets/EditControlVector";
 
 const BucketEditControl = ({
   openBucketEditPhase,
@@ -8,7 +8,7 @@ const BucketEditControl = ({
 }) => {
   return (
     <Control title="수정" action={openBucketEditPhase}>
-      <BucketEditControlVector />
+      <EditControlVector />
     </Control>
   );
 };

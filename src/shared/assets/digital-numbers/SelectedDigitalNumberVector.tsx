@@ -1,13 +1,13 @@
-import Zero from "./digital-numbers/Zero";
-import One from "./digital-numbers/One";
-import Two from "./digital-numbers/Two";
-import Three from "./digital-numbers/Three";
-import Four from "./digital-numbers/Four";
-import Five from "./digital-numbers/Five";
-import Six from "./digital-numbers/Six";
-import Seven from "./digital-numbers/Seven";
-import Eight from "./digital-numbers/Eight";
-import Nine from "./digital-numbers/Nine";
+import Zero from "./Zero";
+import One from "./One";
+import Two from "./Two";
+import Three from "./Three";
+import Four from "./Four";
+import Five from "./Five";
+import Six from "./Six";
+import Seven from "./Seven";
+import Eight from "./Eight";
+import Nine from "./Nine";
 
 const SelectedDigitalNumberVector = ({ number }: { number: number }) => {
   switch (number) {

@@ -1,4 +1,4 @@
-const BucketEditControlVector = () => {
+const EditControlVector = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,4 +17,4 @@ const BucketEditControlVector = () => {
   );
 };
 
-export default BucketEditControlVector;
+export default EditControlVector;
