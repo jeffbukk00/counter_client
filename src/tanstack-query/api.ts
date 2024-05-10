@@ -41,4 +41,20 @@ export const api = {
     removeCounter: (bucketId: string, counterId: string) =>
       `/counters/${bucketId}/${counterId}`,
   },
+  motivationText: {
+    getMotivationTextIds: (boxId: string, boxType: number) =>
+      `/motivation-texts/${boxId}/ids?boxType=${boxType.toString()}`,
+    getMotivationText: (motivationTextId: string) =>
+      `/motivation-text/${motivationTextId}`,
+    createMotivationText: (boxId: string, boxType: number) =>
+      `/motivation-texts/${boxId}?boxType=${boxType.toString()}`,
+    editMotivationText: (motivationTextId: string) =>
+      `/motivation-text/${motivationTextId}`,
+    removeMotivationText: (
+      boxId: string,
+      boxType: number,
+      motivationTextId: string
+    ) =>
+      `/motivation-texts/${boxId}/${motivationTextId}?boxType=${boxType.toString()}`,
+  },
 };

@@ -1,12 +1,12 @@
 import { boxConstants } from "../ui/box/constants";
-import { boxCreatorConstants } from "../ui/box-creator/constants";
+import { boxCreatorConstants } from "../ui/creator/constants";
 
 import useQueryCounterIds from "./hooks/http/useQueryCounterIds";
 import useChangeBoxPosition from "../ui/box/hooks/useChangeBoxPosition";
 
 import BoxesContainer from "../ui/box/BoxesContainer";
 import Box from "../ui/box/Box";
-import BoxCreator from "../ui/box-creator/BoxCreator";
+import BoxCreator from "../ui/creator/BoxCreator";
 
 const Counters = ({ bucketId }: { bucketId: string }) => {
   const { counterIds, isLoading } = useQueryCounterIds(bucketId);

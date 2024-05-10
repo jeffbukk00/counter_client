@@ -6,7 +6,7 @@ import { counterCreationConstants } from "./constants";
 import useMutationCreateCounter from "./hooks/http/useMutationCreateCounter";
 import useNavigator from "../ui/navigator/hooks/useNavigator";
 
-import FinishCreationButton from "../ui/box-creator/FinishCreationButton";
+import FinishCreationButton from "../ui/creator/FinishCreationButton";
 import GotoPrevPhaseButton from "../ui/navigator/GotoPrevPhaseButton";
 import CounterCreationAnswerList from "./CounterCreationAnswerList";
 import CounterCreationQuery from "./CounterCreationQuery";

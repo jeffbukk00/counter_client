@@ -6,7 +6,7 @@ import { bucketCreationConstants } from "./constants";
 import useMutationCreateBuckets from "./hooks/http/useMutationCreateBucket";
 import useNavigator from "../ui/navigator/hooks/useNavigator";
 
-import FinishCreationButton from "../ui/box-creator/FinishCreationButton";
+import FinishCreationButton from "../ui/creator/FinishCreationButton";
 import GotoPrevPhaseButton from "../ui/navigator/GotoPrevPhaseButton";
 import BucketCreationAnswerList from "./BucketCreationAnswerList";
 import BucketCreationQuery from "./BucketCreationQuery";

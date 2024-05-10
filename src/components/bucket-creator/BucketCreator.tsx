@@ -1,6 +1,6 @@
-import useCreationStart from "../ui/box-creator/hooks/useCreationStart";
+import useCreationStart from "../ui/creator/hooks/useCreationStart";
 
-import StartCreationButton from "../ui/box-creator/StartCreationButton";
+import StartCreationButton from "../ui/creator/StartCreationButton";
 import BucketCreationPhase from "./BucketCreationPhase";
 
 const BucketCreator = () => {

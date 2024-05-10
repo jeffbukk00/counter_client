@@ -1,7 +1,7 @@
-import useCreationStart from "../ui/box-creator/hooks/useCreationStart";
+import useCreationStart from "../ui/creator/hooks/useCreationStart";
 
 import CounterCreationPhase from "./CounterCreationPhase";
-import StartCreationButton from "../ui/box-creator/StartCreationButton";
+import StartCreationButton from "../ui/creator/StartCreationButton";
 
 const CounterCreator = ({ bucketId }: { bucketId: string }) => {
   const { creationIsStarted, startCreation, finishCreation } =
