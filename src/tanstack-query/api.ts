@@ -73,4 +73,7 @@ export const api = {
     ) =>
       `/motivation-links/${boxId}/${motivationLinkId}?boxType=${boxType.toString()}`,
   },
+  sharing: {
+    upload: "/sharing/upload",
+  },
 };
