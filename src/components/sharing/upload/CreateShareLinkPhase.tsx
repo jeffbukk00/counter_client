@@ -13,9 +13,13 @@ const CreateShareLinkPhase = ({
 }: CreateShareLinkPhasePropsType) => {
   const { selectedBucket, selectBucket } = useBucketSelection();
 
+  const onCreationSuccessHandler = (shareLink: string) => {
+    updateCreatedShareLink(shareLink);
+    gotoNextPhase();
+  };
+
   const { mutateUploadShareLink, isPending } = useMutationUploadShareLink(
-    gotoNextPhase,
-    updateCreatedShareLink
+    onCreationSuccessHandler
   );
 
   if (isPending) return <p>공유 링크를 생성 중입니다...</p>;

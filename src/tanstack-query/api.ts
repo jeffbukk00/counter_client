@@ -1,3 +1,5 @@
+import { downloadConstants } from "@/components/sharing/download/constants";
+
 export const api = {
   auth: {
     getLoggedIn: "/auth/logged-in",
@@ -74,6 +76,11 @@ export const api = {
       `/motivation-links/${boxId}/${motivationLinkId}?boxType=${boxType.toString()}`,
   },
   sharing: {
-    upload: "/sharing/upload",
+    uploadShareLink: "/sharing/upload",
+    validateShareLink: (shareLink: string) => `${shareLink}/validation`,
+    downloadFromShareLink: (shareLink: string, downloadType: number) =>
+      `${shareLink}/download/${
+        downloadType === downloadConstants.downloadType.all ? "all" : "secure"
+      }`,
   },
 };

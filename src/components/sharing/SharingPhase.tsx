@@ -25,7 +25,7 @@ const SharingPhase = ({ closeModal }: { closeModal: () => void }) => {
         <UploadShareLinkPhase closeModal={closeModal} />
       )}
       {sharingType === sharingConstants.sharingType.download && (
-        <DownloadShareLinkPhase />
+        <DownloadShareLinkPhase closeModal={closeModal} />
       )}
     </>
   );

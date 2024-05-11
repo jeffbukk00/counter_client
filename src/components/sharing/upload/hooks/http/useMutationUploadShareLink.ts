@@ -6,13 +6,14 @@ import { api } from "@/tanstack-query/api";
 const uploadShareLink: (
   bucketId: string
 ) => Promise<{ shareLink: string }> = async (bucketId) => {
-  const { data } = await axiosInstance.post(api.sharing.upload, { bucketId });
+  const { data } = await axiosInstance.post(api.sharing.uploadShareLink, {
+    bucketId,
+  });
   return data;
 };
 
 const useMutationUploadShareLink = (
-  gotoNextPhase: () => void,
-  updateCreatedShareLink: (createdShareLink: string) => void
+  onCreationSuccessHandler: (shareLink: string) => void
 ) => {
   const {
     mutate: mutateUploadShareLink,
@@ -22,8 +23,7 @@ const useMutationUploadShareLink = (
     mutationFn: uploadShareLink,
     onSuccess: (data) => {
       if (data) {
-        updateCreatedShareLink(data.shareLink);
-        gotoNextPhase();
+        onCreationSuccessHandler(data.shareLink);
       }
     },
   });
