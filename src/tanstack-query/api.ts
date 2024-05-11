@@ -57,4 +57,20 @@ export const api = {
     ) =>
       `/motivation-texts/${boxId}/${motivationTextId}?boxType=${boxType.toString()}`,
   },
+  motivationLink: {
+    getMotivationLinkIds: (boxId: string, boxType: number) =>
+      `/motivation-links/${boxId}/ids?boxType=${boxType.toString()}`,
+    getMotivationLink: (motivationLinkId: string) =>
+      `/motivation-link/${motivationLinkId}`,
+    createMotivationLink: (boxId: string, boxType: number) =>
+      `/motivation-links/${boxId}?boxType=${boxType.toString()}`,
+    editMotivationLink: (motivationLinkId: string) =>
+      `/motivation-link/${motivationLinkId}`,
+    removeMotivationLink: (
+      boxId: string,
+      boxType: number,
+      motivationLinkId: string
+    ) =>
+      `/motivation-links/${boxId}/${motivationLinkId}?boxType=${boxType.toString()}`,
+  },
 };

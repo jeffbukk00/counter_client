@@ -1,7 +1,8 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { axiosInstance } from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const createMotivationText = (boxId: string, boxType: number) => {
   return async (text: string) => {

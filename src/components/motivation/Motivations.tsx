@@ -5,7 +5,7 @@ import { motivationConstants } from "./constants";
 
 import MotivationTypeSelectPhase from "./MotivationTypeSelectPhase";
 import MotivationTextsQueryPhase from "./motivation-text/MotivationTextsQueryPhase";
-import MotivationLinks from "./motivation-link/MotivationLinks";
+import MotivationLinksQueryPhase from "./motivation-link/MotivationLinksQueryPhase";
 
 const Motivations = ({ boxType, boxId }: MotivationsPropsType) => {
   const [motivationType, setMotivationType] = useState(
@@ -33,7 +33,7 @@ const Motivations = ({ boxType, boxId }: MotivationsPropsType) => {
         />
       )}
       {motivationType === motivationConstants.motivationType.link && (
-        <MotivationLinks
+        <MotivationLinksQueryPhase
           boxData={boxData}
           backToNotSelected={backToNotSelected}
         />

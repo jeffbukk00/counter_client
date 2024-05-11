@@ -21,9 +21,21 @@ export const queryKeys = {
       boxType === boxConstants.boxType.bucket ? "bucket" : "counter",
       "ids",
     ],
-    useQueryMotivationText: (motivationId: string) => [
+    useQueryMotivationText: (motivationTextId: string) => [
       "motivation-text",
-      motivationId,
+      motivationTextId,
+    ],
+  },
+  motivationLink: {
+    useQueryMotivationLinkIds: (boxId: string, boxType: number) => [
+      "motivation-links",
+      boxId,
+      boxType === boxConstants.boxType.bucket ? "bucket" : "counter",
+      "ids",
+    ],
+    useQueryMotivationLink: (motivationLinkId: string) => [
+      "motivation-link",
+      motivationLinkId,
     ],
   },
 };
