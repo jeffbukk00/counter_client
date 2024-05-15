@@ -10,6 +10,7 @@ import FinishCreationButton from "../ui/creator/FinishCreationButton";
 import GotoPrevPhaseButton from "../ui/navigator/GotoPrevPhaseButton";
 import CounterCreationAnswerList from "./CounterCreationAnswerList";
 import CounterCreationQuery from "./CounterCreationQuery";
+import LoadingFeedbackBox from "../ui/user-feedback/loading/LoadingFeedbackBox";
 
 const CounterCreationPhase = ({
   finishCreation,
@@ -21,7 +22,7 @@ const CounterCreationPhase = ({
     endCount: "",
   });
 
-  const { mutateCreateCounter } = useMutationCreateCounter(bucketId);
+  const { mutateCreateCounter, isPending } = useMutationCreateCounter(bucketId);
 
   const {
     currentPhase,
@@ -73,6 +74,7 @@ const CounterCreationPhase = ({
 
   return (
     <>
+      {isPending && <LoadingFeedbackBox isLoading={isPending} />}
       <FinishCreationButton finishCreation={finishCreation} />
       {!isInFirstPhase && <GotoPrevPhaseButton gotoPrevPhase={gotoPrevPhase} />}
       <CounterCreationAnswerList

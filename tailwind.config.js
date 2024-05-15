@@ -12,6 +12,7 @@ export default {
         "9/10": "90%",
         "40vh": "40vh",
         "60vh": "60vh",
+        "loading-modal-large": "12rem",
       },
       margin: {
         "1/20": "5%",
@@ -29,10 +30,15 @@ export default {
           "0%": { backgroundColor: "#FFF" },
           "100%": { backgroundColor: "#7FD69D" },
         },
+        spinning: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         countDisplayScreenNegative: "countDisplayScreenNegative 0.5s ease-out",
         countDisplayScreenPositive: "countDisplayScreenPositive 0.2s ease-in",
+        spinning: "spinning 0.8s ease-in-out infinite",
       },
     },
   },

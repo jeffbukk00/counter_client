@@ -12,7 +12,7 @@ const removeCounter = async (bucketId: string, counterId: string) => {
 
 const useMutationRemoveCounter = (bucketId: string, counterId: string) => {
   const queryClient = useQueryClient();
-  const { mutate: mutateRemoveConter } = useMutation({
+  const { mutate: mutateRemoveConter, isPending } = useMutation({
     mutationFn: () => removeCounter(bucketId, counterId),
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -21,7 +21,7 @@ const useMutationRemoveCounter = (bucketId: string, counterId: string) => {
     },
   });
 
-  return { mutateRemoveConter };
+  return { mutateRemoveConter, isPending };
 };
 
 export default useMutationRemoveCounter;

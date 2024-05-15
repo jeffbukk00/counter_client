@@ -1,7 +1,10 @@
 import { useState } from "react";
 
 const useBucketSelection = () => {
-  const [selectedBucket, setSelectedBucket] = useState({ id: "", title: "" });
+  const [selectedBucket, setSelectedBucket] = useState<{
+    id: string;
+    title: string;
+  } | null>(null);
 
   const selectBucket = (bucketData: { id: string; title: string }) =>
     setSelectedBucket(bucketData);

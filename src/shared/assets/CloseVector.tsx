@@ -1,4 +1,4 @@
-const FinishCreationButtonVector = () => {
+const CloseVector = ({ classes }: { classes: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +6,7 @@ const FinishCreationButtonVector = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6"
+      className={classes}
     >
       <path
         strokeLinecap="round"
@@ -17,4 +17,4 @@ const FinishCreationButtonVector = () => {
   );
 };
 
-export default FinishCreationButtonVector;
+export default CloseVector;

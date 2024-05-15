@@ -3,16 +3,17 @@ import { UserContextProvider } from "@/contexts/user/UserContext";
 
 import AfterLoginApp from "@/components/app/AfterLoginApp";
 import BeforeLoginApp from "@/components/app/BeforeLoginApp";
+import UserFeedbackContextProviders from "./UserFeedbackContexts";
 
 const App = () => {
-  const { loggedIn, isLoading } = useAuthContext();
-
-  if (isLoading) return <p>로그인 상태 확인 중...</p>;
+  const { loggedIn } = useAuthContext();
 
   const app = loggedIn ? (
-    <UserContextProvider>
-      <AfterLoginApp />
-    </UserContextProvider>
+    <UserFeedbackContextProviders>
+      <UserContextProvider>
+        <AfterLoginApp />
+      </UserContextProvider>
+    </UserFeedbackContextProviders>
   ) : (
     <BeforeLoginApp />
   );

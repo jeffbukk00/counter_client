@@ -6,6 +6,7 @@ import useBucketSelection from "@/components/ui/bucket-selection/hooks/useBucket
 
 import BucketSelectionList from "@/components/ui/bucket-selection/BucketSelectionList";
 import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
+import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 
 const CreateShareLinkPhase = ({
   gotoNextPhase,
@@ -18,11 +19,11 @@ const CreateShareLinkPhase = ({
     gotoNextPhase();
   };
 
-  const { mutateUploadShareLink, isPending } = useMutationUploadShareLink(
+  const { mutateUploadShareLink } = useMutationUploadShareLink(
     onCreationSuccessHandler
   );
 
-  if (isPending) return <p>공유 링크를 생성 중입니다...</p>;
+  const { activateModal } = useNotBoxLoadingContext();
 
   return (
     <>
@@ -32,6 +33,7 @@ const CreateShareLinkPhase = ({
         isInLastPhase={false}
         type={creationActionConstants.creationActionType.click}
         actionHandler={() => {
+          activateModal();
           mutateUploadShareLink(selectedBucket.id);
         }}
       />

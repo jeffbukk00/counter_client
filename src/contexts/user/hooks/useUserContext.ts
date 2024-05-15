@@ -3,20 +3,14 @@ import { useContext } from "react";
 import { UserContext } from "@/contexts/user/UserContext";
 
 const useUserContext = () => {
-  const {
-    email,
-    username,
-    profilePictureUrl,
-    unreadPositivePopupIds,
-    isLoading,
-  } = useContext(UserContext);
+  const { email, username, profilePictureUrl, unreadGuideIds } =
+    useContext(UserContext);
 
   return {
     email,
     username,
     profilePictureUrl,
-    unreadPositivePopupIds,
-    isLoading,
+    unreadGuideIds,
   };
 };
 

@@ -10,7 +10,7 @@ import FinishCreationButton from "../ui/creator/FinishCreationButton";
 import GotoPrevPhaseButton from "../ui/navigator/GotoPrevPhaseButton";
 import BucketCreationAnswerList from "./BucketCreationAnswerList";
 import BucketCreationQuery from "./BucketCreationQuery";
-
+import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 const BucketCreationPhase = ({
   finishCreation,
 }: BucketCreationPhasePropsType) => {
@@ -18,6 +18,7 @@ const BucketCreationPhase = ({
     title: "",
   });
 
+  const { activateBoxCreator } = useNotBoxLoadingContext();
   const { mutateCreateBucket } = useMutationCreateBuckets();
   const {
     currentPhase,
@@ -31,17 +32,14 @@ const BucketCreationPhase = ({
   );
 
   const updateUserAnswers = (userAnswerInCurrentPhase: string) => {
-    if (currentPhase === 0) {
-      // 유효성 검사
-
-      setUserAnswers((prev) => {
-        return { ...prev, title: userAnswerInCurrentPhase };
-      });
-    }
+    setUserAnswers((prev) => {
+      return { ...prev, title: userAnswerInCurrentPhase };
+    });
     gotoNextPhase();
   };
 
   const submitBucketCreation = () => {
+    activateBoxCreator();
     mutateCreateBucket(userAnswers);
     finishCreation();
   };

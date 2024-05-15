@@ -1,6 +1,7 @@
 import Control from "@/components/ui/control/Control";
 import useMutationRemoveCounter from "./hooks/http/useMutationRemoveCounter";
 import RemoveControlVector from "@/components/ui/control/assets/RemoveControlVector";
+import LoadingFeedbackBox from "@/components/ui/user-feedback/loading/LoadingFeedbackBox";
 
 const CounterRemoveControl = ({
   bucketId,
@@ -9,11 +10,17 @@ const CounterRemoveControl = ({
   bucketId: string;
   counterId: string;
 }) => {
-  const { mutateRemoveConter } = useMutationRemoveCounter(bucketId, counterId);
+  const { mutateRemoveConter, isPending } = useMutationRemoveCounter(
+    bucketId,
+    counterId
+  );
   return (
-    <Control title="삭제" action={mutateRemoveConter}>
-      <RemoveControlVector />
-    </Control>
+    <>
+      <LoadingFeedbackBox isLoading={isPending} />
+      <Control title="삭제" action={mutateRemoveConter}>
+        <RemoveControlVector />
+      </Control>
+    </>
   );
 };
 

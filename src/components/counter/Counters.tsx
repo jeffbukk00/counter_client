@@ -17,10 +17,8 @@ const Counters = ({ bucketId }: { bucketId: string }) => {
     bucketId
   );
 
-  if (isLoading) return <p>카운터 아이디들을 요청 중입니다...</p>;
-
   return (
-    <BoxesContainer>
+    <BoxesContainer isLoading={isLoading}>
       {counterIds?.map((e) => (
         <Box
           key={e}

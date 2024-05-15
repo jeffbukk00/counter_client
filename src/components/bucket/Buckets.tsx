@@ -8,18 +8,20 @@ import BoxesContainer from "../ui/box/BoxesContainer";
 import Box from "../ui/box/Box";
 import BoxCreator from "../ui/creator/BoxCreator";
 
+import LoadingFeedbackBoxesContainer from "../ui/user-feedback/loading/LoadingFeedbackBoxesContainer";
+
 const Buckets = () => {
-  const { bucketIds, isLoading } = useQueryBucketIds();
+  const { bucketIds, isLoading, isFetching } = useQueryBucketIds();
 
   const { draggableAttributes, droppableAttributes } = useChangeBoxPosition(
     boxConstants.boxType.bucket,
     bucketIds
   );
 
-  if (isLoading) return <p>버킷 아이디들을 요청 중입니다</p>;
+  if (isLoading) return <LoadingFeedbackBoxesContainer />;
 
   return (
-    <BoxesContainer>
+    <BoxesContainer isFetching={isFetching}>
       {bucketIds?.map((e) => (
         <Box
           key={e}

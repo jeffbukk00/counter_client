@@ -5,6 +5,8 @@ import { creationActionConstants } from "../ui/creation-action/constants";
 import { bucketCreationConstants } from "./constants";
 
 import CreationActionButton from "../ui/creation-action/CreationActionButton";
+import { below15Letters, required, validate } from "@/shared/utils/validation";
+import useNotBoxValidationContext from "@/contexts/feedback/validation/not-box-validation/hooks/useNotBoxValidationContext";
 
 const BucketCreationQuery = ({
   currentPhase,
@@ -16,6 +18,8 @@ const BucketCreationQuery = ({
   const [userAnswerInCurrentPhase, setUserAnswerInCurrentPhase] =
     useState<string>("");
   const [queryIsFocused, setQueryIsFocused] = useState(false);
+
+  const { updateIsBoxCreatorInvalid } = useNotBoxValidationContext();
 
   const changeUserAnswerInCurrentPhase: ChangeEventHandler<HTMLInputElement> = (
     event
@@ -75,6 +79,20 @@ const BucketCreationQuery = ({
             isInLastPhase={isInLastPhase}
             type={creationActionConstants.creationActionType.click}
             actionHandler={() => {
+              if (currentPhase === 0) {
+                // 유효성 검사
+                const validationResult = validate([
+                  required(userAnswerInCurrentPhase),
+                  below15Letters(userAnswerInCurrentPhase),
+                ]);
+
+                if (!validationResult.isValid)
+                  return updateIsBoxCreatorInvalid(
+                    true,
+                    validationResult.messages
+                  );
+              }
+
               updateUserAnswers(userAnswerInCurrentPhase);
               setQueryIsFocused(false);
               setUserAnswerInCurrentPhase("");

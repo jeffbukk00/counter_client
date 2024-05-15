@@ -10,6 +10,7 @@ export const api = {
   },
   user: {
     getUserData: "/user/user-data",
+    updateUnreadGuideIds: "user/user-data/unread-guide-ids",
   },
   bucket: {
     getBucketIds: "/buckets/ids",

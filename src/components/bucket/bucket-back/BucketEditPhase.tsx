@@ -6,6 +6,8 @@ import { creationActionConstants } from "@/components/ui/creation-action/constan
 import useMutationEditBucket from "./bucket-controller/hooks/http/useMutationEditBucket";
 
 import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
+import useBoxValidationContext from "@/contexts/feedback/validation/box-validation/hooks/useBoxValidationContext";
+import { below15Letters, required, validate } from "@/shared/utils/validation";
 
 const BucketEditPhase = ({
   closeBucketEditPhase,
@@ -17,6 +19,8 @@ const BucketEditPhase = ({
 
   const { mutateEditBucket } = useMutationEditBucket(bucketBackData.id);
 
+  const { addInvalidBox } = useBoxValidationContext();
+
   const updateTitle: ChangeEventHandler<HTMLInputElement> = (event) =>
     setUserAnswers((prev) => {
       return { ...prev, title: event.target.value };
@@ -24,6 +28,14 @@ const BucketEditPhase = ({
 
   const submitBucketEdit = () => {
     // 유효성 검사
+    const validationResult = validate([
+      required(userAnswers.title),
+      below15Letters(userAnswers.title),
+    ]);
+
+    if (!validationResult.isValid)
+      return addInvalidBox(bucketBackData.id, validationResult.messages);
+
     mutateEditBucket(userAnswers);
     closeBucketEditPhase();
   };

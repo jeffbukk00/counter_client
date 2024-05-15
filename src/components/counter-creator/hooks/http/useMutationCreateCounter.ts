@@ -19,7 +19,7 @@ const createCounter = (bucketId: string) => {
 
 const useMutationCreateCounter = (bucketId: string) => {
   const queryClient = useQueryClient();
-  const { mutate: mutateCreateCounter } = useMutation({
+  const { mutate: mutateCreateCounter, isPending } = useMutation({
     mutationFn: createCounter(bucketId),
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -28,7 +28,7 @@ const useMutationCreateCounter = (bucketId: string) => {
     },
   });
 
-  return { mutateCreateCounter };
+  return { mutateCreateCounter, isPending };
 };
 
 export default useMutationCreateCounter;

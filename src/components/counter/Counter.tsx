@@ -6,11 +6,12 @@ import useQueryCounter from "./hooks/http/useQueryCounter";
 
 import CounterBack from "./counter-back/CounterBack";
 import CounterFront from "./counter-front/CounterFront";
+import LoadingFeedbackBox from "../ui/user-feedback/loading/LoadingFeedbackBox";
 
 const Counter = ({ counterId, bucketId, isFront }: CounterPropsType) => {
   const { counterData, isLoading } = useQueryCounter(counterId);
 
-  if (isLoading) return <p>카운터를 요청 중입니다...</p>;
+  if (isLoading) return <LoadingFeedbackBox isLoading={isLoading} />;
 
   let counterFrontData: CounterFrontDataType;
   let counterBackData: CounterBackDataType;

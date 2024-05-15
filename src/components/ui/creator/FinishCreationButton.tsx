@@ -1,13 +1,13 @@
 import { FinishCreationButtonPropsType } from "./types";
 
-import FinishCreationButtonVector from "./assets/FinishCreationButtonVector";
+import CloseVector from "@/shared/assets/CloseVector";
 
 const FinishCreationButton = ({
   finishCreation,
 }: FinishCreationButtonPropsType) => {
   return (
     <button onClick={finishCreation}>
-      <FinishCreationButtonVector />
+      <CloseVector classes="w-6 h-6 inline-block" />
     </button>
   );
 };
