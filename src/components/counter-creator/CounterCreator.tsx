@@ -1,7 +1,7 @@
 import useCreationStart from "../ui/creator/hooks/useCreationStart";
 
 import CounterCreationPhase from "./CounterCreationPhase";
-import StartCreationButton from "../ui/creator/StartCreationButton";
+import CounterCreationStart from "./CounterCreationStart";
 
 const CounterCreator = ({ bucketId }: { bucketId: string }) => {
   const { creationIsStarted, startCreation, finishCreation } =
@@ -16,7 +16,7 @@ const CounterCreator = ({ bucketId }: { bucketId: string }) => {
         />
       )}
       {!creationIsStarted && (
-        <StartCreationButton startCreation={startCreation} />
+        <CounterCreationStart startCreation={startCreation} />
       )}
     </>
   );

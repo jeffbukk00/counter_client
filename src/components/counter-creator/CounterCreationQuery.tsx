@@ -5,6 +5,16 @@ import { counterCreationConstants } from "./constants";
 import { creationActionConstants } from "../ui/creation-action/constants";
 
 import CreationActionButton from "../ui/creation-action/CreationActionButton";
+import {
+  below15Letters,
+  belowMax,
+  endCountisSame,
+  isInteger,
+  overMin,
+  required,
+  validate,
+} from "@/shared/utils/validation";
+import useNotBoxValidationContext from "@/contexts/feedback/validation/not-box-validation/hooks/useNotBoxValidationContext";
 
 const CounterCreationQuery = ({
   currentPhase,
@@ -14,8 +24,9 @@ const CounterCreationQuery = ({
   submitCounterCreation,
 }: CounterCreationQueryPropsType) => {
   const [userAnswerInCurrentPhase, setUserAnswerInCurrentPhase] = useState("");
-
   const [queryIsFocused, setQueryIsFocused] = useState(false);
+
+  const { updateIsBoxCreatorInvalid } = useNotBoxValidationContext();
 
   const changeUserAnswerInCurrentPhase: ChangeEventHandler<HTMLInputElement> = (
     event
@@ -84,6 +95,67 @@ const CounterCreationQuery = ({
             isInLastPhase={isInLastPhase}
             type={creationActionConstants.creationActionType.click}
             actionHandler={() => {
+              if (currentPhase === 0) {
+                const validationResult = validate([
+                  required(userAnswerInCurrentPhase),
+                  below15Letters(userAnswerInCurrentPhase),
+                ]);
+
+                if (!validationResult.isValid)
+                  return updateIsBoxCreatorInvalid(
+                    true,
+                    validationResult.messages
+                  );
+              }
+
+              if (currentPhase === 1) {
+                let validationResult = validate([
+                  required(userAnswerInCurrentPhase),
+                  isInteger(userAnswerInCurrentPhase),
+                ]);
+                if (!validationResult.isValid)
+                  return updateIsBoxCreatorInvalid(
+                    true,
+                    validationResult.messages
+                  );
+
+                validationResult = validate([
+                  overMin(userAnswerInCurrentPhase),
+                  belowMax(userAnswerInCurrentPhase),
+                ]);
+                if (!validationResult.isValid)
+                  return updateIsBoxCreatorInvalid(
+                    true,
+                    validationResult.messages
+                  );
+              }
+
+              if (currentPhase === 2) {
+                let validationResult = validate([
+                  required(userAnswerInCurrentPhase),
+                  isInteger(userAnswerInCurrentPhase),
+                ]);
+                if (!validationResult.isValid)
+                  return updateIsBoxCreatorInvalid(
+                    true,
+                    validationResult.messages
+                  );
+
+                validationResult = validate([
+                  overMin(userAnswerInCurrentPhase),
+                  belowMax(userAnswerInCurrentPhase),
+                  endCountisSame(
+                    userAnswers.startCount,
+                    userAnswerInCurrentPhase
+                  ),
+                ]);
+                if (!validationResult.isValid)
+                  return updateIsBoxCreatorInvalid(
+                    true,
+                    validationResult.messages
+                  );
+              }
+
               updateUserAnswers(userAnswerInCurrentPhase);
               setQueryIsFocused(false);
               setUserAnswerInCurrentPhase("");

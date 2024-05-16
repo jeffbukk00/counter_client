@@ -6,6 +6,9 @@ import { BoxDataType } from "../types";
 import useMutationCreateMotivationText from "./hooks/http/useMutationCreateMotivationText";
 import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
 import { creationActionConstants } from "@/components/ui/creation-action/constants";
+import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
+import useBoxValidationContext from "@/contexts/feedback/validation/box-validation/hooks/useBoxValidationContext";
+import { required, validate } from "@/shared/utils/validation";
 
 const MotivationTextCreationPhase = ({
   boxData,
@@ -19,6 +22,8 @@ const MotivationTextCreationPhase = ({
     boxData.boxId,
     boxData.boxType
   );
+  const { activate } = useBoxLoadingContext();
+  const { addInvalidBox } = useBoxValidationContext();
 
   const updateText: ChangeEventHandler<HTMLTextAreaElement> = (event) =>
     setUserAnswers((prev) => {
@@ -26,6 +31,12 @@ const MotivationTextCreationPhase = ({
     });
 
   const submitMotivationTextCreation = () => {
+    // 유효성 검사
+    const validationResult = validate([required(userAnswers.text)]);
+    if (!validationResult.isValid)
+      return addInvalidBox(boxData.boxId, validationResult.messages);
+
+    activate(boxData.boxId);
     mutateCreateMotivationText(userAnswers.text);
     finishCreation();
   };

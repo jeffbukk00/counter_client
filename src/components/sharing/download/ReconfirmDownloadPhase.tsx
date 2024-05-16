@@ -4,16 +4,18 @@ import { ReconfirmDownloadPhasePropsType } from "./type";
 import useMutationDownloadFromShareLink from "./hooks/useMutationDownloadFromShareLink";
 
 import LinkVector from "@/shared/assets/link/LinkVector";
+import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 
 const ReconfirmDownloadPhase = ({
   username,
   downloadLink,
   closeModal,
 }: ReconfirmDownloadPhasePropsType) => {
-  const { mutateDownloadFromShareLink, isPending } =
-    useMutationDownloadFromShareLink(downloadLink, closeModal);
-
-  if (isPending) return <p>다운로드 중입니다...</p>;
+  const { mutateDownloadFromShareLink } = useMutationDownloadFromShareLink(
+    downloadLink,
+    closeModal
+  );
+  const { activateModal } = useNotBoxLoadingContext();
 
   return (
     <>
@@ -33,6 +35,7 @@ const ReconfirmDownloadPhase = ({
       </p>
       <button
         onClick={() => {
+          activateModal();
           mutateDownloadFromShareLink(downloadConstants.downloadType.all);
         }}
       >
@@ -40,6 +43,7 @@ const ReconfirmDownloadPhase = ({
       </button>
       <button
         onClick={() => {
+          activateModal();
           mutateDownloadFromShareLink(downloadConstants.downloadType.secure);
         }}
       >

@@ -10,7 +10,11 @@ import FinishCreationButton from "../ui/creator/FinishCreationButton";
 import GotoPrevPhaseButton from "../ui/navigator/GotoPrevPhaseButton";
 import CounterCreationAnswerList from "./CounterCreationAnswerList";
 import CounterCreationQuery from "./CounterCreationQuery";
-import LoadingFeedbackBox from "../ui/user-feedback/loading/LoadingFeedbackBox";
+
+import useBoxCreatorGuide from "../ui/user-feedback/guide/hooks/useBoxCreatorGuide";
+import { guideConstants } from "../ui/user-feedback/guide/constants";
+
+import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 
 const CounterCreationPhase = ({
   finishCreation,
@@ -21,8 +25,10 @@ const CounterCreationPhase = ({
     startCount: "",
     endCount: "",
   });
+  useBoxCreatorGuide(guideConstants.guideIds["guideId5"]);
 
-  const { mutateCreateCounter, isPending } = useMutationCreateCounter(bucketId);
+  const { activateBoxCreator } = useNotBoxLoadingContext();
+  const { mutateCreateCounter } = useMutationCreateCounter(bucketId);
 
   const {
     currentPhase,
@@ -37,24 +43,18 @@ const CounterCreationPhase = ({
 
   const updateUserAnswers = (userAnswerInCurrentPhase: string) => {
     if (currentPhase === 0) {
-      // "title"에 대한 유효성 검사
-
       setUserAnswers((prev) => {
         return { ...prev, title: userAnswerInCurrentPhase };
       });
     }
 
     if (currentPhase === 1) {
-      // "startCount"에 대한 유효성 검사
-
       setUserAnswers((prev) => {
         return { ...prev, startCount: userAnswerInCurrentPhase };
       });
     }
 
     if (currentPhase === 2) {
-      // "endCount"에 대한 유효성 검사
-
       setUserAnswers((prev) => {
         return { ...prev, endCount: userAnswerInCurrentPhase };
       });
@@ -64,6 +64,7 @@ const CounterCreationPhase = ({
   };
 
   const submitCounterCreation = () => {
+    activateBoxCreator();
     mutateCreateCounter({
       title: userAnswers.title,
       startCount: Number(userAnswers.startCount),
@@ -74,7 +75,6 @@ const CounterCreationPhase = ({
 
   return (
     <>
-      {isPending && <LoadingFeedbackBox isLoading={isPending} />}
       <FinishCreationButton finishCreation={finishCreation} />
       {!isInFirstPhase && <GotoPrevPhaseButton gotoPrevPhase={gotoPrevPhase} />}
       <CounterCreationAnswerList

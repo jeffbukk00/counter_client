@@ -3,24 +3,28 @@ import { MotivationTextsQueryPhasePropsType } from "./types";
 import useQueryMotivationTextIds from "./hooks/http/useQueryMotivationTextIds";
 
 import MotivationTexts from "./MotivationTexts";
+import LoadingFeedbackBox from "@/components/ui/user-feedback/loading/LoadingFeedbackBox";
 
 const MotivationTextsQueryPhase = ({
   boxData,
   backToNotSelected,
 }: MotivationTextsQueryPhasePropsType) => {
-  const { motivationTextIds, isLoading } = useQueryMotivationTextIds(
-    boxData.boxId,
-    boxData.boxType
-  );
+  const { motivationTextIds, isLoading, isFetching } =
+    useQueryMotivationTextIds(boxData.boxId, boxData.boxType);
 
-  if (isLoading) return <p>모티베이션 텍스트 아이디들을 요청 중입니다...</p>;
+  if (isLoading) return <LoadingFeedbackBox />;
 
   return (
-    <MotivationTexts
-      boxData={boxData}
-      backToNotSelected={backToNotSelected}
-      motivationTextIds={motivationTextIds!}
-    />
+    <>
+      {isFetching && <LoadingFeedbackBox />}
+      {
+        <MotivationTexts
+          boxData={boxData}
+          backToNotSelected={backToNotSelected}
+          motivationTextIds={motivationTextIds!}
+        />
+      }
+    </>
   );
 };
 

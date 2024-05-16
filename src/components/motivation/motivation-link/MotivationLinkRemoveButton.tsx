@@ -3,6 +3,7 @@ import { MotivationLinkRemoveButtonPropsType } from "./types";
 import useMutationRemoveMotivationLink from "./hooks/http/useMutationRemoveMotivationLink";
 
 import RemoveControlVector from "@/components/ui/control/assets/RemoveControlVector";
+import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 
 const MotivationLinkRemoveBUtton = ({
   boxData,
@@ -13,9 +14,15 @@ const MotivationLinkRemoveBUtton = ({
     boxData.boxType,
     motivationLinkId
   );
+  const { activate } = useBoxLoadingContext();
 
   return (
-    <button onClick={() => mutateRemoveMotivationLink()}>
+    <button
+      onClick={() => {
+        activate(boxData.boxId);
+        mutateRemoveMotivationLink();
+      }}
+    >
       <RemoveControlVector />
     </button>
   );

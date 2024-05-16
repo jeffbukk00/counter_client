@@ -14,6 +14,7 @@ const MotivationTexts = ({
   motivationTextIds,
 }: MotivationTextsPropsType) => {
   const lastPhase = motivationTextIds.length;
+
   const {
     currentPhase,
     isInFirstPhase,
@@ -21,6 +22,7 @@ const MotivationTexts = ({
     gotoPrevPhase,
     gotoNextPhase,
   } = useNavigator(0, lastPhase);
+
   return (
     <>
       {isInFirstPhase && (

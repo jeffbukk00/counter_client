@@ -15,11 +15,12 @@ const BucketMergePhase = ({
   closeModal,
   bucketBackData,
 }: BucketMergePhasePropsType) => {
+  const { selectedBucket, selectBucket } = useBucketSelection();
+
   const { mutateMergeBucket } = useMutationMergeBucket(
     bucketBackData.id,
     closeModal
   );
-  const { selectedBucket, selectBucket } = useBucketSelection();
   const { activateModal } = useNotBoxLoadingContext();
   const { updateIsModalInvalid } = useNotBoxValidationContext();
 
@@ -28,7 +29,7 @@ const BucketMergePhase = ({
       <CloseModalButton closeModal={closeModal} />
       <BucketSelectionList selectBucket={selectBucket} />
       <p>
-        버킷 {bucketBackData.title}이 버킷{" "}
+        버킷 {bucketBackData.title}이 버킷
         {selectedBucket ? selectedBucket.title : "(버킷이 선택되지 않음)"}을
         병합합니다
       </p>

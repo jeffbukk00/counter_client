@@ -9,9 +9,9 @@ import CounterFront from "./counter-front/CounterFront";
 import LoadingFeedbackBox from "../ui/user-feedback/loading/LoadingFeedbackBox";
 
 const Counter = ({ counterId, bucketId, isFront }: CounterPropsType) => {
-  const { counterData, isLoading } = useQueryCounter(counterId);
+  const { counterData, isLoading, isFetching } = useQueryCounter(counterId);
 
-  if (isLoading) return <LoadingFeedbackBox isLoading={isLoading} />;
+  if (isLoading) return <LoadingFeedbackBox />;
 
   let counterFrontData: CounterFrontDataType;
   let counterBackData: CounterBackDataType;
@@ -32,6 +32,7 @@ const Counter = ({ counterId, bucketId, isFront }: CounterPropsType) => {
 
   return (
     <>
+      {isFetching && <LoadingFeedbackBox />}
       {isFront ? (
         //@ts-expect-error counterFrontData는 이미 할당 된 상태
         <CounterFront counterFrontData={counterFrontData} />

@@ -16,6 +16,7 @@ export interface MotivationLinkDataType {
 }
 
 export interface MotivationLinkEditPhasePropsType {
+  boxId: string;
   motivationLinkId: string;
   motivationLinkData: MotivationLinkDataType;
   closeEditPhase: () => void;

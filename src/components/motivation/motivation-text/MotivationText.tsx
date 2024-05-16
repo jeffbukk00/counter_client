@@ -7,6 +7,7 @@ import useQueryMotivationText from "./hooks/http/useQueryMotivationText";
 import MotivationTextEditButton from "./MotivationTextEditButton";
 import MotivationTextRemoveButton from "./MotivationTextRemoveButton";
 import MotivationTextEditPhase from "./MotivationTextEditPhase";
+import LoadingFeedbackBox from "@/components/ui/user-feedback/loading/LoadingFeedbackBox";
 
 const MotivationText = ({
   boxData,
@@ -16,7 +17,7 @@ const MotivationText = ({
   const [isEditButtonVisible, setIsEditButtonVisible] = useState(false);
   const [isRemoveButtonVisible, setIsRemoveButtonVisible] = useState(false);
 
-  const { motivationTextData, isLoading } =
+  const { motivationTextData, isLoading, isFetching } =
     useQueryMotivationText(motivationTextId);
 
   const openEditPhase = () => setisEditPhase(true);
@@ -26,12 +27,14 @@ const MotivationText = ({
   const showRemoveButton = () => setIsRemoveButtonVisible(true);
   const hideRemoveButton = () => setIsRemoveButtonVisible(false);
 
-  if (isLoading) return <p>모티베이션 텍스트를 요청 중입니다...</p>;
+  if (isLoading) return <LoadingFeedbackBox />;
 
   return (
     <>
+      {isFetching && <LoadingFeedbackBox />}
       {isEditPhase && (
         <MotivationTextEditPhase
+          boxId={boxData.boxId}
           motivationTextId={motivationTextId}
           motivationTextData={motivationTextData!}
           closeEditPhase={closeEditPhase}

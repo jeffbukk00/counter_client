@@ -4,6 +4,8 @@ import { axiosInstance } from "@/axios/axiosInstance";
 import { CounterDataType } from "../../types";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
+import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
+import { useEffect } from "react";
 
 const getCounter: (
   counterId: string
@@ -14,12 +16,20 @@ const getCounter: (
 };
 
 const useQueryCounter = (counterId: string) => {
-  const { data, isLoading } = useQuery({
+  const { openAsyncError } = useAsyncErrorContext();
+  const { data, isLoading, isFetching, isError } = useQuery({
     queryKey: queryKeys.counter.useQueryCounter(counterId),
     queryFn: () => getCounter(counterId),
+    refetchOnWindowFocus: false,
   });
 
-  return { counterData: data?.counter, isLoading };
+  useEffect(() => {
+    if (isError) {
+      openAsyncError("카운터를 가져오는데 실패했습니다");
+    }
+  }, [openAsyncError, isError]);
+
+  return { counterData: data?.counter, isLoading, isFetching };
 };
 
 export default useQueryCounter;

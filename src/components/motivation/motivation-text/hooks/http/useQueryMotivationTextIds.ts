@@ -1,7 +1,9 @@
 import { axiosInstance } from "@/axios/axiosInstance";
+import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 const getMotivationTextIds: (
   boxId: string,
@@ -14,15 +16,23 @@ const getMotivationTextIds: (
 };
 
 const useQueryMotivationTextIds = (boxId: string, boxType: number) => {
-  const { data, isLoading } = useQuery({
+  const { openAsyncError } = useAsyncErrorContext();
+  const { data, isLoading, isFetching, isError } = useQuery({
     queryKey: queryKeys.motivationText.useQueryMotivationTextIds(
       boxId,
       boxType
     ),
     queryFn: () => getMotivationTextIds(boxId, boxType),
+    refetchOnWindowFocus: false,
   });
 
-  return { motivationTextIds: data?.motivationTextIds, isLoading };
+  useEffect(() => {
+    if (isError) {
+      openAsyncError("모티베이션 텍스트들을 가져오는데 실패했습니다");
+    }
+  }, [isError, openAsyncError]);
+
+  return { motivationTextIds: data?.motivationTextIds, isLoading, isFetching };
 };
 
 export default useQueryMotivationTextIds;

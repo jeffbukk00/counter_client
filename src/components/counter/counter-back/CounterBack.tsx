@@ -4,6 +4,8 @@ import { CounterBackDataType } from "./types";
 import { counterBackConstants } from "./constants";
 import CounterBackTop from "./CounterBackTop";
 import CounterBackBody from "./CounterBackBody";
+import useBoxGuide from "@/components/ui/user-feedback/guide/hooks/useBoxGuide";
+import { guideConstants } from "@/components/ui/user-feedback/guide/constants";
 
 const CounterBack = ({
   counterBackData,
@@ -13,6 +15,7 @@ const CounterBack = ({
   const [currentCounterBackType, setCurrentCounterBackType] = useState(
     counterBackConstants.counterBackType.controller
   );
+  useBoxGuide(guideConstants.guideIds["guideId7"], counterBackData.id);
 
   return (
     <>

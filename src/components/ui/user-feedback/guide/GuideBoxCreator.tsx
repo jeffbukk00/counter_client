@@ -19,7 +19,8 @@ const GuideBoxCreator = ({ unreadGuideId }: { unreadGuideId: string }) => {
         </p>
         <input type="checkbox" onChange={check} />
       </div>
-      <p>{guideConstants.guides[unreadGuideId]}</p>
+      <p>{guideConstants.guides[unreadGuideId].title}</p>
+      <p>{guideConstants.guides[unreadGuideId].text}</p>
     </div>
   );
 };

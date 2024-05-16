@@ -9,19 +9,25 @@ import Box from "../ui/box/Box";
 import BoxCreator from "../ui/creator/BoxCreator";
 
 import LoadingFeedbackBoxesContainer from "../ui/user-feedback/loading/LoadingFeedbackBoxesContainer";
+import useBoxGuideContext from "@/contexts/feedback/guide/box-guide/hooks/useBoxGuideContext";
+import { useEffect } from "react";
 
 const Buckets = () => {
   const { bucketIds, isLoading, isFetching } = useQueryBucketIds();
 
-  const { draggableAttributes, droppableAttributes } = useChangeBoxPosition(
-    boxConstants.boxType.bucket,
-    bucketIds
-  );
+  const { draggableAttributes, droppableAttributes, isPending } =
+    useChangeBoxPosition(boxConstants.boxType.bucket, bucketIds);
+
+  const { resetUnreadGuide } = useBoxGuideContext();
+
+  useEffect(() => {
+    resetUnreadGuide();
+  }, [resetUnreadGuide]);
 
   if (isLoading) return <LoadingFeedbackBoxesContainer />;
 
   return (
-    <BoxesContainer isFetching={isFetching}>
+    <BoxesContainer isFetching={isFetching || isPending}>
       {bucketIds?.map((e) => (
         <Box
           key={e}

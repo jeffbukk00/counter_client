@@ -8,6 +8,7 @@ import useMutationEditBucket from "./bucket-controller/hooks/http/useMutationEdi
 import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
 import useBoxValidationContext from "@/contexts/feedback/validation/box-validation/hooks/useBoxValidationContext";
 import { below15Letters, required, validate } from "@/shared/utils/validation";
+import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 
 const BucketEditPhase = ({
   closeBucketEditPhase,
@@ -18,7 +19,7 @@ const BucketEditPhase = ({
   });
 
   const { mutateEditBucket } = useMutationEditBucket(bucketBackData.id);
-
+  const { activate } = useBoxLoadingContext();
   const { addInvalidBox } = useBoxValidationContext();
 
   const updateTitle: ChangeEventHandler<HTMLInputElement> = (event) =>
@@ -36,6 +37,7 @@ const BucketEditPhase = ({
     if (!validationResult.isValid)
       return addInvalidBox(bucketBackData.id, validationResult.messages);
 
+    activate(bucketBackData.id);
     mutateEditBucket(userAnswers);
     closeBucketEditPhase();
   };

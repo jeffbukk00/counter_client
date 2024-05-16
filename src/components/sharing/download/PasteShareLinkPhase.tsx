@@ -11,6 +11,13 @@ import { readClipboard } from "@/shared/utils/clipboard/readClipboard";
 import PasteVector from "@/shared/assets/link/PasteVector";
 import FeedbackToPaste from "@/components/ui/clipboard-feedback/FeedbackToPaste";
 import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
+import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
+import useNotBoxValidationContext from "@/contexts/feedback/validation/not-box-validation/hooks/useNotBoxValidationContext";
+import {
+  isValidShareLink,
+  linkIsNotPasted,
+  validate,
+} from "@/shared/utils/validation";
 
 const PasteShareLinkPhase = ({
   gotoNextPhase,
@@ -23,10 +30,13 @@ const PasteShareLinkPhase = ({
 
   const paste = async () => {
     const pasted = await readClipboard();
-    // 유효성 검사
+
     updateIsPasted(true);
     setPastedLink(pasted);
   };
+
+  const { activateModal } = useNotBoxLoadingContext();
+  const { updateIsModalInvalid } = useNotBoxValidationContext();
 
   const onValidationSuccessHandler = (username: string) => {
     updateDownloadLink(pastedLink);
@@ -34,13 +44,15 @@ const PasteShareLinkPhase = ({
     gotoNextPhase();
   };
 
-  const { mutateValidateShareLink, isPending } = useMutationValidateShareLink(
-    onValidationSuccessHandler
+  const onValidationErrorHandler = () => {
+    updateIsPasted(false);
+    updateIsModalInvalid(true, ["존재하지 않는 공유 링크입니다"]);
+  };
+
+  const { mutateValidateShareLink } = useMutationValidateShareLink(
+    onValidationSuccessHandler,
+    onValidationErrorHandler
   );
-
-  if (isPending)
-    return <p>다운로드 할 공유 링크에 대한 유효성 검사 중입니다...</p>;
-
   return (
     <>
       <p>공유 링크 붙여넣기</p>
@@ -51,7 +63,20 @@ const PasteShareLinkPhase = ({
       <CreationActionButton
         isInLastPhase={false}
         type={creationActionConstants.creationActionType.click}
-        actionHandler={() => mutateValidateShareLink(pastedLink)}
+        actionHandler={() => {
+          // 유효성 검사
+          const validationResult = validate([
+            linkIsNotPasted(pastedLink),
+            isValidShareLink(pastedLink),
+          ]);
+          if (!validationResult.isValid) {
+            updateIsPasted(false);
+            return updateIsModalInvalid(true, validationResult.messages);
+          }
+
+          activateModal();
+          mutateValidateShareLink(pastedLink);
+        }}
       />
     </>
   );

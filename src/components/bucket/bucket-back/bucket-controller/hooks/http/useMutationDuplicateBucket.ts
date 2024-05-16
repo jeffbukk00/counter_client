@@ -11,8 +11,8 @@ const duplicateBucket = async (bucketId: string) => {
 };
 
 const useMutationDuplicateBucket = (bucketId: string) => {
-  const { openAsyncError } = useAsyncErrorContext();
   const { inactivate } = useBoxLoadingContext();
+  const { openAsyncError } = useAsyncErrorContext();
   const queryClient = useQueryClient();
   const { mutate: mutateDuplicateBucket } = useMutation({
     mutationFn: () => duplicateBucket(bucketId),
@@ -24,7 +24,6 @@ const useMutationDuplicateBucket = (bucketId: string) => {
     },
     onError: () => {
       inactivate(bucketId);
-
       openAsyncError("버킷 복제에 실패했습니다");
     },
   });

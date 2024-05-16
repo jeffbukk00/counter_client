@@ -12,8 +12,10 @@ const useModalGuide = (guideId: string) => {
 
   useEffect(() => {
     if (isUnread && counterRef.current === 0) {
-      counterRef.current++;
-      updateModalGuide(true, guideId);
+      setTimeout(() => {
+        counterRef.current++;
+        updateModalGuide(true, guideId);
+      }, 200);
     }
   }, [isUnread, guideId, updateModalGuide]);
 

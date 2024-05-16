@@ -14,6 +14,7 @@ export const BoxGuideContext = createContext<BoxGuideContextType>({
     // 상관 없음
     console.log(guideId);
   },
+  resetUnreadGuide: () => {},
 });
 
 export const BoxGuideContextProvider = ({ children }: HasChildren) => {
@@ -23,29 +24,37 @@ export const BoxGuideContextProvider = ({ children }: HasChildren) => {
 
   const addUnreadGuide = useCallback((guideId: string, boxId: string) => {
     setUnreadGuides((prev) => {
-      const guideIsDuplicated = prev.find((e) => e.guideId === guideId);
-      const boxIsUnGuided = prev.find((e) => e.boxId === boxId);
+      let guideIsDuplicated = false;
+      let boxHasGuide = false;
+      let boxHasSameGuide = false;
+
+      const idxHasDuplicatedGuide = prev.findIndex(
+        (e) => e.guideId === guideId
+      );
+      if (idxHasDuplicatedGuide !== -1) guideIsDuplicated = true;
+      const boxIdx = prev.findIndex((e) => e.boxId === boxId);
+      if (boxIdx !== -1) boxHasGuide = true;
+      if (boxHasGuide && prev[boxIdx].guideId === guideId)
+        boxHasSameGuide = true;
 
       const updated = [...prev];
 
-      if (guideIsDuplicated) {
-        if (boxIsUnGuided) {
-          const boxIdx = updated.findIndex((e) => e.boxId === boxId);
-          updated.splice(boxIdx, 1);
-          return updated;
-        } else {
-          return updated;
-        }
-      } else {
-        if (boxIsUnGuided) {
-          const boxIdx = updated.findIndex((e) => e.boxId === boxId);
-          updated[boxIdx].guideId = guideId;
-          return updated;
-        } else {
-          updated.push({ guideId, boxId });
-          return updated;
-        }
+      // if (guideIsDuplicated && boxHasGuide && boxHasSameGuide) return updated;
+      if (guideIsDuplicated && boxHasGuide && !boxHasSameGuide) {
+        updated.splice(boxIdx, 1);
+        return updated;
       }
+      // if (guideIsDuplicated && !boxHasGuide && !boxHasSameGuide) return updated;
+      if (!guideIsDuplicated && boxHasGuide && !boxHasSameGuide) {
+        updated[boxIdx].guideId = guideId;
+        return updated;
+      }
+      if (!guideIsDuplicated && !boxHasGuide && !boxHasSameGuide) {
+        updated.push({ guideId, boxId });
+        return updated;
+      }
+
+      return updated;
     });
   }, []);
 
@@ -57,11 +66,14 @@ export const BoxGuideContextProvider = ({ children }: HasChildren) => {
     [unreadGuides]
   );
 
+  const resetUnreadGuide = useCallback(() => setUnreadGuides([]), []);
+
   const contextValue = {
     unreadGuides,
 
     addUnreadGuide,
     removeUnreadGuide,
+    resetUnreadGuide,
   };
 
   return (

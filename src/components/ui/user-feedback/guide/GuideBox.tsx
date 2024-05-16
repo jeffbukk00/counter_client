@@ -1,5 +1,6 @@
-import useMutationUpdateUnreadGuideIds from "@/contexts/user/hooks/http/useMutationUpdateUnreadGuideIds";
 import { guideConstants } from "./constants";
+
+import useMutationUpdateUnreadGuideIds from "@/contexts/user/hooks/http/useMutationUpdateUnreadGuideIds";
 import useBoxGuideContext from "@/contexts/feedback/guide/box-guide/hooks/useBoxGuideContext";
 
 const GuideBox = ({ unreadGuideId }: { unreadGuideId: string }) => {
@@ -19,7 +20,8 @@ const GuideBox = ({ unreadGuideId }: { unreadGuideId: string }) => {
         </p>
         <input type="checkbox" onChange={() => check(unreadGuideId)} />
       </div>
-      <p>{guideConstants.guides[unreadGuideId]}</p>
+      <p>{guideConstants.guides[unreadGuideId].title}</p>
+      <p>{guideConstants.guides[unreadGuideId].text}</p>
     </div>
   );
 };

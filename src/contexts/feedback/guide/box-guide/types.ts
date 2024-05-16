@@ -3,4 +3,5 @@ export interface BoxGuideContextType {
 
   addUnreadGuide: (guideId: string, boxId: string) => void;
   removeUnreadGuide: (guideId: string) => void;
+  resetUnreadGuide: () => void;
 }

@@ -8,6 +8,7 @@ import MotivationLinkEditPhase from "./MotivationLinkEditPhase";
 import MotivationLinkEditButton from "./MotivationLinkEditButton";
 import CopyMotivationLinkPart from "./CopyMotivationLinkPart";
 import MotivationLinkRemoveButton from "./MotivationLinkRemoveButton";
+import LoadingFeedbackBox from "@/components/ui/user-feedback/loading/LoadingFeedbackBox";
 
 const MotivationLink = ({
   boxData,
@@ -20,7 +21,7 @@ const MotivationLink = ({
   const [isEditButtonVisible, setIsEditButtonVisible] = useState(false);
   const [isRemoveButtonVisible, setIsRemoveButtonVisible] = useState(false);
 
-  const { motivationLinkData, isLoading } =
+  const { motivationLinkData, isLoading, isFetching } =
     useQueryMotivationLink(motivationLinkId);
 
   const openEditPhase = () => setisEditPhase(true);
@@ -30,12 +31,14 @@ const MotivationLink = ({
   const showRemoveButton = () => setIsRemoveButtonVisible(true);
   const hideRemoveButton = () => setIsRemoveButtonVisible(false);
 
-  if (isLoading) return <p>모티베이션 링크를 요청 중입니다...</p>;
+  if (isLoading) return <LoadingFeedbackBox />;
 
   return (
     <>
+      {isFetching && <LoadingFeedbackBox />}
       {isEditPhase && (
         <MotivationLinkEditPhase
+          boxId={boxData.boxId}
           motivationLinkId={motivationLinkId}
           motivationLinkData={motivationLinkData!}
           closeEditPhase={closeEditPhase}

@@ -13,8 +13,8 @@ const BucketDuplicateControl = ({ bucketId }: { bucketId: string }) => {
     <Control
       title="복제"
       action={() => {
-        mutateDuplicateBucket();
         activate(bucketId);
+        mutateDuplicateBucket();
       }}
     >
       <DuplicateControlVector />

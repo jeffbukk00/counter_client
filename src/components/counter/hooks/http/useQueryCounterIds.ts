@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { axiosInstance } from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
+import { useEffect } from "react";
+import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 
 const getCounterIds: (
   bucketId: string
@@ -12,12 +14,20 @@ const getCounterIds: (
 };
 
 const useQueryCounterIds = (bucketId: string) => {
-  const { data, isLoading } = useQuery({
+  const { openAsyncError } = useAsyncErrorContext();
+  const { data, isLoading, isFetching, isError } = useQuery({
     queryKey: queryKeys.counter.useQueryCounterIds(bucketId),
     queryFn: () => getCounterIds(bucketId),
+    refetchOnWindowFocus: false,
   });
 
-  return { counterIds: data?.counterIds, isLoading };
+  useEffect(() => {
+    if (isError) {
+      openAsyncError("카운터들을 가져오는데 실패했습니다");
+    }
+  }, [isError, openAsyncError]);
+
+  return { counterIds: data?.counterIds, isLoading, isFetching };
 };
 
 export default useQueryCounterIds;

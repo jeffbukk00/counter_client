@@ -12,8 +12,8 @@ const BucketRemoveControl = ({ bucketId }: { bucketId: string }) => {
     <Control
       title="삭제"
       action={() => {
-        mutateRemoveBucket();
         activate(bucketId);
+        mutateRemoveBucket();
       }}
     >
       <RemoveControlVector />

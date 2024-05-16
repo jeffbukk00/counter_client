@@ -12,8 +12,10 @@ const useBoxCreatorGuide = (guideId: string) => {
 
   useEffect(() => {
     if (isUnread && countRef.current === 0) {
-      countRef.current++;
-      return updateBoxCreatorGuide(true, guideId);
+      setTimeout(() => {
+        countRef.current++;
+        updateBoxCreatorGuide(true, guideId);
+      }, 200);
     }
   }, [isUnread, updateBoxCreatorGuide, guideId]);
 

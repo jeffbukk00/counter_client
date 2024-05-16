@@ -16,6 +16,7 @@ const useQueryBucketIds = () => {
   const { data, isFetching, isLoading, isError } = useQuery({
     queryKey: queryKeys.bucket.useQueryBucketIds,
     queryFn: getBucketIds,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {

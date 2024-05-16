@@ -7,8 +7,12 @@ import useNavigator from "@/components/ui/navigator/hooks/useNavigator";
 import PasteShareLinkPhase from "./PasteShareLinkPhase";
 import ConfirmDownloadPhase from "./ConfirmDownloadPhase";
 import ReconfirmDownloadPhase from "./ReconfirmDownloadPhase";
+import useModalGuide from "@/components/ui/user-feedback/guide/hooks/useModalGuide";
+import { guideConstants } from "@/components/ui/user-feedback/guide/constants";
 
 const DownloadShareLinkPhase = ({ closeModal }: { closeModal: () => void }) => {
+  useModalGuide(guideConstants.guideIds["guideId12"]);
+
   const [downloadLink, setDownloadLink] = useState("");
   const [username, setUsername] = useState("");
 

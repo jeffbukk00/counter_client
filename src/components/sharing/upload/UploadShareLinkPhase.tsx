@@ -6,8 +6,11 @@ import useNavigator from "@/components/ui/navigator/hooks/useNavigator";
 
 import CreateShareLinkPhase from "./CreateShareLinkPhase";
 import GeneratedShareLinkPhase from "./GeneratedShareLinkPhase";
+import useModalGuide from "@/components/ui/user-feedback/guide/hooks/useModalGuide";
+import { guideConstants } from "@/components/ui/user-feedback/guide/constants";
 
 const UploadShareLinkPhase = ({ closeModal }: { closeModal: () => void }) => {
+  useModalGuide(guideConstants.guideIds["guideId11"]);
   const [createdShareLink, setCreatedShareLink] = useState("");
 
   const { currentPhase, gotoNextPhase } = useNavigator(

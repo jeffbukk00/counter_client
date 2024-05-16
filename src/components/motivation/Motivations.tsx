@@ -24,6 +24,7 @@ const Motivations = ({ boxType, boxId }: MotivationsPropsType) => {
       {motivationType === motivationConstants.motivationType.notSelected && (
         <MotivationTypeSelectPhase
           changeMotivationType={changeMotivationType}
+          boxId={boxId}
         />
       )}
       {motivationType === motivationConstants.motivationType.text && (

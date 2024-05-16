@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 
 import { axiosInstance } from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
+import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 
 const validateShareLink: (
   shareLink: string
@@ -13,14 +14,21 @@ const validateShareLink: (
 };
 
 const useMutationValidateShareLink = (
-  onValidationSuccessHandler: (username: string) => void
+  onValidationSuccessHandler: (username: string) => void,
+  onValidationErrorHandler: () => void
 ) => {
+  const { inactivateModal } = useNotBoxLoadingContext();
   const { mutate: mutateValidateShareLink, isPending } = useMutation({
     mutationFn: validateShareLink,
     onSuccess: (data) => {
       if (data && data.isValid) {
+        inactivateModal();
         onValidationSuccessHandler(data.username);
       }
+    },
+    onError: () => {
+      inactivateModal();
+      onValidationErrorHandler();
     },
   });
 

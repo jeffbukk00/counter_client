@@ -6,6 +6,8 @@ import { boxConstants } from "../constants";
 import { api } from "@/tanstack-query/api";
 import { queryKeys, constantsInQueryKeys } from "@/tanstack-query/queryKeys";
 import { EventTargetHasId } from "../types";
+import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
+import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 
 const changeBoxPosition = (boxType: number, bucketId?: string) => {
   const url =
@@ -28,8 +30,9 @@ const useChangeBoxPosition = (
   boxIds: string[] | undefined,
   bucketId?: string
 ) => {
+  const { openAsyncError } = useAsyncErrorContext();
   const queryClient = useQueryClient();
-  const { mutate: mutateChangeBoxPosition } = useMutation({
+  const { mutate: mutateChangeBoxPosition, isPending } = useMutation({
     mutationFn: changeBoxPosition(boxType, bucketId),
     onSuccess: () => {
       if (boxType === boxConstants.boxType.bucket) {
@@ -42,12 +45,16 @@ const useChangeBoxPosition = (
         });
       }
     },
+    onError: () => {
+      openAsyncError("위치 변경에 실패했습니다");
+    },
   });
 
   const dragStartHandler: DragEventHandler<HTMLDivElement> = (event) => {
     event.dataTransfer?.clearData();
 
     const target = event.target as EventTargetHasId;
+
     event.dataTransfer?.setData("text/plain", target.id);
   };
 
@@ -75,6 +82,7 @@ const useChangeBoxPosition = (
       onDragOver: dragOverHandler,
       onDrop: dropHandler,
     },
+    isPending,
   };
 };
 

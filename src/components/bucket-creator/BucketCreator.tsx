@@ -1,8 +1,7 @@
 import useCreationStart from "../ui/creator/hooks/useCreationStart";
 
-import StartCreationButton from "../ui/creator/StartCreationButton";
-
 import BucketCreationPhase from "./BucketCreationPhase";
+import BucketCreationStart from "./BucketCreationStart";
 
 const BucketCreator = () => {
   const { creationIsStarted, startCreation, finishCreation } =
@@ -14,7 +13,7 @@ const BucketCreator = () => {
         <BucketCreationPhase finishCreation={finishCreation} />
       )}
       {!creationIsStarted && (
-        <StartCreationButton startCreation={startCreation} />
+        <BucketCreationStart startCreation={startCreation} />
       )}
     </>
   );

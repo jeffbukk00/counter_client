@@ -7,18 +7,26 @@ import useChangeBoxPosition from "../ui/box/hooks/useChangeBoxPosition";
 import BoxesContainer from "../ui/box/BoxesContainer";
 import Box from "../ui/box/Box";
 import BoxCreator from "../ui/creator/BoxCreator";
+import LoadingFeedbackBoxesContainer from "../ui/user-feedback/loading/LoadingFeedbackBoxesContainer";
+import useBoxGuideContext from "@/contexts/feedback/guide/box-guide/hooks/useBoxGuideContext";
+import { useEffect } from "react";
 
 const Counters = ({ bucketId }: { bucketId: string }) => {
-  const { counterIds, isLoading } = useQueryCounterIds(bucketId);
+  const { counterIds, isLoading, isFetching } = useQueryCounterIds(bucketId);
 
-  const { draggableAttributes, droppableAttributes } = useChangeBoxPosition(
-    boxConstants.boxType.counter,
-    counterIds,
-    bucketId
-  );
+  const { draggableAttributes, droppableAttributes, isPending } =
+    useChangeBoxPosition(boxConstants.boxType.counter, counterIds, bucketId);
+
+  const { resetUnreadGuide } = useBoxGuideContext();
+
+  useEffect(() => {
+    resetUnreadGuide();
+  }, [resetUnreadGuide]);
+
+  if (isLoading) return <LoadingFeedbackBoxesContainer />;
 
   return (
-    <BoxesContainer isLoading={isLoading}>
+    <BoxesContainer isFetching={isFetching || isPending}>
       {counterIds?.map((e) => (
         <Box
           key={e}

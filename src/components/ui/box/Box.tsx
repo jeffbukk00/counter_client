@@ -41,6 +41,7 @@ const Box = ({
     <div className="w-full h-40vh flex justify-center items-center">
       <div
         className="w-80 h-40 border relative"
+        id={boxId}
         {...draggableAttributes}
         {...droppableAttributes}
         onMouseOver={showFlipButton}

@@ -6,7 +6,7 @@ import BucketBack from "./bucket-back/BucketBack";
 import LoadingFeedbackBox from "../ui/user-feedback/loading/LoadingFeedbackBox";
 
 const Bucket = ({ bucketId, isFront, isVisible }: BucketPropsType) => {
-  const { bucketData, isLoading } = useQueryBucket(bucketId);
+  const { bucketData, isLoading, isFetching } = useQueryBucket(bucketId);
 
   if (isLoading) return <LoadingFeedbackBox />;
 
@@ -15,6 +15,7 @@ const Bucket = ({ bucketId, isFront, isVisible }: BucketPropsType) => {
 
   return (
     <>
+      {isFetching && <LoadingFeedbackBox />}
       {isFront ? (
         <BucketFront bucketFrontData={bucketFrontData} isVisible={isVisible} />
       ) : (

@@ -7,6 +7,7 @@ const useBoxGuideContext = () => {
 
     addUnreadGuide,
     removeUnreadGuide,
+    resetUnreadGuide,
   } = useContext(BoxGuideContext);
 
   return {
@@ -14,6 +15,7 @@ const useBoxGuideContext = () => {
 
     addUnreadGuide,
     removeUnreadGuide,
+    resetUnreadGuide,
   };
 };
 

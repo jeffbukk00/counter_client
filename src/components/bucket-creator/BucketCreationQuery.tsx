@@ -33,6 +33,7 @@ const BucketCreationQuery = ({
       setQueryIsFocused(true);
     }
   }, [currentPhase, userAnswers]);
+
   return (
     <>
       {isInLastPhase && (

@@ -10,6 +10,7 @@ import useMutationUpdateAchievementStack from "./hooks/http/useMutationUpdateAch
 import OnEndCountButton from "./OnEndCountButton";
 import CountCircle from "./CountCircle";
 import CountDisplay from "./CountDisplay";
+import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 
 const Count = ({
   counterFrontData,
@@ -25,10 +26,13 @@ const Count = ({
 
   const { countDisplayScreenType, changeCountDisplayScreenType } =
     useCountDisplayScreen(isInEndCount);
+
   useMutationUpdateCount(counterFrontData.id, currentCount);
+
   const { mutateUpdateAchievementStack } = useMutationUpdateAchievementStack(
     counterFrontData.id
   );
+  const { activate } = useBoxLoadingContext();
 
   const getCloseToEndCount = (digit: number) => {
     let updatedCurrentCount: number;
@@ -38,6 +42,7 @@ const Count = ({
       updatedCurrentCount = currentCount + Math.pow(10, digit - 1);
       if (updatedCurrentCount >= counterFrontData.endCount) {
         updatedCurrentCount = counterFrontData.endCount;
+        activate(counterFrontData.id);
         mutateUpdateAchievementStack(counterFrontData.achievementStack + 1);
       }
       return setCurrentCount(updatedCurrentCount);
@@ -49,6 +54,7 @@ const Count = ({
       updatedCurrentCount = currentCount - Math.pow(10, digit - 1);
       if (updatedCurrentCount <= counterFrontData.endCount) {
         updatedCurrentCount = counterFrontData.endCount;
+        activate(counterFrontData.id);
         mutateUpdateAchievementStack(counterFrontData.achievementStack + 1);
       }
       return setCurrentCount(updatedCurrentCount);

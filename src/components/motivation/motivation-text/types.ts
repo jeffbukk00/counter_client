@@ -16,6 +16,7 @@ export interface MotivationTextPropsType {
 }
 
 export interface MotivationTextEditPhasePropsType {
+  boxId: string;
   motivationTextId: string;
   motivationTextData: { text: string };
   closeEditPhase: () => void;

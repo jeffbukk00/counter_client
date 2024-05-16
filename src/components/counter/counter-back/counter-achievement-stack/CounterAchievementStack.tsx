@@ -2,6 +2,7 @@ import SelectedDigitalNumberVector from "@/shared/assets/digital-numbers/Selecte
 import useMutationResetAchievementStack from "./hooks/http/useMutationResetAchievementStack";
 import Control from "@/components/ui/control/Control";
 import ResetControlVector from "@/components/ui/control/assets/ResetControlVector";
+import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 
 const CountDisplay = ({
   currentAchievementStack,
@@ -12,6 +13,7 @@ const CountDisplay = ({
 }) => {
   const { mutateResetAchievementStack } =
     useMutationResetAchievementStack(counterId);
+  const { activate } = useBoxLoadingContext();
 
   let achievementStack = currentAchievementStack.toString();
   if (achievementStack.length < 6)
@@ -20,7 +22,13 @@ const CountDisplay = ({
 
   return (
     <>
-      <Control title="리셋" action={mutateResetAchievementStack}>
+      <Control
+        title="리셋"
+        action={() => {
+          activate(counterId);
+          mutateResetAchievementStack();
+        }}
+      >
         <ResetControlVector />
       </Control>
       <ul className="relative">
@@ -32,6 +40,7 @@ const CountDisplay = ({
           );
         })}
       </ul>
+      <p>번 목표 카운트를 달성했습니다</p>
     </>
   );
 };

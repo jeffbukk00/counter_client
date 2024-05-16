@@ -7,8 +7,12 @@ import useMutationEditMotivationLink from "./hooks/http/useMutationEditMotivatio
 
 import LinkVector from "@/shared/assets/link/LinkVector";
 import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
+import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
+import useBoxValidationContext from "@/contexts/feedback/validation/box-validation/hooks/useBoxValidationContext";
+import { below15Letters, required, validate } from "@/shared/utils/validation";
 
 const MotivationLinkEditPhase = ({
+  boxId,
   motivationLinkId,
   motivationLinkData,
   closeEditPhase,
@@ -23,11 +27,23 @@ const MotivationLinkEditPhase = ({
       return { ...prev, title: event.target.value };
     });
 
-  const { mutateEditMotivationLink } =
-    useMutationEditMotivationLink(motivationLinkId);
+  const { mutateEditMotivationLink } = useMutationEditMotivationLink(
+    motivationLinkId,
+    boxId
+  );
+  const { activate } = useBoxLoadingContext();
+  const { addInvalidBox } = useBoxValidationContext();
 
   const submitMotivationLinkEdit = () => {
     // 유효성 검사
+    const validationResult = validate([
+      required(userAnswers.title),
+      below15Letters(userAnswers.title),
+    ]);
+    if (!validationResult.isValid)
+      return addInvalidBox(boxId, validationResult.messages);
+
+    activate(boxId);
     mutateEditMotivationLink({
       title: userAnswers.title,
       link: userAnswers.link,

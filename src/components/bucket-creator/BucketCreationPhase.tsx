@@ -5,12 +5,13 @@ import { bucketCreationConstants } from "./constants";
 
 import useMutationCreateBuckets from "./hooks/http/useMutationCreateBucket";
 import useNavigator from "../ui/navigator/hooks/useNavigator";
+import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 
 import FinishCreationButton from "../ui/creator/FinishCreationButton";
 import GotoPrevPhaseButton from "../ui/navigator/GotoPrevPhaseButton";
 import BucketCreationAnswerList from "./BucketCreationAnswerList";
 import BucketCreationQuery from "./BucketCreationQuery";
-import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
+
 const BucketCreationPhase = ({
   finishCreation,
 }: BucketCreationPhasePropsType) => {
@@ -18,8 +19,8 @@ const BucketCreationPhase = ({
     title: "",
   });
 
-  const { activateBoxCreator } = useNotBoxLoadingContext();
   const { mutateCreateBucket } = useMutationCreateBuckets();
+  const { activateBoxCreator } = useNotBoxLoadingContext();
   const {
     currentPhase,
     isInFirstPhase,

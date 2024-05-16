@@ -12,9 +12,11 @@ const useBoxGuide = (guideId: string, boxId: string) => {
 
   useEffect(() => {
     if (isUnread && countRef.current === 0) {
-      countRef.current++;
+      setTimeout(() => {
+        countRef.current++;
 
-      return addUnreadGuide(guideId, boxId);
+        return addUnreadGuide(guideId, boxId);
+      }, 200);
     }
   }, [isUnread, addUnreadGuide, guideId, boxId]);
 

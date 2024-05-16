@@ -6,6 +6,18 @@ import { creationActionConstants } from "@/components/ui/creation-action/constan
 import useMutationEditCounter from "./counter-controller/hooks/http/useMutationEditCounter";
 
 import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
+import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
+import {
+  below15Letters,
+  belowMax,
+  currentCountIsInBetween,
+  endCountisSame,
+  isInteger,
+  overMin,
+  required,
+  validate,
+} from "@/shared/utils/validation";
+import useBoxValidationContext from "@/contexts/feedback/validation/box-validation/hooks/useBoxValidationContext";
 
 const CounterEditPhase = ({
   closeCounterEditPhase,
@@ -18,6 +30,8 @@ const CounterEditPhase = ({
   });
 
   const { mutateEditCounter } = useMutationEditCounter(counterBackData.id);
+  const { activate } = useBoxLoadingContext();
+  const { addInvalidBox } = useBoxValidationContext();
 
   const updateTitle: ChangeEventHandler<HTMLInputElement> = (event) => {
     setUserAnswers((prev) => {
@@ -39,7 +53,52 @@ const CounterEditPhase = ({
 
   const submitCounterEdit = () => {
     // 유효성 검사
+    // title
+    let validationResult = validate([
+      required(userAnswers.title),
+      below15Letters(userAnswers.title),
+    ]);
 
+    if (!validationResult.isValid)
+      return addInvalidBox(counterBackData.id, validationResult.messages);
+    // startCount
+    validationResult = validate([
+      required(userAnswers.startCount),
+      isInteger(userAnswers.startCount),
+    ]);
+    if (!validationResult.isValid)
+      return addInvalidBox(counterBackData.id, validationResult.messages);
+
+    validationResult = validate([
+      overMin(userAnswers.startCount),
+      belowMax(userAnswers.startCount),
+    ]);
+    if (!validationResult.isValid)
+      return addInvalidBox(counterBackData.id, validationResult.messages);
+
+    // endCount
+    validationResult = validate([
+      required(userAnswers.endCount),
+      isInteger(userAnswers.endCount),
+    ]);
+    if (!validationResult.isValid)
+      return addInvalidBox(counterBackData.id, validationResult.messages);
+
+    validationResult = validate([
+      overMin(userAnswers.endCount),
+      belowMax(userAnswers.endCount),
+      endCountisSame(userAnswers.startCount, userAnswers.endCount),
+      currentCountIsInBetween(
+        counterBackData.currentCount,
+        userAnswers.startCount,
+        userAnswers.endCount
+      ),
+    ]);
+
+    if (!validationResult.isValid)
+      return addInvalidBox(counterBackData.id, validationResult.messages);
+
+    activate(counterBackData.id);
     mutateEditCounter({
       title: userAnswers.title,
       startCount: Number(userAnswers.startCount),
