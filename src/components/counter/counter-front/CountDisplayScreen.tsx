@@ -17,7 +17,7 @@ const CountDisplayScreen = ({
 
   return (
     <div
-      className={`w-full h-full absolute top-0 left-0 ${
+      className={`w-full h-20 absolute top-0 left-0 ${
         isPositive
           ? "animate-countDisplayScreenPositive bg-positive"
           : "animate-countDisplayScreenNegative"

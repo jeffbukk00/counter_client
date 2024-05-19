@@ -17,7 +17,7 @@ const BucketDuplicateControl = ({ bucketId }: { bucketId: string }) => {
         mutateDuplicateBucket();
       }}
     >
-      <DuplicateControlVector />
+      <DuplicateControlVector classes="w-5 h-5 inline-block" />
     </Control>
   );
 };

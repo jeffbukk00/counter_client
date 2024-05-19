@@ -43,12 +43,24 @@ const MotivationTextEditPhase = ({
   };
   return (
     <>
-      <textarea value={userAnswers.text} onChange={updateText}></textarea>
-      <CreationActionButton
-        isInLastPhase={true}
-        type={creationActionConstants.creationActionType.submit}
-        actionHandler={submitMotivationTextEdit}
-      />
+      <div className="w-full h-full flex justify-center">
+        <div className="w-9/10 h-[55%] mt-10 relative">
+          <textarea
+            value={userAnswers.text}
+            onChange={updateText}
+            className="w-full h-full pt-3 pb-2 px-2 border border-gray-300 outline-none text-xs resize-none caret-gray-400"
+          ></textarea>
+        </div>
+      </div>
+      <div className="absolute bottom-1 left-0 w-full flex justify-center items-center">
+        <CreationActionButton
+          isInLastPhase={true}
+          type={creationActionConstants.creationActionType.submit}
+          actionHandler={submitMotivationTextEdit}
+          classes="w-5 h-5 inline-block"
+          hover=""
+        />
+      </div>
     </>
   );
 };

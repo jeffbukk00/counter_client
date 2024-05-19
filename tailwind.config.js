@@ -3,6 +3,7 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: { NotoSans: ["Noto Sans KR", "Noto Sans", "sans-serif"] },
       width: {
         "9/10": "90%",
         "30vw": "30vw",
@@ -20,6 +21,7 @@ export default {
       colors: {
         positive: "#7FD69D",
         negative: "#FA7070",
+        default: "#232323",
       },
       keyframes: {
         countDisplayScreenNegative: {
@@ -36,8 +38,10 @@ export default {
         },
       },
       animation: {
-        countDisplayScreenNegative: "countDisplayScreenNegative 0.5s ease-out",
-        countDisplayScreenPositive: "countDisplayScreenPositive 0.2s ease-in",
+        countDisplayScreenNegative:
+          "countDisplayScreenNegative 0.5s ease-in-out",
+        countDisplayScreenPositive:
+          "countDisplayScreenPositive 0.5s ease-in-out",
         spinning: "spinning 0.8s ease-in-out infinite",
       },
     },

@@ -18,6 +18,7 @@ import {
   linkIsNotPasted,
   validate,
 } from "@/shared/utils/validation";
+import HoverWrapper from "@/components/styles/HoverWrapper";
 
 const PasteShareLinkPhase = ({
   gotoNextPhase,
@@ -55,29 +56,43 @@ const PasteShareLinkPhase = ({
   );
   return (
     <>
-      <p>공유 링크 붙여넣기</p>
-      <button onClick={paste}>
-        <PasteVector classes="w-6 h-6 inline-block" />
-      </button>
-      <FeedbackToPaste isPasted={isPasted} />
-      <CreationActionButton
-        isInLastPhase={false}
-        type={creationActionConstants.creationActionType.click}
-        actionHandler={() => {
-          // 유효성 검사
-          const validationResult = validate([
-            linkIsNotPasted(pastedLink),
-            isValidShareLink(pastedLink),
-          ]);
-          if (!validationResult.isValid) {
-            updateIsPasted(false);
-            return updateIsModalInvalid(true, validationResult.messages);
-          }
+      <div className="w-full h-full flex flex-col justify-center items-center">
+        <div>
+          <p>공유 링크 붙여넣기</p>
+        </div>
+        <div className="mt-3">
+          <HoverWrapper classes="p-2">
+            <button onClick={paste}>
+              <PasteVector classes="w-8 h-8 inline-block" />
+            </button>
+          </HoverWrapper>
+        </div>
+        <div>
+          <FeedbackToPaste isPasted={isPasted} fontSize="text-sm" />
+        </div>
+      </div>
+      <div className="absolute bottom-1 left-0 w-full flex justify-center items-center">
+        <CreationActionButton
+          isInLastPhase={false}
+          type={creationActionConstants.creationActionType.click}
+          classes="w-7 h-7 inline-block"
+          hover="p-1"
+          actionHandler={() => {
+            // 유효성 검사
+            const validationResult = validate([
+              linkIsNotPasted(pastedLink),
+              isValidShareLink(pastedLink),
+            ]);
+            if (!validationResult.isValid) {
+              updateIsPasted(false);
+              return updateIsModalInvalid(true, validationResult.messages);
+            }
 
-          activateModal();
-          mutateValidateShareLink(pastedLink);
-        }}
-      />
+            activateModal();
+            mutateValidateShareLink(pastedLink);
+          }}
+        />
+      </div>
     </>
   );
 };

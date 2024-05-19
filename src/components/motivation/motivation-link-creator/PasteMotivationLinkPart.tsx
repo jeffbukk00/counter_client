@@ -4,6 +4,7 @@ import FeedbackToPaste from "@/components/ui/clipboard-feedback/FeedbackToPaste"
 import useFeedbackToPaste from "@/components/ui/clipboard-feedback/hooks/useFeedbackToPaste";
 import PasteVector from "@/shared/assets/link/PasteVector";
 import { useEffect } from "react";
+import HoverWrapper from "@/components/styles/HoverWrapper";
 
 const PasteMotivationLinkPhase = ({
   linkIsValid,
@@ -32,10 +33,16 @@ const PasteMotivationLinkPhase = ({
 
   return (
     <>
-      <button onClick={paste}>
-        <PasteVector classes="w-6 h-6 inline-block" />
-      </button>
-      <FeedbackToPaste isPasted={isPasted || linkIsValid} />
+      <HoverWrapper classes="p-1">
+        <button onClick={paste}>
+          <PasteVector classes="w-6 h-6 inline-block" />
+        </button>
+      </HoverWrapper>
+
+      <FeedbackToPaste
+        isPasted={isPasted || linkIsValid}
+        fontSize="text-[0.5rem]"
+      />
     </>
   );
 };

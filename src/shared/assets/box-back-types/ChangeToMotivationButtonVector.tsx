@@ -1,12 +1,14 @@
 const ChangeToMotivationButtonVector = ({
   onSelected,
+  classes,
 }: {
   onSelected: string;
+  classes: string;
 }) => {
   return (
     <svg
       fill={onSelected}
-      className="w-6 h-6"
+      className={`${classes} ${onSelected}`}
       version="1.1"
       id="Capa_1"
       xmlns="http://www.w3.org/2000/svg"

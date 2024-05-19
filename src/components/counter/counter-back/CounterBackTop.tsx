@@ -8,7 +8,7 @@ const CounterBackTop = ({
   setCurrentCounterBackType,
 }: CounterBackTopPropsType) => {
   return (
-    <>
+    <span className="absolute -top-7 right-1 flex justify-center items-center">
       <ChangeCounterBackTypeButton
         type={counterBackConstants.counterBackType.controller}
         currentCounterBackType={currentCounterBackType}
@@ -24,7 +24,7 @@ const CounterBackTop = ({
         currentCounterBackType={currentCounterBackType}
         setCurrentCounterBackType={setCurrentCounterBackType}
       />
-    </>
+    </span>
   );
 };
 

@@ -44,13 +44,28 @@ const BucketEditPhase = ({
 
   return (
     <>
-      <input type="text" value={userAnswers.title} onChange={updateTitle} />
-      <p>버킷을 수정합니다</p>
-      <CreationActionButton
-        isInLastPhase={true}
-        type={creationActionConstants.creationActionType.submit}
-        actionHandler={submitBucketEdit}
-      />
+      <div className="w-full h-[5.5rem] flex flex-col justify-end items-center gap-1">
+        <div className="w-full flex justify-center">
+          <input
+            type="text"
+            value={userAnswers.title}
+            onChange={updateTitle}
+            className="text-center caret-gray-400 outline-none"
+          />
+        </div>
+      </div>
+      <div className="absolute bottom-12 left-0 w-full flex justify-center">
+        <p className="text-xs font-medium text-gray-300">버킷을 수정합니다</p>
+      </div>
+      <div className="absolute bottom-1 left-0 w-full flex justify-center">
+        <CreationActionButton
+          isInLastPhase={true}
+          type={creationActionConstants.creationActionType.submit}
+          actionHandler={submitBucketEdit}
+          classes="w-6 h-6 inline-block"
+          hover="p-1"
+        />
+      </div>
     </>
   );
 };

@@ -26,33 +26,54 @@ const BucketMergePhase = ({
 
   return (
     <>
-      <CloseModalButton closeModal={closeModal} />
-      <BucketSelectionList selectBucket={selectBucket} />
-      <p>
-        버킷 {bucketBackData.title}이 버킷
-        {selectedBucket ? selectedBucket.title : "(버킷이 선택되지 않음)"}을
-        병합합니다
-      </p>
-      <CreationActionButton
-        isInLastPhase={true}
-        type={creationActionConstants.creationActionType.submit}
-        actionHandler={() => {
-          // 유효성 검사
+      <span className="absolute top-2 right-2">
+        <CloseModalButton closeModal={closeModal} />
+      </span>
+      <div className="w-full h-full flex flex-col justify-start items-center">
+        <div className="w-4/5 h-2/5 border border-gray-300 mt-[10%]">
+          <BucketSelectionList selectBucket={selectBucket} />
+        </div>
+        <div className="w-4/5 h-2/5 flex flex-col gap-3 justify-center items-center">
+          <p>
+            <span className="text-sm text-gray-300">버킷 </span>"
+            {bucketBackData.title}"
+            <span className="text-sm text-gray-300">이</span>
+          </p>
+          <p>
+            <span className="text-sm text-gray-300">버킷 </span>"
+            {selectedBucket ? selectedBucket.title : ""}"
+            <span className="text-sm text-gray-300">을</span>
+          </p>
+          <p>
+            <span className="text-sm text-gray-300">병합합니다</span>
+          </p>
+        </div>
+      </div>
 
-          let validationResult = validate([notNull(selectedBucket)]);
-          if (!validationResult.isValid)
-            return updateIsModalInvalid(true, validationResult.messages);
+      <div className="absolute bottom-1 left-0 w-full flex justify-center items-center">
+        <CreationActionButton
+          isInLastPhase={true}
+          type={creationActionConstants.creationActionType.submit}
+          classes="w-7 h-7 inline-block"
+          hover="p-1"
+          actionHandler={() => {
+            // 유효성 검사
 
-          validationResult = validate([
-            isSameBucket(bucketBackData.id, selectedBucket!.id),
-          ]);
-          if (!validationResult.isValid)
-            return updateIsModalInvalid(true, validationResult.messages);
+            let validationResult = validate([notNull(selectedBucket)]);
+            if (!validationResult.isValid)
+              return updateIsModalInvalid(true, validationResult.messages);
 
-          activateModal();
-          mutateMergeBucket(selectedBucket!.id);
-        }}
-      />
+            validationResult = validate([
+              isSameBucket(bucketBackData.id, selectedBucket!.id),
+            ]);
+            if (!validationResult.isValid)
+              return updateIsModalInvalid(true, validationResult.messages);
+
+            activateModal();
+            mutateMergeBucket(selectedBucket!.id);
+          }}
+        />
+      </div>
     </>
   );
 };

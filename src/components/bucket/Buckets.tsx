@@ -11,6 +11,7 @@ import BoxCreator from "../ui/creator/BoxCreator";
 import LoadingFeedbackBoxesContainer from "../ui/user-feedback/loading/LoadingFeedbackBoxesContainer";
 import useBoxGuideContext from "@/contexts/feedback/guide/box-guide/hooks/useBoxGuideContext";
 import { useEffect } from "react";
+import useNotBoxGuideContext from "@/contexts/feedback/guide/not-box-guide/hooks/useNotBoxGuideContext";
 
 const Buckets = () => {
   const { bucketIds, isLoading, isFetching } = useQueryBucketIds();
@@ -19,15 +20,21 @@ const Buckets = () => {
     useChangeBoxPosition(boxConstants.boxType.bucket, bucketIds);
 
   const { resetUnreadGuide } = useBoxGuideContext();
+  const { updateBoxCreatorGuide, updateModalGuide } = useNotBoxGuideContext();
 
   useEffect(() => {
     resetUnreadGuide();
-  }, [resetUnreadGuide]);
+    updateBoxCreatorGuide(false, "");
+    updateModalGuide(false, "");
+  }, [resetUnreadGuide, updateBoxCreatorGuide, updateModalGuide]);
 
   if (isLoading) return <LoadingFeedbackBoxesContainer />;
 
   return (
-    <BoxesContainer isFetching={isFetching || isPending}>
+    <BoxesContainer
+      isFetching={isFetching || isPending}
+      isOneLine={bucketIds && bucketIds.length <= 2}
+    >
       {bucketIds?.map((e) => (
         <Box
           key={e}

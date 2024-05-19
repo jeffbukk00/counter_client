@@ -8,7 +8,7 @@ const BucketEditControl = ({
 }) => {
   return (
     <Control title="수정" action={openBucketEditPhase}>
-      <EditControlVector />
+      <EditControlVector classes="w-5 h-5 inline-block" />
     </Control>
   );
 };

@@ -17,7 +17,7 @@ const BucketMergeControl = ({
   return (
     <>
       <Control title="병합" action={openModal}>
-        <MergeControlVector />
+        <MergeControlVector classes="w-5 h-5 inline-block" />
       </Control>
       {modalIsOpened && (
         <Modal closeModal={closeModal}>

@@ -16,7 +16,7 @@ const BucketRemoveControl = ({ bucketId }: { bucketId: string }) => {
         mutateRemoveBucket();
       }}
     >
-      <RemoveControlVector />
+      <RemoveControlVector classes="w-5 h-5 inline-block" />
     </Control>
   );
 };

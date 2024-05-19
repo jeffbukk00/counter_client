@@ -7,7 +7,7 @@ const CounterEditControl = ({
 }) => {
   return (
     <Control title="수정" action={openCounterEditPhase}>
-      <EditControlVector />
+      <EditControlVector classes="w-5 h-5 inline-block" />
     </Control>
   );
 };

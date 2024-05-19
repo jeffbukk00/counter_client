@@ -1,8 +1,8 @@
-const MergeControlVector = () => {
+const MergeControlVector = ({ classes }: { classes: string }) => {
   return (
     <svg
-      fill="#000000"
-      className="w-6 h-6 inline-block"
+      fill="#232323"
+      className={classes}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >

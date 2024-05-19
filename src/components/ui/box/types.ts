@@ -3,10 +3,7 @@ import { DragEventHandler } from "react";
 
 export interface BoxesContainerPropsType extends HasChildren {
   isFetching: boolean;
-}
-
-export interface EventTargetHasId extends EventTarget {
-  id: string;
+  isOneLine: boolean | undefined;
 }
 
 export interface BoxPropsType {

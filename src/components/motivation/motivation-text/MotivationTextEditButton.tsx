@@ -1,3 +1,4 @@
+import HoverWrapper from "@/components/styles/HoverWrapper";
 import EditControlVector from "@/components/ui/control/assets/EditControlVector";
 
 const MotivationTextEditButton = ({
@@ -6,9 +7,13 @@ const MotivationTextEditButton = ({
   openEditPhase: () => void;
 }) => {
   return (
-    <button onClick={openEditPhase}>
-      <EditControlVector />
-    </button>
+    <span className="ml-2">
+      <HoverWrapper classes="inline-block">
+        <button onClick={openEditPhase}>
+          <EditControlVector classes="inline-block w-5 h-5" />
+        </button>
+      </HoverWrapper>
+    </span>
   );
 };
 

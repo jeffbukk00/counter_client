@@ -1,7 +1,8 @@
 import useCreationStart from "@/components/ui/creator/hooks/useCreationStart";
 import { BoxDataType } from "../types";
-import StartCreationButton from "@/components/ui/creator/StartCreationButton";
+
 import MotivationLinkCreationPhase from "./MotivationLinkCreationPhase";
+import MotivationLinkCreationStart from "./MotivationLinkCreationStart";
 
 const MotivationLinkCreator = ({ boxData }: { boxData: BoxDataType }) => {
   const { creationIsStarted, startCreation, finishCreation } =
@@ -10,7 +11,7 @@ const MotivationLinkCreator = ({ boxData }: { boxData: BoxDataType }) => {
   return (
     <>
       {!creationIsStarted && (
-        <StartCreationButton startCreation={startCreation} />
+        <MotivationLinkCreationStart startCreation={startCreation} />
       )}
       {creationIsStarted && (
         <MotivationLinkCreationPhase

@@ -3,6 +3,7 @@ import { bucketBackConstants } from "./constants";
 
 import ChangeToControllerButtonVector from "../../../shared/assets/box-back-types/ChangeToControllerButtonVector";
 import ChangeToMotivationButtonVector from "../../../shared/assets/box-back-types/ChangeToMotivationButtonVector";
+import HoverWrapper from "@/components/styles/HoverWrapper";
 
 const ChangeBucketBackTypeButton = ({
   type,
@@ -14,30 +15,44 @@ const ChangeBucketBackTypeButton = ({
   return (
     <>
       {type === bucketBackConstants.bucketBackType.controller && (
-        <button
-          onClick={() =>
-            setCurrentBucketBackType(
-              bucketBackConstants.bucketBackType.controller
-            )
-          }
+        <HoverWrapper
+          classes={`flex justify-center items-center transition-transform duration-200 ease-in p-[2px] ${
+            isSelected ? "translate-y-8" : ""
+          }`}
         >
-          <ChangeToControllerButtonVector
-            onSelected={isSelected ? "text-black" : "text-gray-300"}
-          />
-        </button>
+          <button
+            onClick={() =>
+              setCurrentBucketBackType(
+                bucketBackConstants.bucketBackType.controller
+              )
+            }
+          >
+            <ChangeToControllerButtonVector
+              classes="w-6 h-6"
+              isSelected={isSelected}
+            />
+          </button>
+        </HoverWrapper>
       )}
       {type === bucketBackConstants.bucketBackType.motivation && (
-        <button
-          onClick={() =>
-            setCurrentBucketBackType(
-              bucketBackConstants.bucketBackType.motivation
-            )
-          }
+        <HoverWrapper
+          classes={`flex justify-center items-center transition-transform duration-200 ease-in p-[4px] ${
+            isSelected ? "translate-y-8" : ""
+          }`}
         >
-          <ChangeToMotivationButtonVector
-            onSelected={isSelected ? "#000" : "#ccc"}
-          />
-        </button>
+          <button
+            onClick={() =>
+              setCurrentBucketBackType(
+                bucketBackConstants.bucketBackType.motivation
+              )
+            }
+          >
+            <ChangeToMotivationButtonVector
+              classes="w-5 h-5 "
+              onSelected={isSelected ? "#232323" : "#ccc"}
+            />
+          </button>
+        </HoverWrapper>
       )}
     </>
   );

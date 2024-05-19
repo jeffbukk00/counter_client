@@ -1,9 +1,19 @@
-const FeedbackToPaste = ({ isPasted }: { isPasted: boolean }) => {
+const FeedbackToPaste = ({
+  isPasted,
+  fontSize,
+}: {
+  isPasted: boolean;
+  fontSize: string;
+}) => {
   return (
     <>
-      {isPasted && <p className="text-positive">붙여넣었습니다</p>}
+      {isPasted && (
+        <p className={`text-positive ${fontSize}`}>붙여넣었습니다</p>
+      )}
       {!isPasted && (
-        <p>복사한 링크를 붙여넣으시려면, 위 아이콘을 클릭해주세요</p>
+        <p className={`${fontSize} text-gray-400`}>
+          복사한 링크를 붙여넣으시려면, 위 아이콘을 클릭해주세요
+        </p>
       )}
     </>
   );

@@ -12,7 +12,7 @@ const BucketSelectionList = ({
   if (isLoading || isFetching) return <LoadingFeedbackModal />;
 
   return (
-    <ul>
+    <ul className="w-full h-full overflow-y-scroll">
       {buckets &&
         buckets.map((e) => (
           <BucketSelection

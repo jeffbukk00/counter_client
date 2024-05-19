@@ -1,3 +1,4 @@
+import HoverWrapper from "@/components/styles/HoverWrapper";
 import { BucketSelectionPropsType } from "./types";
 
 const BucketSelection = ({
@@ -5,9 +6,16 @@ const BucketSelection = ({
   selectBucketHandler,
 }: BucketSelectionPropsType) => {
   return (
-    <li>
-      <button onClick={() => selectBucketHandler()}>{title}</button>
-    </li>
+    <HoverWrapper classes="w-full h-[20%] ">
+      <li className="w-full h-full flex justify-center items-center">
+        <button
+          onClick={() => selectBucketHandler()}
+          className="text-sm w-full h-full"
+        >
+          {title}
+        </button>
+      </li>
+    </HoverWrapper>
   );
 };
 

@@ -24,7 +24,7 @@ const CounterDuplicateControl = ({
         mutateDuplicateCounter();
       }}
     >
-      <DuplicateControlVector />
+      <DuplicateControlVector classes="w-5 h-5 inline-block" />
     </Control>
   );
 };

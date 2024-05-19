@@ -9,7 +9,13 @@ const CounterCreationStart = ({
 }) => {
   useBoxCreatorGuide(guideConstants.guideIds["guideId4"]);
 
-  return <StartCreationButton startCreation={startCreation} />;
+  return (
+    <StartCreationButton
+      startCreation={startCreation}
+      classes="w-8 h-8 inline-block"
+      hover="p-2"
+    />
+  );
 };
 
 export default CounterCreationStart;

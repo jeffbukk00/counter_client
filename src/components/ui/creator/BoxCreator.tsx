@@ -21,10 +21,13 @@ const BoxCreator = ({ boxCreatorType, bucketId }: BoxCreatorPropsType) => {
     <div className="w-full h-40vh flex justify-center items-center">
       <div className="w-80 h-40 border relative">
         {boxCreatorIsLoading && <LoadingFeedbackBox />}
-        {isBoxCreatorInvalid.isInvalid && <ValidationFeedbackBoxCreator />}
-        {boxCreatorGuide.isUnguided && (
-          <GuideBoxCreator unreadGuideId={boxCreatorGuide.guideId} />
-        )}
+        <div className="absolute -bottom-2 translate-y-[100%] left-0 w-80 flex flex-col gap-2  bg-white z-[1]">
+          {isBoxCreatorInvalid.isInvalid && <ValidationFeedbackBoxCreator />}
+          {boxCreatorGuide.isUnguided && (
+            <GuideBoxCreator unreadGuideId={boxCreatorGuide.guideId} />
+          )}
+        </div>
+
         {boxCreatorType ===
           boxCreatorConstants.boxCreatorType.bucketCreator && <BucketCreator />}
         {boxCreatorType ===

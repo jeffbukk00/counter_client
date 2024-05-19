@@ -26,7 +26,10 @@ const Counters = ({ bucketId }: { bucketId: string }) => {
   if (isLoading) return <LoadingFeedbackBoxesContainer />;
 
   return (
-    <BoxesContainer isFetching={isFetching || isPending}>
+    <BoxesContainer
+      isFetching={isFetching || isPending}
+      isOneLine={counterIds && counterIds.length <= 2}
+    >
       {counterIds?.map((e) => (
         <Box
           key={e}

@@ -38,67 +38,85 @@ const BucketCreationQuery = ({
     <>
       {isInLastPhase && (
         <>
-          <p>
-            {
-              bucketCreationConstants.bucketCreationPhaseQueryData
-                .lastPhaseComment
-            }
-          </p>
-          <CreationActionButton
-            isInLastPhase={isInLastPhase}
-            type={creationActionConstants.creationActionType.submit}
-            actionHandler={submitBucketCreation}
-          />
+          <div className="absolute bottom-12 left-0 w-full flex justify-center">
+            <p className="text-xs font-medium">
+              {
+                bucketCreationConstants.bucketCreationPhaseQueryData
+                  .lastPhaseComment
+              }
+            </p>
+          </div>
+
+          <div className="absolute bottom-1 left-0 w-full flex justify-center">
+            <CreationActionButton
+              isInLastPhase={isInLastPhase}
+              type={creationActionConstants.creationActionType.submit}
+              actionHandler={submitBucketCreation}
+              classes="w-6 h-6 inline-block"
+              hover="p-1"
+            />
+          </div>
         </>
       )}
       {!isInLastPhase && (
         <>
-          <input
-            type="text"
-            placeholder={
-              bucketCreationConstants.bucketCreationPhaseQueryData.placeholder
-            }
-            onChange={changeUserAnswerInCurrentPhase}
-            onFocus={() => setQueryIsFocused(true)}
-            value={userAnswerInCurrentPhase}
-            className={
-              queryIsFocused ? "text-lg text-black" : "text-sm text-gray-400"
-            }
-          />
-          <p
-            className={
-              queryIsFocused ? "text-sm text-gray-400" : "text-lg text-black"
-            }
-          >
-            {
-              bucketCreationConstants.bucketCreationPhaseQueryData.queries[
-                currentPhase
-              ].queryText
-            }
-          </p>
-          <CreationActionButton
-            isInLastPhase={isInLastPhase}
-            type={creationActionConstants.creationActionType.click}
-            actionHandler={() => {
-              if (currentPhase === 0) {
-                // 유효성 검사
-                const validationResult = validate([
-                  required(userAnswerInCurrentPhase),
-                  below15Letters(userAnswerInCurrentPhase),
-                ]);
-
-                if (!validationResult.isValid)
-                  return updateIsBoxCreatorInvalid(
-                    true,
-                    validationResult.messages
-                  );
+          <div className="absolute top-[50%] translate-y-[-50%] w-full h-8 flex justify-center items-center">
+            <input
+              type="text"
+              placeholder={
+                bucketCreationConstants.bucketCreationPhaseQueryData.placeholder
               }
+              onChange={changeUserAnswerInCurrentPhase}
+              onFocus={() => setQueryIsFocused(true)}
+              onBlur={() => setQueryIsFocused(false)}
+              value={userAnswerInCurrentPhase}
+              className={`text-base outline-none text-center caret-gray-400 placeholder:text-gray-300 ${
+                queryIsFocused ? "#232323" : "text-gray-300"
+              }`}
+            />
+          </div>
 
-              updateUserAnswers(userAnswerInCurrentPhase);
-              setQueryIsFocused(false);
-              setUserAnswerInCurrentPhase("");
-            }}
-          />
+          <div className="absolute top-[60%] w-full flex justify-center">
+            <p
+              className={`text-xs font-semibold ${
+                queryIsFocused ? "text-gray-300" : "#232323"
+              }`}
+            >
+              {
+                bucketCreationConstants.bucketCreationPhaseQueryData.queries[
+                  currentPhase
+                ].queryText
+              }
+            </p>
+          </div>
+
+          <div className="absolute bottom-1 left-0 w-full flex justify-center">
+            <CreationActionButton
+              isInLastPhase={isInLastPhase}
+              type={creationActionConstants.creationActionType.click}
+              classes="w-6 h-6 inline-block"
+              hover="p-1"
+              actionHandler={() => {
+                if (currentPhase === 0) {
+                  // 유효성 검사
+                  const validationResult = validate([
+                    required(userAnswerInCurrentPhase),
+                    below15Letters(userAnswerInCurrentPhase),
+                  ]);
+
+                  if (!validationResult.isValid)
+                    return updateIsBoxCreatorInvalid(
+                      true,
+                      validationResult.messages
+                    );
+                }
+
+                updateUserAnswers(userAnswerInCurrentPhase);
+                setQueryIsFocused(false);
+                setUserAnswerInCurrentPhase("");
+              }}
+            />
+          </div>
         </>
       )}
     </>

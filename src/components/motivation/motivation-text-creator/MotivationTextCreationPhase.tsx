@@ -43,17 +43,32 @@ const MotivationTextCreationPhase = ({
 
   return (
     <>
-      <FinishCreationButton finishCreation={finishCreation} />
-      <textarea
-        placeholder="여기에 입력해주세요..."
-        value={userAnswers.text}
-        onChange={updateText}
-      ></textarea>
-      <CreationActionButton
-        isInLastPhase={true}
-        type={creationActionConstants.creationActionType.submit}
-        actionHandler={submitMotivationTextCreation}
-      />
+      <div className="w-full h-full flex justify-center">
+        <div className="w-9/10 h-[55%] mt-10 relative">
+          <span className="absolute top-1 right-1">
+            <FinishCreationButton
+              finishCreation={finishCreation}
+              classes="w-4 h-4 inline-block"
+              hover=""
+            />
+          </span>
+          <textarea
+            placeholder="여기에 입력해주세요..."
+            value={userAnswers.text}
+            onChange={updateText}
+            className="w-full h-full pt-3 pb-2 px-2 border border-gray-300 outline-none text-xs resize-none caret-gray-400"
+          ></textarea>
+        </div>
+      </div>
+      <div className="absolute bottom-1 left-0 w-full flex justify-center items-center">
+        <CreationActionButton
+          isInLastPhase={true}
+          type={creationActionConstants.creationActionType.submit}
+          actionHandler={submitMotivationTextCreation}
+          classes="w-5 h-5 inline-block"
+          hover=""
+        />
+      </div>
     </>
   );
 };

@@ -5,4 +5,6 @@ export interface CreationActionButtonPropsType {
     | void
     | (() => Promise<void>)
     | ((userAnswerInCurrentPhase: string) => void);
+  classes: string;
+  hover: string;
 }

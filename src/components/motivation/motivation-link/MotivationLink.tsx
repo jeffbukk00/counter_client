@@ -45,29 +45,42 @@ const MotivationLink = ({
         />
       )}
       {!isEditPhase && (
-        <div
-          className="border w-full h-20"
-          onMouseOver={showRemoveButton}
-          onMouseOut={hideRemoveButton}
-        >
+        <>
           <div
-            className="border"
-            onMouseOver={showEditButton}
-            onMouseOut={hideEditButton}
+            className="w-full h-full flex justify-center"
+            onMouseOver={showRemoveButton}
+            onMouseOut={hideRemoveButton}
           >
-            <p>{motivationLinkData!.title}</p>
-            {isEditButtonVisible && (
-              <MotivationLinkEditButton openEditPhase={openEditPhase} />
-            )}
+            <div
+              className="w-9/10 h-[55%] mt-10  border border-gray-300 flex flex-col justify-center items-center gap-1 relative"
+              onMouseOver={showEditButton}
+              onMouseOut={hideEditButton}
+            >
+              <div className="absolute top-3 left-[50%] translate-x-[-50%]">
+                <p className="text-xs">
+                  {motivationLinkData!.title}{" "}
+                  {isEditButtonVisible && (
+                    <MotivationLinkEditButton openEditPhase={openEditPhase} />
+                  )}
+                </p>
+              </div>
+              <div className="mt-5 flex flex-col justify-center items-center gap-[2px]">
+                <CopyMotivationLinkPart
+                  link={motivationLinkData!.link}
+                  fontSize="text-[0.5rem]"
+                />
+              </div>
+            </div>
           </div>
-          <CopyMotivationLinkPart link={motivationLinkData!.link} />
           {(isRemoveButtonVisible || isEditButtonVisible) && (
             <MotivationLinkRemoveButton
               boxData={boxData}
               motivationLinkId={motivationLinkId}
+              showRemoveButton={showRemoveButton}
+              hideRemoveButton={hideRemoveButton}
             />
           )}
-        </div>
+        </>
       )}
     </>
   );

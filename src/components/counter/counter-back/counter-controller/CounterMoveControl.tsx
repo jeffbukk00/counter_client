@@ -17,7 +17,7 @@ const CounterMoveControl = ({
   return (
     <>
       <Control title="이동" action={openModal}>
-        <MoveControlVector />
+        <MoveControlVector classes="w-5 h-5 inline-block" />
       </Control>
       {modalIsOpened && (
         <Modal closeModal={closeModal}>

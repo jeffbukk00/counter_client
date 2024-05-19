@@ -40,7 +40,11 @@ const Box = ({
   return (
     <div className="w-full h-40vh flex justify-center items-center">
       <div
-        className="w-80 h-40 border relative"
+        className={`relative w-80 h-40 ${
+          boxType === boxConstants.boxType.bucket
+            ? "border-x-[1px] border-b-[1px] border-gray-300"
+            : "border border-gray-300"
+        }`}
         id={boxId}
         {...draggableAttributes}
         {...droppableAttributes}
@@ -48,12 +52,15 @@ const Box = ({
         onMouseOut={hideFlipButton}
       >
         {boxIsLoading && <LoadingFeedbackBox />}
-        {boxIsInvalid && (
-          <ValidationFeedbackBox invalidBoxIdx={idxInInvalidBoxes} />
-        )}
-        {boxIsUnGuided && (
-          <GuideBox unreadGuideId={unreadGuideInThisBox!.guideId} />
-        )}
+        <div className="absolute -bottom-2 translate-y-[100%] left-0 w-80 flex flex-col gap-2 bg-white z-[1]">
+          {boxIsInvalid && (
+            <ValidationFeedbackBox invalidBoxIdx={idxInInvalidBoxes} />
+          )}
+          {boxIsUnGuided && (
+            <GuideBox unreadGuideId={unreadGuideInThisBox!.guideId} />
+          )}
+        </div>
+
         {isVisible && <FlipButton flip={flip} />}
         {boxType === boxConstants.boxType.bucket && (
           <Bucket bucketId={boxId} isFront={isFront} isVisible={isVisible} />

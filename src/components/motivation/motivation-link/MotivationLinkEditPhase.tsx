@@ -5,7 +5,6 @@ import { creationActionConstants } from "@/components/ui/creation-action/constan
 
 import useMutationEditMotivationLink from "./hooks/http/useMutationEditMotivationLink";
 
-import LinkVector from "@/shared/assets/link/LinkVector";
 import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 import useBoxValidationContext from "@/contexts/feedback/validation/box-validation/hooks/useBoxValidationContext";
@@ -52,19 +51,33 @@ const MotivationLinkEditPhase = ({
   };
   return (
     <>
-      <input
-        type="text"
-        placeholder="여기에 입력해주세요..."
-        value={userAnswers.title}
-        onChange={updateTitle}
-      />
-      <p>링크의 이름을 수정합니다</p>
-      <LinkVector classes="w-6 h-6 inline-block" />
-      <CreationActionButton
-        isInLastPhase={true}
-        type={creationActionConstants.creationActionType.submit}
-        actionHandler={submitMotivationLinkEdit}
-      />
+      <div className="w-full h-full flex justify-center">
+        <div className="w-9/10 h-[55%] mt-10  border border-gray-300 flex flex-col justify-center items-center gap-1 relative">
+          <div className="">
+            <input
+              type="text"
+              placeholder="여기에 입력해주세요..."
+              value={userAnswers.title}
+              onChange={updateTitle}
+              className="text-xs outline-none caret-gray-400 text-center w-56"
+            />
+            <div className="flex justify-center items-center">
+              <p className="text-xs font-medium text-gray-300">
+                링크의 이름을 수정합니다
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute bottom-1 left-0 w-full flex justify-center items-center">
+        <CreationActionButton
+          isInLastPhase={true}
+          type={creationActionConstants.creationActionType.submit}
+          actionHandler={submitMotivationLinkEdit}
+          classes="w-5 h-5 inline-block"
+          hover=""
+        />
+      </div>
     </>
   );
 };

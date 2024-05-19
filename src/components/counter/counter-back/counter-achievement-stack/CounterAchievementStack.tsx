@@ -22,25 +22,34 @@ const CountDisplay = ({
 
   return (
     <>
-      <Control
-        title="리셋"
-        action={() => {
-          activate(counterId);
-          mutateResetAchievementStack();
-        }}
-      >
-        <ResetControlVector />
-      </Control>
-      <ul className="relative">
-        {achievementStack.split("").map((e, i) => {
-          return (
-            <li key={i} className="w-12 h-10 relative inline-block">
-              <SelectedDigitalNumberVector number={Number(e)} />
-            </li>
-          );
-        })}
-      </ul>
-      <p>번 목표 카운트를 달성했습니다</p>
+      <span className="absolute top-5 left-[50%] translate-x-[-50%]">
+        <Control
+          title="리셋"
+          action={() => {
+            activate(counterId);
+            mutateResetAchievementStack();
+          }}
+        >
+          <ResetControlVector classes="w-5 h-5 inline-block" />
+        </Control>
+      </span>
+      <div className="w-full h-full flex justify-center items-center">
+        <ul className="w-full grid grid-cols-6">
+          {achievementStack.split("").map((e, i) => {
+            return (
+              <li key={i}>
+                <SelectedDigitalNumberVector
+                  classes="w-full h-10"
+                  number={Number(e)}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <div className="absolute bottom-6 w-full flex justify-center">
+        <p className="text-sm">번 목표 카운트를 달성했습니다</p>
+      </div>
     </>
   );
 };

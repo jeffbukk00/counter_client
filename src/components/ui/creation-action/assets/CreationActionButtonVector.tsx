@@ -1,13 +1,18 @@
 import { creationActionConstants } from "../constants";
 
-const CreationActionButtonVector = ({ type }: { type: number }) => {
+const CreationActionButtonVector = ({
+  type,
+  classes,
+}: {
+  type: number;
+  classes: string;
+}) => {
   return (
     <>
       {type === creationActionConstants.creationActionType.click && (
         <svg
-          fill="#000000"
-          width="32px"
-          height="32px"
+          fill="#232323"
+          className={classes}
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -16,9 +21,8 @@ const CreationActionButtonVector = ({ type }: { type: number }) => {
       )}
       {type === creationActionConstants.creationActionType.submit && (
         <svg
-          fill="#000000"
-          width="32px"
-          height="32px"
+          fill="#232323"
+          className={classes}
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >

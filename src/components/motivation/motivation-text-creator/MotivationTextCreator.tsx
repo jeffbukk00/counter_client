@@ -1,7 +1,8 @@
 import useCreationStart from "@/components/ui/creator/hooks/useCreationStart";
 import { BoxDataType } from "../types";
-import StartCreationButton from "@/components/ui/creator/StartCreationButton";
+
 import MotivationTextCreationPhase from "./MotivationTextCreationPhase";
+import MotivationTextCreationStart from "./MotivationTextCreationStart";
 
 const MotivationTextCreator = ({ boxData }: { boxData: BoxDataType }) => {
   const { creationIsStarted, startCreation, finishCreation } =
@@ -10,7 +11,7 @@ const MotivationTextCreator = ({ boxData }: { boxData: BoxDataType }) => {
   return (
     <>
       {!creationIsStarted && (
-        <StartCreationButton startCreation={startCreation} />
+        <MotivationTextCreationStart startCreation={startCreation} />
       )}
       {creationIsStarted && (
         <MotivationTextCreationPhase

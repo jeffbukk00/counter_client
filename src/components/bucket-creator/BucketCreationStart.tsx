@@ -9,7 +9,13 @@ const BucketCreationStart = ({
 }) => {
   useBoxCreatorGuide(guideConstants.guideIds["guideId1"]);
 
-  return <StartCreationButton startCreation={startCreation} />;
+  return (
+    <StartCreationButton
+      startCreation={startCreation}
+      classes="w-8 h-8 inline-block"
+      hover="p-2"
+    />
+  );
 };
 
 export default BucketCreationStart;

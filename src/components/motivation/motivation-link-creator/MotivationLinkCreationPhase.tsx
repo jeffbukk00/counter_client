@@ -85,26 +85,40 @@ const MotivationLinkCreationPhase = ({
 
   return (
     <>
-      <FinishCreationButton finishCreation={finishCreation} />
-      <div>
-        <input
-          type="text"
-          placeholder="생성할 링크의 이름을 입력해주세요..."
-          value={userAnswers.title}
-          onChange={updateTitle}
-          className="w-full"
+      <div className="w-full h-full flex justify-center">
+        <div className="w-9/10 h-[55%] mt-10  border border-gray-300 flex flex-col justify-center items-center gap-1 relative">
+          <FinishCreationButton
+            finishCreation={finishCreation}
+            classes="w-4 h-4 inline-block absolute top-2 right-2"
+            hover=""
+          />
+          <div className="absolute top-3 left-[50%] translate-x-[-50%] h-4 flex items-center">
+            <input
+              type="text"
+              placeholder="생성할 링크의 이름을 입력해주세요..."
+              value={userAnswers.title}
+              onChange={updateTitle}
+              className="text-xs outline-none caret-gray-400 text-center w-56"
+            />
+          </div>
+          <div className="mt-5 flex flex-col justify-center items-center gap-[2px]">
+            <PasteMotivationLinkPart
+              updateLink={updateLink}
+              linkIsValid={linkIsValid}
+              updateLinkIsValid={updateLinkIsValid}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="absolute bottom-1 left-0 w-full flex justify-center items-center">
+        <CreationActionButton
+          isInLastPhase={true}
+          type={creationActionConstants.creationActionType.submit}
+          actionHandler={submitMotivationLinkCreation}
+          classes="w-5 h-5 inline-block"
+          hover=""
         />
       </div>
-      <PasteMotivationLinkPart
-        updateLink={updateLink}
-        linkIsValid={linkIsValid}
-        updateLinkIsValid={updateLinkIsValid}
-      />
-      <CreationActionButton
-        isInLastPhase={true}
-        type={creationActionConstants.creationActionType.submit}
-        actionHandler={submitMotivationLinkCreation}
-      />
     </>
   );
 };

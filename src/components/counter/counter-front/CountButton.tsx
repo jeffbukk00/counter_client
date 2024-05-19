@@ -6,7 +6,6 @@ import MinusVector from "./assets/MinusVector";
 
 const CountButton = ({
   type,
-
   digit,
   direction,
   getCloseToEndCount,
@@ -34,14 +33,14 @@ const CountButton = ({
           ? getCloseToEndCount(digit)
           : becomeDistantFromEndCount(digit)
       }
-      className={`w-full h-1/2 ${
+      className={`w-full h-10 ${
         isPositive ? "bg-positive" : "bg-negative"
-      } opacity-50`}
+      } opacity-30`}
     >
       {type === counterFrontConstants.countButtonType.plus ? (
-        <PlusVector />
+        <PlusVector direction={direction} />
       ) : (
-        <MinusVector />
+        <MinusVector direction={direction} />
       )}
     </button>
   );

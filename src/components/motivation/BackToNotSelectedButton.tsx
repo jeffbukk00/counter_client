@@ -1,14 +1,20 @@
+import HoverWrapper from "../styles/HoverWrapper";
 import GotoPrevPhaseButtonVector from "../ui/navigator/assets/GotoPrevPhaseButtonVector";
 
 const BackToNotSelectedButton = ({
   backToNotSelected,
+  classes,
 }: {
   backToNotSelected: () => void;
+  classes: string;
 }) => {
   return (
-    <button onClick={backToNotSelected}>
-      <GotoPrevPhaseButtonVector />
-    </button>
+    <HoverWrapper classes="p-1">
+      {" "}
+      <button onClick={backToNotSelected}>
+        <GotoPrevPhaseButtonVector classes={classes} />
+      </button>
+    </HoverWrapper>
   );
 };
 

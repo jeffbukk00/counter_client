@@ -26,10 +26,29 @@ const MotivationTexts = ({
   return (
     <>
       {isInFirstPhase && (
-        <BackToNotSelectedButton backToNotSelected={backToNotSelected} />
+        <span className="absolute top-[50%] -left-10 translate-y-[-50%]">
+          <BackToNotSelectedButton
+            classes="w-7 h-7 inline-block "
+            backToNotSelected={backToNotSelected}
+          />
+        </span>
       )}
-      {!isInFirstPhase && <GotoPrevPhaseButton gotoPrevPhase={gotoPrevPhase} />}
-      {!isInLastPhase && <GotoNextPhaseButton gotoNextPhase={gotoNextPhase} />}
+      {!isInFirstPhase && (
+        <span className="absolute top-[50%] -left-10 translate-y-[-50%]">
+          <GotoPrevPhaseButton
+            classes="w-7 h-7 inline-block "
+            gotoPrevPhase={gotoPrevPhase}
+          />
+        </span>
+      )}
+      {!isInLastPhase && (
+        <span className="absolute top-[50%] -right-10 translate-y-[-50%]">
+          <GotoNextPhaseButton
+            classes="w-7 h-7 inline-block "
+            gotoNextPhase={gotoNextPhase}
+          />
+        </span>
+      )}
       {motivationTextIds.map((e, i) => {
         return (
           currentPhase === i && (

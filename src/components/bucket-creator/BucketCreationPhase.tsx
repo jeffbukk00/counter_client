@@ -47,8 +47,22 @@ const BucketCreationPhase = ({
 
   return (
     <>
-      <FinishCreationButton finishCreation={finishCreation} />
-      {!isInFirstPhase && <GotoPrevPhaseButton gotoPrevPhase={gotoPrevPhase} />}
+      <span className="absolute top-1 right-1">
+        <FinishCreationButton
+          finishCreation={finishCreation}
+          classes="w-5 h-5 inline-block"
+          hover="p-[2px]"
+        />
+      </span>
+
+      {!isInFirstPhase && (
+        <span className="absolute top-[50%] -left-10 translate-y-[-50%]">
+          <GotoPrevPhaseButton
+            classes="w-7 h-7 inline-block "
+            gotoPrevPhase={gotoPrevPhase}
+          />
+        </span>
+      )}
       <BucketCreationAnswerList
         currentPhase={currentPhase}
         isInLastPhase={isInLastPhase}

@@ -21,14 +21,14 @@ const CountDigit = ({
 
   return (
     <li
-      className="w-12 h-10 relative inline-block"
+      className="w-full h-20 relative flex justify-center items-center"
       onMouseOver={() => {
         if (isInEndCount) return;
         showCountButtons();
       }}
       onMouseOut={hideCountButtons}
     >
-      <SelectedDigitalNumberVector number={number} />
+      <SelectedDigitalNumberVector number={number} classes="w-full h-10" />
       {countButtonsAreVisible && !isInEndCount && (
         <span className="w-full h-full absolute top-0 left-0">
           <CountButton

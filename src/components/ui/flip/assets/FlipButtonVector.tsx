@@ -1,9 +1,8 @@
-const FlipButtonVector = () => {
+const FlipButtonVector = ({ classes }: { classes: string }) => {
   return (
     <svg
       fill="#000000"
-      width="32px"
-      height="32px"
+      className={classes}
       viewBox="0 0 256 256"
       xmlns="http://www.w3.org/2000/svg"
     >

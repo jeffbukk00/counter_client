@@ -17,7 +17,9 @@ const SharingPhase = ({ closeModal }: { closeModal: () => void }) => {
 
   return (
     <>
-      <CloseModalButton closeModal={closeModal} />
+      <span className="absolute top-2 right-2 z-[1]">
+        <CloseModalButton closeModal={closeModal} />
+      </span>
       {sharingType === sharingConstants.sharingType.default && (
         <SelectSharingTypePhase changeSharingType={changeSharingType} />
       )}

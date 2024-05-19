@@ -22,7 +22,7 @@ const CounterRemoveControl = ({
           mutateRemoveConter();
         }}
       >
-        <RemoveControlVector />
+        <RemoveControlVector classes="w-5 h-5 inline-block" />
       </Control>
     </>
   );

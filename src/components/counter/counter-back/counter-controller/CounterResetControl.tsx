@@ -15,7 +15,7 @@ const CounterResetControl = ({ counterId }: { counterId: string }) => {
         mutateResetCount();
       }}
     >
-      <ResetControlVector />
+      <ResetControlVector classes="w-5 h-5 inline-block" />
     </Control>
   );
 };

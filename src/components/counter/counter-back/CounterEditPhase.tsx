@@ -108,23 +108,44 @@ const CounterEditPhase = ({
   };
   return (
     <>
-      <input type="text" value={userAnswers.title} onChange={updateTitle} />
-      <input
-        type="text"
-        value={userAnswers.startCount}
-        onChange={updateStartCount}
-      />
-      <input
-        type="text"
-        value={userAnswers.endCount}
-        onChange={updateEndCount}
-      />
-      <p>카운터를 수정합니다</p>
-      <CreationActionButton
-        isInLastPhase={true}
-        type={creationActionConstants.creationActionType.submit}
-        actionHandler={submitCounterEdit}
-      />
+      <div className="w-full h-24 flex flex-col justify-end items-center gap-1">
+        <div>
+          <input
+            type="text"
+            value={userAnswers.title}
+            onChange={updateTitle}
+            className="text-center text-xs outline-none  caret-gray-400"
+          />
+        </div>
+        <div className="w-full bg-negative bg-opacity-20 flex justify-center">
+          <input
+            type="text"
+            value={userAnswers.startCount}
+            onChange={updateStartCount}
+            className="text-center outline-none bg-transparent  caret-gray-400"
+          />
+        </div>
+        <div className="w-full bg-positive bg-opacity-20 flex justify-center">
+          <input
+            type="text"
+            value={userAnswers.endCount}
+            onChange={updateEndCount}
+            className="text-center outline-none  bg-transparent  caret-gray-400"
+          />
+        </div>
+      </div>
+      <div className="absolute bottom-10 left-0 w-full flex justify-center">
+        <p className="text-xs font-medium text-gray-300">카운터를 수정합니다</p>
+      </div>
+      <div className="absolute bottom-1 left-0 w-full flex justify-center">
+        <CreationActionButton
+          isInLastPhase={true}
+          type={creationActionConstants.creationActionType.submit}
+          actionHandler={submitCounterEdit}
+          classes="w-6 h-6 inline-block"
+          hover="p-1"
+        />
+      </div>
     </>
   );
 };

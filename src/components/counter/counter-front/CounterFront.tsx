@@ -15,7 +15,9 @@ const CounterFront = ({
   return (
     <>
       <Count counterFrontData={counterFrontData} />
-      <p>{counterFrontData.title}</p>
+      <div className="absolute w-full bottom-3 flex justify-center items-center">
+        <h3 className="inline-block text-lg">{counterFrontData.title}</h3>
+      </div>
     </>
   );
 };

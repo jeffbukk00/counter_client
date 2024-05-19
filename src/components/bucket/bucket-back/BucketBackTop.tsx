@@ -8,7 +8,7 @@ const BucketBackTop = ({
   setCurrentBucketBackType,
 }: BucketBackTopPropsType) => {
   return (
-    <>
+    <span className="absolute -top-7 right-1 flex justify-center items-center">
       <ChangeBucketBackTypeButton
         type={bucketBackConstants.bucketBackType.controller}
         currentBucketBackType={currentBucketBackType}
@@ -19,7 +19,7 @@ const BucketBackTop = ({
         currentBucketBackType={currentBucketBackType}
         setCurrentBucketBackType={setCurrentBucketBackType}
       />
-    </>
+    </span>
   );
 };
 

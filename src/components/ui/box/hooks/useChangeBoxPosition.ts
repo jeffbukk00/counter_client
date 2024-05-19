@@ -5,8 +5,7 @@ import { axiosInstance } from "@/axios/axiosInstance";
 import { boxConstants } from "../constants";
 import { api } from "@/tanstack-query/api";
 import { queryKeys, constantsInQueryKeys } from "@/tanstack-query/queryKeys";
-import { EventTargetHasId } from "../types";
-import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
+
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 
 const changeBoxPosition = (boxType: number, bucketId?: string) => {
@@ -52,26 +51,57 @@ const useChangeBoxPosition = (
 
   const dragStartHandler: DragEventHandler<HTMLDivElement> = (event) => {
     event.dataTransfer?.clearData();
+    event.dataTransfer.dropEffect = "move";
 
-    const target = event.target as EventTargetHasId;
+    const target = event.currentTarget;
 
     event.dataTransfer?.setData("text/plain", target.id);
   };
 
   const dragOverHandler: DragEventHandler<HTMLDivElement> = (event) => {
     event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+
+    const target = event.currentTarget;
+    const isMoving = target.classList.contains("drag-enter");
+    if (!isMoving) target.classList.add("drag-enter");
+  };
+
+  const dragEnter: DragEventHandler<HTMLDivElement> = (event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+
+    const target = event.currentTarget;
+    target.classList.add("drag-enter");
+  };
+
+  const dragLeave: DragEventHandler<HTMLDivElement> = (event) => {
+    event.preventDefault();
+
+    const target = event.currentTarget;
+    target.classList.remove("drag-enter");
   };
 
   const dropHandler: DragEventHandler<HTMLDivElement> = (event) => {
     if (!boxIds) return;
 
+    event.dataTransfer.effectAllowed = "move";
+
     const draggableId = event.dataTransfer?.getData("text");
-    const target = event.target as EventTargetHasId;
+    const target = event.currentTarget;
+    target.classList.remove("drag-enter");
+
     const droppableId = target.id;
 
-    const orderedBoxIds = boxIds.filter((e) => e !== draggableId);
-    const droppableIdIndex = orderedBoxIds.findIndex((e) => e === droppableId);
-    orderedBoxIds?.splice(droppableIdIndex, 0, draggableId);
+    if (draggableId === droppableId) return;
+
+    const updatedBoxIds = boxIds.filter((e) => e !== draggableId);
+    const droppableIdIndex = updatedBoxIds.findIndex((e) => e === droppableId);
+    const untilDroppable = updatedBoxIds.slice(0, droppableIdIndex + 1);
+    const afterDroppbalbe = updatedBoxIds.slice(droppableIdIndex + 1);
+    untilDroppable.push(draggableId);
+
+    const orderedBoxIds = [...untilDroppable, ...afterDroppbalbe];
 
     mutateChangeBoxPosition(orderedBoxIds);
   };
@@ -79,6 +109,8 @@ const useChangeBoxPosition = (
   return {
     draggableAttributes: { draggable: true, onDragStart: dragStartHandler },
     droppableAttributes: {
+      onDragEnter: dragEnter,
+      onDragLeave: dragLeave,
       onDragOver: dragOverHandler,
       onDrop: dropHandler,
     },

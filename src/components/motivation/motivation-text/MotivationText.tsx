@@ -41,28 +41,34 @@ const MotivationText = ({
         />
       )}
       {!isEditPhase && (
-        <div
-          className="border w-full h-20"
-          onMouseOver={showRemoveButton}
-          onMouseOut={hideRemoveButton}
-        >
+        <>
           <div
-            className="border"
-            onMouseOver={showEditButton}
-            onMouseOut={hideEditButton}
+            className="w-full h-full flex justify-center"
+            onMouseOver={showRemoveButton}
+            onMouseOut={hideRemoveButton}
           >
-            <p>{motivationTextData!.text}</p>
-            {isEditButtonVisible && (
-              <MotivationTextEditButton openEditPhase={openEditPhase} />
-            )}
+            <div
+              className="w-9/10 h-[55%] mt-10 pt-3 pb-2 px-2 border border-gray-300 overflow-y-scroll scrollbar-sm"
+              onMouseOver={showEditButton}
+              onMouseOut={hideEditButton}
+            >
+              <p className="text-xs whitespace-pre-wrap">
+                {motivationTextData?.text}
+                {isEditButtonVisible && (
+                  <MotivationTextEditButton openEditPhase={openEditPhase} />
+                )}
+              </p>
+            </div>
           </div>
           {(isRemoveButtonVisible || isEditButtonVisible) && (
             <MotivationTextRemoveButton
               boxData={boxData}
               motivationTextId={motivationTextId}
+              showRemoveButton={showRemoveButton}
+              hideRemoveButton={hideRemoveButton}
             />
           )}
-        </div>
+        </>
       )}
     </>
   );

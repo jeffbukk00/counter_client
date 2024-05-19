@@ -44,7 +44,7 @@ const useMutationUpdateCount = (counterId: string, currentCount: number) => {
     const timerId = setTimeout(() => {
       activate(counterId);
       mutateUpdateCount(currentCount);
-    }, 300);
+    }, 500);
 
     return () => {
       clearTimeout(timerId);

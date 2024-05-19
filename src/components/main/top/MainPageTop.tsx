@@ -4,7 +4,7 @@ import HttpErrorFeedback from "./HttpErrorFeedback";
 
 const MainPageTop = () => {
   return (
-    <div className="flex justify-between">
+    <div className="h-full flex justify-between items-center relative">
       <UserProfile />
       <OpenSharingModalButton />
       <HttpErrorFeedback />

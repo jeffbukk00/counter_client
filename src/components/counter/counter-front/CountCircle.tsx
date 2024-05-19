@@ -34,31 +34,58 @@ const CountCircle = ({
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) {
+      return;
+    }
 
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!ctx) {
+      return;
+    }
 
-    ctx.beginPath();
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const whole = 2 * Math.PI;
-    const arcStart = (Math.PI / 2) * -1;
-    const arcEnd = whole * (quantity / total) - Math.PI / 2;
+      ctx.beginPath();
 
-    ctx.moveTo(150, 75);
-    ctx.arc(150, 75, 75, arcStart, arcEnd);
-    ctx.closePath();
-    ctx.fillStyle = isPositive ? "#7FD69D" : "#FA7070";
-    ctx.fill();
+      const whole = 2 * Math.PI;
+      const arcStart = (Math.PI / 2) * -1;
+      const arcEnd = whole * (quantity / total) - Math.PI / 2;
+
+      ctx.moveTo(150, 75);
+      ctx.arc(150, 75, 75, 0, whole);
+      ctx.closePath();
+      ctx.fillStyle = isPositive ? "#7FD69D" : "#FA7070";
+      ctx.globalAlpha = 0.3;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(150, 75);
+      ctx.arc(150, 75, 75, arcStart, arcEnd);
+      ctx.closePath();
+      ctx.fillStyle = isPositive ? "#7FD69D" : "#FA7070";
+      ctx.globalAlpha = 1;
+      ctx.fill();
+    };
+    draw();
+
+    window.addEventListener("focus", draw);
 
     return () => {
+      window.removeEventListener("focus", draw);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
   }, [quantity, isPositive, total]);
 
   return (
-    <span>
-      <canvas ref={canvasRef} className="w-12 h-6 inline-block"></canvas>
+    <span
+      className={`flex justify-center items-center absolute top-2 ${
+        countCircleType === counterFrontConstants.countCircleType.positive
+          ? "-right-1"
+          : "right-8"
+      }`}
+    >
+      <canvas ref={canvasRef} className="w-14 h-7 inline-block"></canvas>
     </span>
   );
 };

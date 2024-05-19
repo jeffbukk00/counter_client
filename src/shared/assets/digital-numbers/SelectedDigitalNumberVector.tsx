@@ -9,28 +9,34 @@ import Seven from "./Seven";
 import Eight from "./Eight";
 import Nine from "./Nine";
 
-const SelectedDigitalNumberVector = ({ number }: { number: number }) => {
+const SelectedDigitalNumberVector = ({
+  number,
+  classes,
+}: {
+  number: number;
+  classes: string;
+}) => {
   switch (number) {
     case 0:
-      return <Zero />;
+      return <Zero classes={classes} />;
     case 1:
-      return <One />;
+      return <One classes={classes} />;
     case 2:
-      return <Two />;
+      return <Two classes={classes} />;
     case 3:
-      return <Three />;
+      return <Three classes={classes} />;
     case 4:
-      return <Four />;
+      return <Four classes={classes} />;
     case 5:
-      return <Five />;
+      return <Five classes={classes} />;
     case 6:
-      return <Six />;
+      return <Six classes={classes} />;
     case 7:
-      return <Seven />;
+      return <Seven classes={classes} />;
     case 8:
-      return <Eight />;
+      return <Eight classes={classes} />;
     case 9:
-      return <Nine />;
+      return <Nine classes={classes} />;
     default:
       return null;
   }

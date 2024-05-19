@@ -9,17 +9,19 @@ const OnEndCountButton = ({
   resetCurrentCount,
 }: OnEndCountButtonPropsType) => {
   return (
-    <Control
-      title="리셋"
-      action={() => {
-        changeCountDisplayScreenType(
-          counterFrontConstants.counterDisplayScreenType.default
-        );
-        resetCurrentCount();
-      }}
-    >
-      <ResetControlVector />
-    </Control>
+    <span className="absolute top-3 left-[50%] translate-x-[-50%]">
+      <Control
+        title="리셋"
+        action={() => {
+          changeCountDisplayScreenType(
+            counterFrontConstants.counterDisplayScreenType.default
+          );
+          resetCurrentCount();
+        }}
+      >
+        <ResetControlVector classes="w-5 h-5 inline-block" />
+      </Control>
+    </span>
   );
 };
 
