@@ -1,4 +1,3 @@
-import { AsyncErrorContextProvider } from "@/contexts/async-error/AsyncErrorContext";
 import { BoxGuideContextProvider } from "@/contexts/feedback/guide/box-guide/BoxGuideContext";
 import { NotBoxGuideContextProvider } from "@/contexts/feedback/guide/not-box-guide/NotBoxGuideContext";
 import { BoxValidationContextProvider } from "@/contexts/feedback/validation/box-validation/BoxValidationContext";
@@ -9,19 +8,17 @@ import { HasChildren } from "@/shared/types";
 
 const UserFeedbackContextProviders = ({ children }: HasChildren) => {
   return (
-    <AsyncErrorContextProvider>
-      <NotBoxLoadingContextProvider>
-        <BoxLoadingContextProvider>
-          <NotBoxValidationContextProvider>
-            <NotBoxGuideContextProvider>
-              <BoxValidationContextProvider>
-                <BoxGuideContextProvider> {children}</BoxGuideContextProvider>
-              </BoxValidationContextProvider>
-            </NotBoxGuideContextProvider>
-          </NotBoxValidationContextProvider>
-        </BoxLoadingContextProvider>
-      </NotBoxLoadingContextProvider>
-    </AsyncErrorContextProvider>
+    <NotBoxLoadingContextProvider>
+      <BoxLoadingContextProvider>
+        <NotBoxValidationContextProvider>
+          <NotBoxGuideContextProvider>
+            <BoxValidationContextProvider>
+              <BoxGuideContextProvider> {children}</BoxGuideContextProvider>
+            </BoxValidationContextProvider>
+          </NotBoxGuideContextProvider>
+        </NotBoxValidationContextProvider>
+      </BoxLoadingContextProvider>
+    </NotBoxLoadingContextProvider>
   );
 };
 

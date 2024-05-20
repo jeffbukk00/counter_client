@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 
 import useMutationPostAuthorizationCode from "@/components/auth/hooks/useMutationPostAuthorizationCode";
+import LoadingFeedbackGlobal from "../ui/user-feedback/loading/LoadingFeedbackGlobal";
 
 const CallbackGoogle = () => {
   const called = useRef(false);
@@ -10,7 +11,7 @@ const CallbackGoogle = () => {
     called.current = true;
     mutatePostAuthorizationCode("google");
   }, [mutatePostAuthorizationCode]);
-  return <></>;
+  return <LoadingFeedbackGlobal />;
 };
 
 export default CallbackGoogle;

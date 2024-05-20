@@ -5,13 +5,16 @@ import "./index.css";
 
 import { AuthContextProvider } from "./contexts/auth/AuthContext.tsx";
 import TanstackQueryProvider from "./tanstack-query/QueryClient.tsx";
+import { AsyncErrorContextProvider } from "./contexts/async-error/AsyncErrorContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <TanstackQueryProvider>
-      <AuthContextProvider>
-        <App />
-      </AuthContextProvider>
+      <AsyncErrorContextProvider>
+        <AuthContextProvider>
+          <App />
+        </AuthContextProvider>
+      </AsyncErrorContextProvider>
     </TanstackQueryProvider>
   </React.StrictMode>
 );
