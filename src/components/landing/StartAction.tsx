@@ -1,5 +1,4 @@
 import HoverWrapper from "../styles/HoverWrapper";
-import CounterLogoVector from "./assets/CounterLogoVector";
 
 import { useState } from "react";
 import Login from "../auth/Login";
@@ -18,7 +17,6 @@ const StartAction = () => {
         <div className="animate-bounce">
           <HoverWrapper classes="p-2">
             <button onClick={openAuthPhase}>
-              <CounterLogoVector classes="h-5 w-5 inline-block mb-3" />
               <span className="text-2xl flex justify-center items-center">
                 카운터 시작하기
               </span>
