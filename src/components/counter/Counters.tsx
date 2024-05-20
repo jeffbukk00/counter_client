@@ -10,6 +10,7 @@ import BoxCreator from "../ui/creator/BoxCreator";
 import LoadingFeedbackBoxesContainer from "../ui/user-feedback/loading/LoadingFeedbackBoxesContainer";
 import useBoxGuideContext from "@/contexts/feedback/guide/box-guide/hooks/useBoxGuideContext";
 import { useEffect } from "react";
+import useNotBoxGuideContext from "@/contexts/feedback/guide/not-box-guide/hooks/useNotBoxGuideContext";
 
 const Counters = ({ bucketId }: { bucketId: string }) => {
   const { counterIds, isLoading, isFetching } = useQueryCounterIds(bucketId);
@@ -18,10 +19,13 @@ const Counters = ({ bucketId }: { bucketId: string }) => {
     useChangeBoxPosition(boxConstants.boxType.counter, counterIds, bucketId);
 
   const { resetUnreadGuide } = useBoxGuideContext();
+  const { updateBoxCreatorGuide, updateModalGuide } = useNotBoxGuideContext();
 
   useEffect(() => {
     resetUnreadGuide();
-  }, [resetUnreadGuide]);
+    updateBoxCreatorGuide(false, "");
+    updateModalGuide(false, "");
+  }, [resetUnreadGuide, updateBoxCreatorGuide, updateModalGuide]);
 
   if (isLoading) return <LoadingFeedbackBoxesContainer />;
 
