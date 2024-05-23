@@ -37,7 +37,7 @@ const useMutationUpdateCount = (counterId: string, currentCount: number) => {
   });
 
   useEffect(() => {
-    if (countRef.current < 2) {
+    if (countRef.current < 1) {
       countRef.current++;
       return;
     }
