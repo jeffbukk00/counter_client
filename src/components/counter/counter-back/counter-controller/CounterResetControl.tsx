@@ -12,7 +12,7 @@ const CounterResetControl = ({ counterId }: { counterId: string }) => {
       title="리셋"
       action={() => {
         activate(counterId);
-        mutateResetCount();
+        mutateResetCount(true);
       }}
     >
       <ResetControlVector classes="w-5 h-5 inline-block" />

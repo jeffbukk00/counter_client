@@ -67,15 +67,17 @@ export const currentCountIsInBetween = (
   let isValid: boolean;
 
   if (direction === "up") {
-    isValid = currentCount >= startCountNum && currentCount <= endCountNum;
+    isValid = currentCount >= startCountNum && currentCount < endCountNum;
   } else {
-    isValid = currentCount <= startCountNum && currentCount >= endCountNum;
+    isValid = currentCount <= startCountNum && currentCount > endCountNum;
   }
 
   return {
     isValid,
     message:
-      "현재 카운트가 시작 카운트와 목표 카운트 사이를 벗어날 수 없습니다",
+      direction === "up"
+        ? "현재 카운트가 시작 카운트보다 크거나 같고, 목표 카운트보다 작아야 합니다"
+        : "현재 카운트가 시작 카운트보다 작거나 같고, 목표 카운트보다 커야합니다",
   };
 };
 

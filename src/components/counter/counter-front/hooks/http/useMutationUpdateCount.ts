@@ -3,7 +3,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosInstance } from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
-import { useEffect, useRef } from "react";
 
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
@@ -16,10 +15,8 @@ const updateCount = (counterId: string) => {
   };
 };
 
-const useMutationUpdateCount = (counterId: string, currentCount: number) => {
-  const countRef = useRef(0);
-
-  const { activate, inactivate } = useBoxLoadingContext();
+const useMutationUpdateCount = (counterId: string) => {
+  const { inactivate } = useBoxLoadingContext();
   const { openAsyncError } = useAsyncErrorContext();
   const queryClient = useQueryClient();
   const { mutate: mutateUpdateCount } = useMutation({
@@ -36,20 +33,7 @@ const useMutationUpdateCount = (counterId: string, currentCount: number) => {
     },
   });
 
-  useEffect(() => {
-    if (countRef.current < 1) {
-      countRef.current++;
-      return;
-    }
-    const timerId = setTimeout(() => {
-      activate(counterId);
-      mutateUpdateCount(currentCount);
-    }, 500);
-
-    return () => {
-      clearTimeout(timerId);
-    };
-  }, [currentCount, activate, counterId, mutateUpdateCount]);
+  return { mutateUpdateCount };
 };
 
 export default useMutationUpdateCount;

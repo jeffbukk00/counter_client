@@ -33,7 +33,10 @@ export const api = {
     updateCount: (counterId: string) => `/counter/count/${counterId}`,
     updateAchievementStack: (counterId: string) =>
       `/counter/achievement-stack/${counterId}`,
-    resetCount: (counterId: string) => `/counter/count/reset/${counterId}`,
+    resetCount: (counterId: string, isResetHistory: boolean) =>
+      `/counter/count/reset/${counterId}/${
+        isResetHistory ? "reset" : "preserve"
+      }`,
     resetAchievementStack: (counterId: string) =>
       `/counter/achievement-stack/reset/${counterId}`,
     editCounter: (counterId: string) => `/counter/${counterId}`,

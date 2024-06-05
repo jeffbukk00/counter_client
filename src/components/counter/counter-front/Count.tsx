@@ -4,13 +4,14 @@ import { CounterFrontDataType } from "./types";
 import { counterFrontConstants } from "./constants";
 
 import useCountDisplayScreen from "./hooks/useCountDisplayScreen";
-import useMutationUpdateCount from "./hooks/http/useMutationUpdateCount";
+
 import useMutationUpdateAchievementStack from "./hooks/http/useMutationUpdateAchievementStack";
 
 import OnEndCountButton from "./OnEndCountButton";
 import CountCircle from "./CountCircle";
 import CountDisplay from "./CountDisplay";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
+import useMutationUpdateCount from "./hooks/http/useMutationUpdateCount";
 
 const Count = ({
   counterFrontData,
@@ -27,8 +28,7 @@ const Count = ({
   const { countDisplayScreenType, changeCountDisplayScreenType } =
     useCountDisplayScreen(isInEndCount);
 
-  useMutationUpdateCount(counterFrontData.id, currentCount);
-
+  const { mutateUpdateCount } = useMutationUpdateCount(counterFrontData.id);
   const { mutateUpdateAchievementStack } = useMutationUpdateAchievementStack(
     counterFrontData.id
   );
@@ -42,10 +42,18 @@ const Count = ({
       updatedCurrentCount = currentCount + Math.pow(10, digit - 1);
       if (updatedCurrentCount >= counterFrontData.endCount) {
         updatedCurrentCount = counterFrontData.endCount;
+        setCurrentCount(updatedCurrentCount);
+        activate(counterFrontData.id);
+        mutateUpdateCount(updatedCurrentCount);
         activate(counterFrontData.id);
         mutateUpdateAchievementStack(counterFrontData.achievementStack + 1);
+        return;
       }
-      return setCurrentCount(updatedCurrentCount);
+
+      setCurrentCount(updatedCurrentCount);
+      activate(counterFrontData.id);
+      mutateUpdateCount(updatedCurrentCount);
+      return;
     }
 
     if (
@@ -54,10 +62,18 @@ const Count = ({
       updatedCurrentCount = currentCount - Math.pow(10, digit - 1);
       if (updatedCurrentCount <= counterFrontData.endCount) {
         updatedCurrentCount = counterFrontData.endCount;
+        setCurrentCount(updatedCurrentCount);
+        activate(counterFrontData.id);
+        mutateUpdateCount(updatedCurrentCount);
         activate(counterFrontData.id);
         mutateUpdateAchievementStack(counterFrontData.achievementStack + 1);
+        return;
       }
-      return setCurrentCount(updatedCurrentCount);
+
+      setCurrentCount(updatedCurrentCount);
+      activate(counterFrontData.id);
+      mutateUpdateCount(updatedCurrentCount);
+      return;
     }
   };
 
@@ -75,18 +91,28 @@ const Count = ({
       counterFrontData.direction === counterFrontConstants.counterDirection.up
     ) {
       updatedCurrentCount = currentCount - Math.pow(10, digit - 1);
-      if (updatedCurrentCount <= counterFrontData.startCount)
+      if (updatedCurrentCount <= counterFrontData.startCount) {
         updatedCurrentCount = counterFrontData.startCount;
-      return setCurrentCount(updatedCurrentCount);
+      }
+
+      setCurrentCount(updatedCurrentCount);
+      activate(counterFrontData.id);
+      mutateUpdateCount(updatedCurrentCount);
+      return;
     }
 
     if (
       counterFrontData.direction === counterFrontConstants.counterDirection.down
     ) {
       updatedCurrentCount = currentCount + Math.pow(10, digit - 1);
-      if (updatedCurrentCount >= counterFrontData.startCount)
+      if (updatedCurrentCount >= counterFrontData.startCount) {
         updatedCurrentCount = counterFrontData.startCount;
-      return setCurrentCount(updatedCurrentCount);
+      }
+
+      setCurrentCount(updatedCurrentCount);
+      activate(counterFrontData.id);
+      mutateUpdateCount(updatedCurrentCount);
+      return;
     }
   };
 
@@ -96,6 +122,7 @@ const Count = ({
     <>
       {isInEndCount && (
         <OnEndCountButton
+          counterId={counterFrontData.id}
           changeCountDisplayScreenType={changeCountDisplayScreenType}
           resetCurrentCount={resetCurrentCount}
         />

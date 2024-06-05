@@ -7,6 +7,7 @@ export interface CounterFrontDataType extends CounterDataType {
 export interface OnEndCountButtonPropsType {
   changeCountDisplayScreenType: (changedCountDisplayScreenType: number) => void;
   resetCurrentCount: () => void;
+  counterId: string;
 }
 
 export interface CountDisplayPropsType {

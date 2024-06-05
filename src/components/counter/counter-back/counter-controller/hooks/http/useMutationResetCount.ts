@@ -6,8 +6,11 @@ import queryKeys from "@/tanstack-query/queryKeys";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 
-const resetCount = async (counterId: string) => {
-  return await axiosInstance.patch(api.counter.resetCount(counterId));
+const resetCount = (counterId: string) => {
+  return async (isResetHistory: boolean) =>
+    await axiosInstance.patch(
+      api.counter.resetCount(counterId, isResetHistory)
+    );
 };
 
 const useMutationResetCount = (counterId: string) => {
@@ -15,7 +18,7 @@ const useMutationResetCount = (counterId: string) => {
   const { openAsyncError } = useAsyncErrorContext();
   const queryClient = useQueryClient();
   const { mutate: mutateResetCount } = useMutation({
-    mutationFn: () => resetCount(counterId),
+    mutationFn: resetCount(counterId),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: queryKeys.counter.useQueryCounter(counterId),
