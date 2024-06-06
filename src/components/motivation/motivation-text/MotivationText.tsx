@@ -48,11 +48,11 @@ const MotivationText = ({
             onMouseOut={hideRemoveButton}
           >
             <div
-              className="w-9/10 h-[55%] mt-10 pt-3 pb-2 px-2 border border-gray-300 overflow-y-scroll scrollbar-sm"
+              className="w-9/10 h-[55%] mt-10 pt-3 pb-2 px-2 border border-gray-300 overflow-y-scroll"
               onMouseOver={showEditButton}
               onMouseOut={hideEditButton}
             >
-              <p className="text-xs whitespace-pre-wrap">
+              <p className="text-xs whitespace-pre-wrap break-words">
                 {motivationTextData?.text}
                 {isEditButtonVisible && (
                   <MotivationTextEditButton openEditPhase={openEditPhase} />

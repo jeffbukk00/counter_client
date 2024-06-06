@@ -3,13 +3,15 @@ import { createPortal } from "react-dom";
 import { ModalPropsType } from "./types";
 
 import BackDrop from "./Backdrop";
-import CenterContainer from "../CenterContainer";
+import CenterContainer from "../center/CenterContainer";
+import CenterContainerWide from "../center/CenterContainerWide";
 
-const Modal = ({ closeModal, children }: ModalPropsType) => {
+const Modal = ({ closeModal, isWide = false, children }: ModalPropsType) => {
   const content = (
     <>
       <BackDrop closeModal={closeModal} />
-      <CenterContainer>{children}</CenterContainer>
+      {!isWide && <CenterContainer>{children}</CenterContainer>}
+      {isWide && <CenterContainerWide>{children}</CenterContainerWide>}
     </>
   );
 

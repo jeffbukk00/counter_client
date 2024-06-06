@@ -8,6 +8,7 @@ import CounterEditPhase from "./CounterEditPhase";
 import CounterController from "./counter-controller/CounterController";
 import CounterAchievementStack from "./counter-achievement-stack/CounterAchievementStack";
 import Motivations from "@/components/motivation/Motivations";
+import OpenCounterHistoryPhase from "./OpenCounterHistoryPhase";
 
 const CounterBackBody = ({
   currentCounterBackType,
@@ -40,6 +41,13 @@ const CounterBackBody = ({
         <CounterAchievementStack
           currentAchievementStack={counterBackData.achievementStack}
           counterId={counterBackData.id}
+        />
+      )}
+      {currentCounterBackType ===
+        counterBackConstants.counterBackType.history && (
+        <OpenCounterHistoryPhase
+          counterId={counterBackData.id}
+          title={counterBackData.title}
         />
       )}
       {currentCounterBackType ===

@@ -22,6 +22,7 @@ export default {
         positive: "#7FD69D",
         negative: "#FA7070",
         default: "#232323",
+        middle: "#FFA62F",
       },
       keyframes: {
         countDisplayScreenNegative: {

@@ -9,21 +9,24 @@ const BucketSelectionList = ({
 }: BucketSelectionListPropsType) => {
   const { buckets, isLoading, isFetching } = useQueryBuckets();
 
-  if (isLoading || isFetching) return <LoadingFeedbackModal />;
+  if (isLoading) return <LoadingFeedbackModal />;
 
   return (
-    <ul className="w-full h-full overflow-y-scroll">
-      {buckets &&
-        buckets.map((e) => (
-          <BucketSelection
-            key={e._id}
-            title={e.title}
-            selectBucketHandler={() =>
-              selectBucket({ id: e._id, title: e.title })
-            }
-          />
-        ))}
-    </ul>
+    <>
+      {isFetching && <LoadingFeedbackModal />}
+      <ul className="w-full h-full overflow-y-scroll">
+        {buckets &&
+          buckets.map((e) => (
+            <BucketSelection
+              key={e._id}
+              title={e.title}
+              selectBucketHandler={() =>
+                selectBucket({ id: e._id, title: e.title })
+              }
+            />
+          ))}
+      </ul>
+    </>
   );
 };
 

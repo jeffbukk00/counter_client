@@ -5,6 +5,7 @@ import ChangeToControllerButtonVector from "@/shared/assets/box-back-types/Chang
 import ChangeToAchievementStackButtonVector from "@/shared/assets/box-back-types/ChangeToAchievementStackButtonVector";
 import ChangeToMotivationButtonVector from "@/shared/assets/box-back-types/ChangeToMotivationButtonVector";
 import HoverWrapper from "@/components/styles/HoverWrapper";
+import ChangeToHistoryButtonVector from "@/shared/assets/box-back-types/ChangeToHistoryButtonVector";
 
 const ChangeCounterBackTypeButton = ({
   type,
@@ -51,6 +52,26 @@ const ChangeCounterBackTypeButton = ({
             <ChangeToAchievementStackButtonVector
               isSelected={isSelected}
               classes="w-5 h-5"
+            />
+          </button>
+        </HoverWrapper>
+      )}
+      {type === counterBackConstants.counterBackType.history && (
+        <HoverWrapper
+          classes={`flex justify-center items-center transition-transform duration-200 ease-in p-[4px] ${
+            isSelected ? "translate-y-8" : ""
+          }`}
+        >
+          <button
+            onClick={() =>
+              setCurrentCounterBackType(
+                counterBackConstants.counterBackType.history
+              )
+            }
+          >
+            <ChangeToHistoryButtonVector
+              classes="w-5 h-5 "
+              onSelected={isSelected ? "#232323" : "#ccc"}
             />
           </button>
         </HoverWrapper>

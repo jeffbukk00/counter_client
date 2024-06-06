@@ -87,4 +87,17 @@ export const api = {
         downloadType === downloadConstants.downloadType.all ? "all" : "secure"
       }`,
   },
+  history: {
+    getHistoryAll: (counterId: string) => `/history/all/${counterId}`,
+    getAchievementStackHistoryIds: (counterId: string) =>
+      `/history/achievement-stack/ids/${counterId}`,
+    getAchievementStackHistory: (achievementStackId: string) =>
+      `/history/achievement-stack/${achievementStackId}`,
+    getCountHistoryAll: (achievementStackId: string) =>
+      `/history/counts/${achievementStackId}`,
+    editCommentOfAchievementStackHistory: (achievementStackId: string) =>
+      `/history/achievement-stack/edit/${achievementStackId}`,
+    editCommentOfCountHistory: (countId: string) =>
+      `/history/count/edit/${countId}`,
+  },
 };

@@ -38,6 +38,24 @@ export const queryKeys = {
       motivationLinkId,
     ],
   },
+  history: {
+    useQueryHistoryAll: (counterId: string) => ["history", "all", counterId],
+    useQueryAchievementStackHistoryIds: (counterId: string) => [
+      "history",
+      "ids",
+      counterId,
+    ],
+    useQueryAchievementStackHistory: (achievementStackId: string) => [
+      "history",
+      "achievement-stack",
+      achievementStackId,
+    ],
+    useQueryCountsHistoryAll: (achievementStackId: string) => [
+      "history",
+      "counts",
+      achievementStackId,
+    ],
+  },
 };
 
 export const constantsInQueryKeys = {

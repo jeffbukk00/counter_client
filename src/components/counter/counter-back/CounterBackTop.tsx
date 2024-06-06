@@ -20,6 +20,11 @@ const CounterBackTop = ({
         setCurrentCounterBackType={setCurrentCounterBackType}
       />
       <ChangeCounterBackTypeButton
+        type={counterBackConstants.counterBackType.history}
+        currentCounterBackType={currentCounterBackType}
+        setCurrentCounterBackType={setCurrentCounterBackType}
+      />
+      <ChangeCounterBackTypeButton
         type={counterBackConstants.counterBackType.motivation}
         currentCounterBackType={currentCounterBackType}
         setCurrentCounterBackType={setCurrentCounterBackType}
