@@ -14,13 +14,13 @@ const SelectAchievementStackHistoryButton = ({
   return (
     <button
       onClick={() => select(id)}
-      className={`flex flex-col justify-center items-center w-full h-full border border-gray-200  hover:bg-gray-200 ${
-        id === selectedAchievementStackHistoryId ? "bg-gray-200" : ""
+      className={`relative w-full h-20 flex flex-col justify-center items-center border border-collapse border-gray-200  hover:bg-gray-100 ${
+        id === selectedAchievementStackHistoryId ? "bg-gray-100" : ""
       }`}
     >
-      <span>{index + 1}</span>
+      <span className="absolute top-0 left-1 text-sm">{index + 1}</span>
       <span
-        className={`inline-block w-3 h-3 rounded-full ${
+        className={`mt-4 inline-block w-[10px] h-[10px] rounded-full ${
           lastIndex === index ? "bg-middle" : "bg-positive"
         }`}
       ></span>

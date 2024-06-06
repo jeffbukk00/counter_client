@@ -12,8 +12,15 @@ const OpenCounterHistoryPhase = ({
   const { modalIsOpened, openModal, closeModal } = useModal();
 
   return (
-    <>
-      <button onClick={openModal}>"{title}"의 히스토리 열기</button>
+    <div className="w-full h-full flex justify-center items-center">
+      <button
+        onClick={openModal}
+        className="p-3 border border-gray-300 rounded-2xl tracking-tight transition-colors duration-200 ease-in hover:bg-gray-100"
+      >
+        <span className="text-base font-semibold">"{title}"</span>의 히스토리
+        열기
+      </button>
+
       {modalIsOpened && (
         <Modal closeModal={closeModal} isWide={true}>
           <HistoryMain
@@ -23,7 +30,7 @@ const OpenCounterHistoryPhase = ({
           />
         </Modal>
       )}
-    </>
+    </div>
   );
 };
 

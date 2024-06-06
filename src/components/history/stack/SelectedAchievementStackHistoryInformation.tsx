@@ -1,16 +1,15 @@
 import LoadingFeedbackGeneral from "@/components/ui/user-feedback/loading/LoadingFeedbackGeneral";
 import useQueryAchievementStackHistory from "./hooks/http/useQueryAchievementStackHistory";
-import ToggleVector from "@/shared/assets/ToggleVector";
 import { useEffect, useState } from "react";
 import HistoryComment from "./Comment";
 import useMutationEditCommentOfAchievementStackHistory from "./hooks/http/useMutationEditCommentOfAchievementStackHistory";
+import TimeVector from "@/shared/assets/TimeVector";
 
 const SelectedAchievementStackHistoryInformation = ({
   selectedAchievementStackHistoryId,
 }: {
   selectedAchievementStackHistoryId: string;
 }) => {
-  const [commentIsOpened, setCommentIsOpened] = useState(false);
   const [isEditingComment, setIsEditingComment] = useState(false);
 
   const { achievementStackHistory, isFetching, isLoading } =
@@ -23,62 +22,82 @@ const SelectedAchievementStackHistoryInformation = ({
     );
 
   useEffect(() => {
-    setCommentIsOpened(false);
+    setIsEditingComment(false);
   }, [selectedAchievementStackHistoryId]);
 
   if (isLoading) return <LoadingFeedbackGeneral />;
 
   return (
     <>
-      {isFetching && <LoadingFeedbackGeneral />}
       {achievementStackHistory && (
-        <div>
-          <span>{achievementStackHistory.stack + 1}번째 성취</span>
-          <p>
-            상태: {achievementStackHistory.isAchieved ? "성취 완료" : "진행 중"}
-          </p>
-          <p>
-            시작 시점:{" "}
-            {new Date(achievementStackHistory.createdAt).toLocaleString()}
-          </p>
-          {achievementStackHistory.isAchieved &&
-            achievementStackHistory.achievedAt !== null && (
-              <p>
-                성취 시점:{" "}
-                {new Date(achievementStackHistory.achievedAt).toLocaleString()}
-              </p>
-            )}
-          {!achievementStackHistory.isAchieved &&
-            achievementStackHistory.achievedAt === null && (
-              <p>
-                최근 성취:{" "}
-                {achievementStackHistory.latestCountAt !== null
-                  ? new Date(
-                      achievementStackHistory.latestCountAt
-                    ).toLocaleString()
-                  : "최근 성취 없음"}
-              </p>
-            )}
-          <div>
-            <div>
-              <button
-                onClick={() => {
-                  if (isEditingComment && commentIsOpened) {
-                    setIsEditingComment(false);
-                  }
-                  setCommentIsOpened((prev) => !prev);
-                }}
-              >
-                <span>
-                  <ToggleVector
-                    classes={`w-6 h-6 transition-transform duration-200 ease-in inline-block ${
-                      commentIsOpened ? "rotate-90" : "rotate-0"
-                    }`}
-                  />
+        <div className="w-full px-10 py-5 relative">
+          {isFetching && <LoadingFeedbackGeneral />}
+          <div className="mb-2">
+            <span className="text-xs tracking-wide text-gray-300">
+              {achievementStackHistory.stack + 1}번째 성취입니다
+            </span>
+          </div>
+          <div className="mb-6">
+            <span>
+              {achievementStackHistory.isAchieved ? (
+                <span className="py-1 px-2 border border-positive text-positive rounded-xl text-sm">
+                  성취 완료
                 </span>
-                코멘트 {commentIsOpened ? "접기" : "열기"}
-              </button>
-              {commentIsOpened && (
+              ) : (
+                <span className="py-1 px-2 border border-middle text-middle rounded-xl text-sm">
+                  성취 진행 중
+                </span>
+              )}
+            </span>
+          </div>
+          <div className="border border-gray-300 p-4 mb-6">
+            <div className="mb-4">
+              <span className="flex items-center font-medium">
+                <span className="mr-1 flex justify-center items-center">
+                  <TimeVector classes="w-7 h-7 inline-block" />
+                </span>
+                타임스탬프
+              </span>
+            </div>
+            <div className="mb-2">
+              <p className="text-sm font-medium">시작 시점</p>
+              <p className="text-xs tracking-wide">
+                {new Date(achievementStackHistory.createdAt).toLocaleString()}
+              </p>
+            </div>
+            {achievementStackHistory.isAchieved &&
+              achievementStackHistory.achievedAt !== null && (
+                <div>
+                  <p className="text-sm font-medium">성취 시점</p>
+                  <p className="text-xs tracking-wide">
+                    {new Date(
+                      achievementStackHistory.achievedAt
+                    ).toLocaleString()}
+                  </p>
+                </div>
+              )}
+            {!achievementStackHistory.isAchieved &&
+              achievementStackHistory.achievedAt === null && (
+                <div>
+                  <p className="text-sm font-medium">최근 카운트 업데이트</p>
+                  <p className="text-xs tracking-wide">
+                    {achievementStackHistory.latestCountAt !== null
+                      ? new Date(
+                          achievementStackHistory.latestCountAt
+                        ).toLocaleString()
+                      : `이번 성취 스택에서는 카운트를 업데이트한 적이 없습니다`}
+                  </p>
+                </div>
+              )}
+          </div>
+
+          <div>
+            <div className="w-full border border-gray-300 p-4">
+              <div className="mb-3">
+                <span className="text-base font-medium">기록</span>
+              </div>
+
+              <div className="w-full">
                 <HistoryComment
                   isEditingComment={isEditingComment}
                   comment={achievementStackHistory.comment}
@@ -87,7 +106,7 @@ const SelectedAchievementStackHistoryInformation = ({
                     mutateEditCommentOfAchievementStackHistory(comment)
                   }
                 />
-              )}
+              </div>
             </div>
           </div>
         </div>

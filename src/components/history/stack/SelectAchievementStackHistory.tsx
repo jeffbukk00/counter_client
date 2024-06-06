@@ -16,8 +16,8 @@ const SelectAchievementStackHistory = ({
 
   return (
     <div className="w-full h-full grid grid-cols-2 grid-rows-1">
-      <div className="overflow-y-scroll">
-        <ul className="grid grid-cols-7">
+      <div className="overflow-y-scroll p-20">
+        <ul className="grid grid-cols-5 border border-gray-400 border-collapse">
           {achievementStackHistoryIds.map((e, i) => {
             return (
               <li key={e}>
@@ -37,7 +37,7 @@ const SelectAchievementStackHistory = ({
       </div>
       <div>
         <div className="w-full h-full grid grid-cols-1 grid-rows-[2fr_3fr]">
-          <div className="overflow-y-scroll relative border-b-[1px] border-b-gray-300">
+          <div className="overflow-y-scroll relative border-b-[1px] border-b-gray-400">
             <SelectedAchievementStackHistoryInformation
               selectedAchievementStackHistoryId={
                 selectedAchievementStackHistory

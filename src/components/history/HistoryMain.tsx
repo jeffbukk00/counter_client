@@ -3,7 +3,7 @@ import { historyConstants } from "./constants";
 import HistoryTopbar from "./HistoryTopbar";
 import { HistoryMainPropsType } from "./types";
 import HistoryStack from "./stack/HistoryStack";
-import HistoryGraph from "./graph/HistoryGraph";
+// import HistoryGraph from "./graph/HistoryGraph";
 
 const HistoryMain = ({
   counterId,
@@ -28,9 +28,9 @@ const HistoryMain = ({
         {selectedHistoryType === historyConstants.historyType.stack && (
           <HistoryStack counterId={counterId} />
         )}
-        {selectedHistoryType === historyConstants.historyType.graph && (
+        {/* {selectedHistoryType === historyConstants.historyType.graph && (
           <HistoryGraph counterId={counterId} />
-        )}
+        )} */}
       </section>
     </>
   );
