@@ -4,7 +4,7 @@ import { creationActionConstants } from "@/components/ui/creation-action/constan
 import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
 import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, useEffect, useState } from "react";
 
 const HistoryComment = ({
   isEditingComment,
@@ -17,12 +17,16 @@ const HistoryComment = ({
   startEditing: () => void;
   mutate: (comment: string) => void;
 }) => {
-  const [updatedComment, setUpdatedComment] = useState(comment);
+  const [updatedComment, setUpdatedComment] = useState("");
 
   const { activateModal } = useNotBoxLoadingContext();
 
   const updateComment: ChangeEventHandler<HTMLTextAreaElement> = (event) =>
     setUpdatedComment(event.target.value);
+
+  useEffect(() => {
+    setUpdatedComment(comment);
+  }, [comment]);
 
   return (
     <>
@@ -40,6 +44,7 @@ const HistoryComment = ({
               actionHandler={() => {
                 activateModal();
                 mutate(updatedComment);
+                // setUpdatedComment("");
               }}
               classes="w-6 h-6 inline-block"
               hover="p-1"
