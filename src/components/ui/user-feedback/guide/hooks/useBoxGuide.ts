@@ -6,7 +6,7 @@ const useBoxGuide = (guideId: string, boxId: string) => {
   const countRef = useRef(0);
 
   const { unreadGuideIds } = useUserContext();
-  const { addUnreadGuide } = useBoxGuideContext();
+  const { addUnreadGuide, removeUnreadGuide } = useBoxGuideContext();
 
   const isUnread = unreadGuideIds.includes(guideId);
 
@@ -15,10 +15,14 @@ const useBoxGuide = (guideId: string, boxId: string) => {
       setTimeout(() => {
         countRef.current++;
 
-        return addUnreadGuide(guideId, boxId);
+        addUnreadGuide(guideId, boxId);
       }, 200);
     }
-  }, [isUnread, addUnreadGuide, guideId, boxId]);
+
+    return () => {
+      removeUnreadGuide(boxId, guideId);
+    };
+  }, [isUnread, addUnreadGuide, removeUnreadGuide, guideId, boxId]);
 
   return null;
 };

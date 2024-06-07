@@ -43,8 +43,8 @@ const GuideBoxCreator = ({ unreadGuideId }: { unreadGuideId: string }) => {
             {guideConstants.guides[unreadGuideId].title}
           </p>
         </div>
-        <div className="border border-gray-300 p-2 w-full">
-          <p className="text-xs  w-full whitespace-pre-wrap leading-4">
+        <div className="border border-gray-300 p-3 w-full">
+          <p className="text-xs  w-full whitespace-pre-wrap leading-5 tracking-tight">
             {guideConstants.guides[unreadGuideId].text}
           </p>
         </div>

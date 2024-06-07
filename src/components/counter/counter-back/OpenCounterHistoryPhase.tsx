@@ -1,6 +1,8 @@
 import HistoryMain from "@/components/history/HistoryMain";
 import useModal from "@/components/ui/modal/hooks/useModal";
 import Modal from "@/components/ui/modal/Modal";
+import { guideConstants } from "@/components/ui/user-feedback/guide/constants";
+import useBoxGuide from "@/components/ui/user-feedback/guide/hooks/useBoxGuide";
 
 const OpenCounterHistoryPhase = ({
   counterId,
@@ -10,6 +12,8 @@ const OpenCounterHistoryPhase = ({
   title: string;
 }) => {
   const { modalIsOpened, openModal, closeModal } = useModal();
+
+  useBoxGuide(guideConstants.guideIds["guideId13"], counterId);
 
   return (
     <div className="w-full h-full flex justify-center items-center">

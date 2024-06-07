@@ -17,6 +17,10 @@ const useModalGuide = (guideId: string) => {
         updateModalGuide(true, guideId);
       }, 200);
     }
+
+    return () => {
+      updateModalGuide(false, "");
+    };
   }, [isUnread, guideId, updateModalGuide]);
 
   return null;

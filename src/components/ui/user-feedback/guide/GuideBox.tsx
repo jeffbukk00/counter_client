@@ -5,13 +5,19 @@ import useBoxGuideContext from "@/contexts/feedback/guide/box-guide/hooks/useBox
 import WarnTriangleVector from "@/shared/assets/warn/WarnTriangleVector";
 import WarnCircleVector from "@/shared/assets/warn/WarnCircleVector";
 
-const GuideBox = ({ unreadGuideId }: { unreadGuideId: string }) => {
+const GuideBox = ({
+  unreadGuideId,
+  boxId,
+}: {
+  unreadGuideId: string;
+  boxId: string;
+}) => {
   const { removeUnreadGuide } = useBoxGuideContext();
   const { mutateUpdateUnreadGuideIds } = useMutationUpdateUnreadGuideIds();
 
-  const check = (guideId: string) => {
+  const check = (boxId: string, guideId: string) => {
     mutateUpdateUnreadGuideIds(guideId);
-    removeUnreadGuide(guideId);
+    removeUnreadGuide(boxId, guideId);
   };
 
   return (
@@ -28,7 +34,7 @@ const GuideBox = ({ unreadGuideId }: { unreadGuideId: string }) => {
           <span className="mt-[3px]">
             <input
               type="checkbox"
-              onChange={() => check(unreadGuideId)}
+              onChange={() => check(boxId, unreadGuideId)}
               className="inline-block w-4 h-4 hover:cursor-pointer"
             />
           </span>
@@ -45,8 +51,8 @@ const GuideBox = ({ unreadGuideId }: { unreadGuideId: string }) => {
             {guideConstants.guides[unreadGuideId].title}
           </p>
         </div>
-        <div className="border border-gray-300 p-2 w-full">
-          <p className="text-xs font-NotoSans w-full whitespace-pre-wrap leading-4">
+        <div className="border border-gray-300 p-3 w-full">
+          <p className="text-xs font-NotoSans w-full whitespace-pre-wrap leading-5 tracking-tight">
             {guideConstants.guides[unreadGuideId].text}
           </p>
         </div>

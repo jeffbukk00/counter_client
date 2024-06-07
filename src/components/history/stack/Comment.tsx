@@ -11,11 +11,13 @@ const HistoryComment = ({
   comment,
   startEditing,
   mutate,
+  historyId,
 }: {
   isEditingComment: boolean;
   comment: string;
   startEditing: () => void;
   mutate: (comment: string) => void;
+  historyId: string;
 }) => {
   const [updatedComment, setUpdatedComment] = useState("");
 
@@ -26,7 +28,7 @@ const HistoryComment = ({
 
   useEffect(() => {
     setUpdatedComment(comment);
-  }, [comment]);
+  }, [comment, historyId]);
 
   return (
     <>

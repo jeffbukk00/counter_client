@@ -57,7 +57,10 @@ const Box = ({
             <ValidationFeedbackBox invalidBoxIdx={idxInInvalidBoxes} />
           )}
           {boxIsUnGuided && (
-            <GuideBox unreadGuideId={unreadGuideInThisBox!.guideId} />
+            <GuideBox
+              unreadGuideId={unreadGuideInThisBox!.guideId}
+              boxId={boxId}
+            />
           )}
         </div>
 

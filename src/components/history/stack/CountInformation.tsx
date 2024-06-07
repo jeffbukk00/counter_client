@@ -93,6 +93,7 @@ const CountInformation = ({
               mutate={(comment: string) =>
                 mutateEditCommentOfCountHistory(comment)
               }
+              historyId={countId}
             />
           )}
         </div>

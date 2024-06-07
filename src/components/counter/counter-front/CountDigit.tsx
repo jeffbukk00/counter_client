@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { CountDigitPropsType } from "./types";
 import { counterFrontConstants } from "./constants";
@@ -16,9 +16,20 @@ const CountDigit = ({
 }: CountDigitPropsType) => {
   const [countButtonsAreVisible, setCountButtonsAreVisible] = useState(false);
 
-  const showCountButtons = () => setCountButtonsAreVisible(true);
-  const hideCountButtons = () => setCountButtonsAreVisible(false);
+  const showCountButtons = useCallback(
+    () => setCountButtonsAreVisible(true),
+    []
+  );
+  const hideCountButtons = useCallback(
+    () => setCountButtonsAreVisible(false),
+    []
+  );
 
+  useEffect(() => {
+    if (isInEndCount) {
+      hideCountButtons();
+    }
+  }, [isInEndCount, hideCountButtons]);
   return (
     <li
       className="w-full h-20 relative flex justify-center items-center"

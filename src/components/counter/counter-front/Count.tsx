@@ -45,8 +45,11 @@ const Count = ({
         setCurrentCount(updatedCurrentCount);
         activate(counterFrontData.id);
         mutateUpdateCount(updatedCurrentCount);
-        activate(counterFrontData.id);
-        mutateUpdateAchievementStack(counterFrontData.achievementStack + 1);
+
+        setTimeout(() => {
+          activate(counterFrontData.id);
+          mutateUpdateAchievementStack(counterFrontData.achievementStack + 1);
+        }, 200);
         return;
       }
 

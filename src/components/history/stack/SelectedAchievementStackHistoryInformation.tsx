@@ -105,6 +105,7 @@ const SelectedAchievementStackHistoryInformation = ({
                   mutate={(comment: string) =>
                     mutateEditCommentOfAchievementStackHistory(comment)
                   }
+                  historyId={selectedAchievementStackHistoryId}
                 />
               </div>
             </div>

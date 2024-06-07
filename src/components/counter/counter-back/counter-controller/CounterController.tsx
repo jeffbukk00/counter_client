@@ -5,11 +5,15 @@ import CounterEditControl from "./CounterEditControl";
 import CounterMoveControl from "./CounterMoveControl";
 import CounterResetControl from "./CounterResetControl";
 import CounterRemoveControl from "./CounterRemoveControl";
+import useBoxGuide from "@/components/ui/user-feedback/guide/hooks/useBoxGuide";
+import { guideConstants } from "@/components/ui/user-feedback/guide/constants";
 
 const CounterController = ({
   openCounterEditPhase,
   counterBackData,
 }: CounterControllerPropsType) => {
+  useBoxGuide(guideConstants.guideIds["guideId7"], counterBackData.id);
+
   return (
     <div className="w-full h-full flex justify-center items-center">
       <div className="flex justify-center items-center gap-2">

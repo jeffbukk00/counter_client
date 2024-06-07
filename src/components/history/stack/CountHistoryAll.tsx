@@ -15,14 +15,18 @@ const CountHistoryAll = ({
 
   return (
     <>
-      <div className="w-full p-5 relative">
-        {isFetching && <LoadingFeedbackGeneral />}
-        {countHistoryAll!.length <= 0 && (
-          <div className="w-full mt-20 flex justify-center items-center text-lg">
+      {countHistoryAll!.length <= 0 && (
+        <>
+          {isFetching && <LoadingFeedbackGeneral />}
+          <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-lg">
             아직 카운트 변화 이력이 없습니다
           </div>
-        )}
-        {countHistoryAll!.length > 0 && (
+        </>
+      )}
+
+      {countHistoryAll!.length > 0 && (
+        <div className="w-full p-5 relative">
+          {isFetching && <LoadingFeedbackGeneral />}
           <ul>
             {countHistoryAll?.map((e, i) => (
               <li
@@ -43,8 +47,8 @@ const CountHistoryAll = ({
               </li>
             ))}
           </ul>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };

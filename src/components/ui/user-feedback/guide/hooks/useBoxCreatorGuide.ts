@@ -17,6 +17,10 @@ const useBoxCreatorGuide = (guideId: string) => {
         updateBoxCreatorGuide(true, guideId);
       }, 200);
     }
+
+    return () => {
+      updateBoxCreatorGuide(false, "");
+    };
   }, [isUnread, updateBoxCreatorGuide, guideId]);
 
   return null;

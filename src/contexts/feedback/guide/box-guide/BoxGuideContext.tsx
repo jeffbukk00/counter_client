@@ -10,8 +10,9 @@ export const BoxGuideContext = createContext<BoxGuideContextType>({
     console.log(guideId);
     console.log(boxId);
   },
-  removeUnreadGuide: (guideId: string) => {
+  removeUnreadGuide: (boxId: string, guideId: string) => {
     // 상관 없음
+    console.log(boxId);
     console.log(guideId);
   },
   resetUnreadGuide: () => {},
@@ -58,13 +59,14 @@ export const BoxGuideContextProvider = ({ children }: HasChildren) => {
     });
   }, []);
 
-  const removeUnreadGuide = useCallback(
-    (guideId: string) => {
-      const updated = [...unreadGuides].filter((e) => e.guideId !== guideId);
-      setUnreadGuides(updated);
-    },
-    [unreadGuides]
-  );
+  const removeUnreadGuide = useCallback((boxId: string, guideId: string) => {
+    setUnreadGuides((prev) => {
+      const updated = [...prev].filter(
+        (e) => !(boxId === e.boxId && guideId === e.guideId)
+      );
+      return updated;
+    });
+  }, []);
 
   const resetUnreadGuide = useCallback(() => setUnreadGuides([]), []);
 
