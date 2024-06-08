@@ -37,15 +37,44 @@ export default {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" },
         },
-      },
-      animation: {
-        countDisplayScreenNegative:
-          "countDisplayScreenNegative 0.5s ease-in-out",
-        countDisplayScreenPositive:
-          "countDisplayScreenPositive 0.5s ease-in-out",
-        spinning: "spinning 0.8s ease-in-out infinite",
+        bounceX: {
+          "0%": {
+            transform: "translateX(-25%)",
+            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+          },
+          "50%": {
+            transform: "translateX(0)",
+            "animation-timing-function": "cubic-bezier(0, 0, 0.2, 1)",
+          },
+          "100%": {
+            transform: "translateX(-25%)",
+            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+          },
+        },
+        bounceY: {
+          "0%": {
+            transform: "translateY(-25%)",
+            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+          },
+          "50%": {
+            transform: "translateY(0)",
+            "animation-timing-function": "cubic-bezier(0, 0, 0.2, 1)",
+          },
+          "100%": {
+            transform: "translateY(-25%)",
+            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+          },
+        },
       },
     },
+    animation: {
+      countDisplayScreenNegative: "countDisplayScreenNegative 0.5s ease-in-out",
+      countDisplayScreenPositive: "countDisplayScreenPositive 0.5s ease-in-out",
+      spinning: "spinning 0.8s ease-in-out infinite",
+      bounceX: "bounceX 1s infinite",
+      bounceY: "bounceY 1s infinite",
+    },
   },
+
   plugins: [],
 };

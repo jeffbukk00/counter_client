@@ -9,7 +9,7 @@ const HttpErrorFeedback = () => {
   return (
     <>
       {asyncErrorState.isError && (
-        <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex justify-center items-center border border-negative rounded-md p-2 z-[105]">
+        <div className="absolute bg-white top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex justify-center items-center border border-negative rounded-md p-2 z-[103]">
           <span className="mr-2">
             <WarnTriangleVector classes="w-8 h-8" color="#FA7070" />
           </span>

@@ -4,7 +4,7 @@ import { BucketFrontPropsType } from "./types";
 import useBoxGuide from "@/components/ui/user-feedback/guide/hooks/useBoxGuide";
 import { guideConstants } from "@/components/ui/user-feedback/guide/constants";
 
-import DoubleArrowBottomVector from "@/shared/assets/DoubleArrowBottom";
+import DoubleArrowBottomVector from "@/shared/assets/DoubleArrowBottomVector";
 
 const BucketFront = ({
   bucketFrontData: { id, title },
@@ -19,7 +19,7 @@ const BucketFront = ({
       <div className="w-full absolute bottom-3 flex flex-col justify-center items-center px-6">
         {isVisible && (
           <>
-            <span className="animate-bounce ">
+            <span className="animate-bounceY">
               <DoubleArrowBottomVector classes="w-8 h-8 inline-block text-positive mb-1" />
             </span>
             <button

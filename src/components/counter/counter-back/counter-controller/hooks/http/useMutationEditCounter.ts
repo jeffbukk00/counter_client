@@ -33,7 +33,7 @@ const useMutationEditCounter = (counterId: string) => {
     },
     onError: () => {
       inactivate(counterId);
-      openAsyncError("카운터 편집에 실패했습니다");
+      openAsyncError("카운터 수정에 실패했습니다");
     },
   });
 

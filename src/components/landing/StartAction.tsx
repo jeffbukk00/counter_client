@@ -14,7 +14,7 @@ const StartAction = () => {
       {isAuth && <Login closeAuthPhase={closeAuthPhase} />}
 
       {!isAuth && (
-        <div className="animate-bounce">
+        <div className="animate-bounceY">
           <HoverWrapper classes="p-2">
             <button onClick={openAuthPhase}>
               <span className="text-2xl flex justify-center items-center">
