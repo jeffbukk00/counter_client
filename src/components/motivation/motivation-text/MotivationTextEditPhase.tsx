@@ -9,6 +9,8 @@ import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoa
 import useBoxValidationContext from "@/contexts/feedback/validation/box-validation/hooks/useBoxValidationContext";
 import { required, validate } from "@/shared/utils/validation";
 
+import useTextareaFocus from "@/shared/hooks/useTextAreaFocus";
+
 const MotivationTextEditPhase = ({
   boxId,
   motivationTextId,
@@ -18,6 +20,8 @@ const MotivationTextEditPhase = ({
   const [userAnswers, setUserAnswers] = useState({
     text: motivationTextData.text,
   });
+
+  const { textareaRef } = useTextareaFocus();
 
   const updateText: ChangeEventHandler<HTMLTextAreaElement> = (event) =>
     setUserAnswers((prev) => {
@@ -41,6 +45,7 @@ const MotivationTextEditPhase = ({
     mutateEditMotivationText(userAnswers.text);
     closeEditPhase();
   };
+
   return (
     <>
       <div className="w-full h-full flex justify-center">
@@ -49,6 +54,7 @@ const MotivationTextEditPhase = ({
             value={userAnswers.text}
             onChange={updateText}
             className="w-full h-full pt-3 pb-2 px-2 border border-gray-300 outline-none text-xs resize-none caret-gray-400"
+            ref={textareaRef}
           ></textarea>
         </div>
       </div>

@@ -7,13 +7,14 @@ const MotivationTextEditButton = ({
   openEditPhase: () => void;
 }) => {
   return (
-    <span className="ml-2">
-      <HoverWrapper classes="inline-block">
-        <button onClick={openEditPhase}>
-          <EditControlVector classes="inline-block w-5 h-5" />
-        </button>
-      </HoverWrapper>
-    </span>
+    <HoverWrapper classes="inline-block p-[1px]">
+      <button
+        onClick={openEditPhase}
+        className="flex justify-center items-center"
+      >
+        <EditControlVector classes="inline-block w-5 h-5" />
+      </button>
+    </HoverWrapper>
   );
 };
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEventHandler } from "react";
+import { useState, useEffect, ChangeEventHandler, useRef } from "react";
 
 import { CounterCreationQueryPropsType } from "./types";
 import { counterCreationConstants } from "./constants";
@@ -24,7 +24,9 @@ const CounterCreationQuery = ({
   submitCounterCreation,
 }: CounterCreationQueryPropsType) => {
   const [userAnswerInCurrentPhase, setUserAnswerInCurrentPhase] = useState("");
-  const [queryIsFocused, setQueryIsFocused] = useState(false);
+  const [typeIsStarted, setTypeIsStarted] = useState(false);
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const { updateIsBoxCreatorInvalid } = useNotBoxValidationContext();
 
@@ -37,18 +39,23 @@ const CounterCreationQuery = ({
   useEffect(() => {
     if (currentPhase === 0 && userAnswers.title.length > 0) {
       setUserAnswerInCurrentPhase(userAnswers.title);
-      setQueryIsFocused(true);
+      setTypeIsStarted(true);
     }
     if (currentPhase === 1 && userAnswers.startCount.length > 0) {
       setUserAnswerInCurrentPhase(userAnswers.startCount);
-      setQueryIsFocused(true);
+      setTypeIsStarted(true);
     }
     if (currentPhase === 2 && userAnswers.endCount.length > 0) {
       setUserAnswerInCurrentPhase(userAnswers.endCount);
-      setQueryIsFocused(true);
+      setTypeIsStarted(true);
     }
   }, [currentPhase, userAnswers]);
 
+  useEffect(() => {
+    if (currentPhase < 3 && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [currentPhase]);
   return (
     <>
       {isInLastPhase && (
@@ -82,19 +89,25 @@ const CounterCreationQuery = ({
                 counterCreationConstants.counterCreationPhaseQueryData
                   .placeholder
               }
-              onChange={changeUserAnswerInCurrentPhase}
-              onFocus={() => setQueryIsFocused(true)}
-              onBlur={() => setQueryIsFocused(false)}
+              onChange={(event) => {
+                if (event.target.value.length <= 0) {
+                  setTypeIsStarted(false);
+                } else {
+                  setTypeIsStarted(true);
+                }
+                changeUserAnswerInCurrentPhase(event);
+              }}
               value={userAnswerInCurrentPhase}
               className={`text-base outline-none text-center caret-gray-400 placeholder:text-gray-300 ${
-                queryIsFocused ? "#232323" : "text-gray-300"
+                typeIsStarted ? "#232323" : "text-gray-300"
               }`}
+              ref={inputRef}
             />
           </div>
           <div className="absolute top-[60%] w-full flex justify-center">
             <p
               className={`text-xs font-semibold ${
-                queryIsFocused ? "text-gray-300" : "#232323"
+                typeIsStarted ? "text-gray-300" : "#232323"
               }`}
             >
               {
@@ -173,7 +186,7 @@ const CounterCreationQuery = ({
                 }
 
                 updateUserAnswers(userAnswerInCurrentPhase);
-                setQueryIsFocused(false);
+                setTypeIsStarted(false);
                 setUserAnswerInCurrentPhase("");
               }}
             />

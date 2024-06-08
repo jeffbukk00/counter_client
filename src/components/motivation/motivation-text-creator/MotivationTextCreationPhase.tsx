@@ -9,6 +9,7 @@ import { creationActionConstants } from "@/components/ui/creation-action/constan
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 import useBoxValidationContext from "@/contexts/feedback/validation/box-validation/hooks/useBoxValidationContext";
 import { required, validate } from "@/shared/utils/validation";
+import useTextareaFocus from "@/shared/hooks/useTextAreaFocus";
 
 const MotivationTextCreationPhase = ({
   boxData,
@@ -18,6 +19,8 @@ const MotivationTextCreationPhase = ({
   finishCreation: () => void;
 }) => {
   const [userAnswers, setUserAnswers] = useState({ text: "" });
+
+  const { textareaRef } = useTextareaFocus();
   const { mutateCreateMotivationText } = useMutationCreateMotivationText(
     boxData.boxId,
     boxData.boxType
@@ -57,6 +60,7 @@ const MotivationTextCreationPhase = ({
             value={userAnswers.text}
             onChange={updateText}
             className="w-full h-full pt-3 pb-2 px-2 border border-gray-300 outline-none text-xs resize-none caret-gray-400"
+            ref={textareaRef}
           ></textarea>
         </div>
       </div>

@@ -25,6 +25,4 @@ export interface MotivationLinkEditPhasePropsType {
 export interface MotivationLinkRemoveButtonPropsType {
   boxData: BoxDataType;
   motivationLinkId: string;
-  showRemoveButton: () => void;
-  hideRemoveButton: () => void;
 }

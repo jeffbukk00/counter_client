@@ -18,18 +18,17 @@ const MotivationLink = ({
   motivationLinkId: string;
 }) => {
   const [isEditPhase, setisEditPhase] = useState(false);
-  const [isEditButtonVisible, setIsEditButtonVisible] = useState(false);
-  const [isRemoveButtonVisible, setIsRemoveButtonVisible] = useState(false);
+
+  const [areButtonsVisible, setAreButtonsVisible] = useState(false);
 
   const { motivationLinkData, isLoading, isFetching } =
     useQueryMotivationLink(motivationLinkId);
 
   const openEditPhase = () => setisEditPhase(true);
   const closeEditPhase = () => setisEditPhase(false);
-  const showEditButton = () => setIsEditButtonVisible(true);
-  const hideEditButton = () => setIsEditButtonVisible(false);
-  const showRemoveButton = () => setIsRemoveButtonVisible(true);
-  const hideRemoveButton = () => setIsRemoveButtonVisible(false);
+
+  const showButtons = () => setAreButtonsVisible(true);
+  const hideButtons = () => setAreButtonsVisible(false);
 
   if (isLoading) return <LoadingFeedbackBox />;
 
@@ -48,21 +47,12 @@ const MotivationLink = ({
         <>
           <div
             className="w-full h-full flex justify-center"
-            onMouseOver={showRemoveButton}
-            onMouseOut={hideRemoveButton}
+            onMouseOver={showButtons}
+            onMouseOut={hideButtons}
           >
-            <div
-              className="w-9/10 h-[55%] mt-10  border border-gray-300 flex flex-col justify-center items-center gap-1 relative"
-              onMouseOver={showEditButton}
-              onMouseOut={hideEditButton}
-            >
+            <div className="w-9/10 h-[55%] mt-10  border border-gray-300 flex flex-col justify-center items-center gap-1 relative">
               <div className="absolute top-3 left-[50%] translate-x-[-50%]">
-                <p className="text-xs">
-                  {motivationLinkData!.title}{" "}
-                  {isEditButtonVisible && (
-                    <MotivationLinkEditButton openEditPhase={openEditPhase} />
-                  )}
-                </p>
+                <p className="text-xs">{motivationLinkData!.title} </p>
               </div>
               <div className="mt-5 flex flex-col justify-center items-center gap-[2px]">
                 <CopyMotivationLinkPart
@@ -72,13 +62,18 @@ const MotivationLink = ({
               </div>
             </div>
           </div>
-          {(isRemoveButtonVisible || isEditButtonVisible) && (
-            <MotivationLinkRemoveButton
-              boxData={boxData}
-              motivationLinkId={motivationLinkId}
-              showRemoveButton={showRemoveButton}
-              hideRemoveButton={hideRemoveButton}
-            />
+          {areButtonsVisible && (
+            <div
+              className="absolute bottom-1 left-0 w-full flex justify-center items-center gap-1"
+              onMouseOver={showButtons}
+              onMouseOut={hideButtons}
+            >
+              <MotivationLinkEditButton openEditPhase={openEditPhase} />{" "}
+              <MotivationLinkRemoveButton
+                boxData={boxData}
+                motivationLinkId={motivationLinkId}
+              />
+            </div>
           )}
         </>
       )}

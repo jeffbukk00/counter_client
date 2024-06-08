@@ -4,7 +4,7 @@ import { creationActionConstants } from "@/components/ui/creation-action/constan
 import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
 import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 
-import { ChangeEventHandler, useEffect, useState } from "react";
+import { ChangeEventHandler, useEffect, useRef, useState } from "react";
 
 const HistoryComment = ({
   isEditingComment,
@@ -20,6 +20,7 @@ const HistoryComment = ({
   historyId: string;
 }) => {
   const [updatedComment, setUpdatedComment] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const { activateModal } = useNotBoxLoadingContext();
 
@@ -30,14 +31,21 @@ const HistoryComment = ({
     setUpdatedComment(comment);
   }, [comment, historyId]);
 
+  useEffect(() => {
+    if (isEditingComment && textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  }, [isEditingComment]);
   return (
     <>
       {isEditingComment && (
         <>
           <textarea
             value={updatedComment}
+            placeholder="여기에 입력해주세요..."
             onChange={updateComment}
             className="outline-none text-xs resize-none caret-gray-400 w-full h-40 border border-gray-300 p-3 overflow-y-scroll"
+            ref={textareaRef}
           ></textarea>
           <div className="flex justify-center items-center">
             <CreationActionButton

@@ -18,6 +18,7 @@ import {
   validate,
 } from "@/shared/utils/validation";
 import useBoxValidationContext from "@/contexts/feedback/validation/box-validation/hooks/useBoxValidationContext";
+import useInputFocus from "@/shared/hooks/useInputFocus";
 
 const CounterEditPhase = ({
   closeCounterEditPhase,
@@ -28,6 +29,8 @@ const CounterEditPhase = ({
     startCount: counterBackData.startCount.toString(),
     endCount: counterBackData.endCount.toString(),
   });
+
+  const { inputRef } = useInputFocus();
 
   const { mutateEditCounter } = useMutationEditCounter(counterBackData.id);
   const { activate } = useBoxLoadingContext();
@@ -115,6 +118,7 @@ const CounterEditPhase = ({
             value={userAnswers.title}
             onChange={updateTitle}
             className="text-center text-xs outline-none  caret-gray-400"
+            ref={inputRef}
           />
         </div>
         <div className="w-full bg-negative bg-opacity-20 flex justify-center">

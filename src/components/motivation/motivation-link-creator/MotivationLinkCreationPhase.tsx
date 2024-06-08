@@ -18,6 +18,7 @@ import {
   required,
   validate,
 } from "@/shared/utils/validation";
+import useInputFocus from "@/shared/hooks/useInputFocus";
 
 const MotivationLinkCreationPhase = ({
   boxData,
@@ -33,6 +34,8 @@ const MotivationLinkCreationPhase = ({
     link: "",
   });
   const [linkIsValid, setLinkIsValid] = useState(false);
+
+  const { inputRef } = useInputFocus();
 
   const { mutateCreateMotivationLink } = useMutationCreateMotivationLink(
     boxData.boxId,
@@ -99,6 +102,7 @@ const MotivationLinkCreationPhase = ({
               value={userAnswers.title}
               onChange={updateTitle}
               className="text-xs outline-none caret-gray-400 text-center w-56"
+              ref={inputRef}
             />
           </div>
           <div className="mt-5 flex flex-col justify-center items-center gap-[2px]">

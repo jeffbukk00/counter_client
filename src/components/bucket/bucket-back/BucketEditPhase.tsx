@@ -9,6 +9,7 @@ import CreationActionButton from "@/components/ui/creation-action/CreationAction
 import useBoxValidationContext from "@/contexts/feedback/validation/box-validation/hooks/useBoxValidationContext";
 import { below15Letters, required, validate } from "@/shared/utils/validation";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
+import useInputFocus from "@/shared/hooks/useInputFocus";
 
 const BucketEditPhase = ({
   closeBucketEditPhase,
@@ -21,6 +22,8 @@ const BucketEditPhase = ({
   const { mutateEditBucket } = useMutationEditBucket(bucketBackData.id);
   const { activate } = useBoxLoadingContext();
   const { addInvalidBox } = useBoxValidationContext();
+
+  const { inputRef } = useInputFocus();
 
   const updateTitle: ChangeEventHandler<HTMLInputElement> = (event) =>
     setUserAnswers((prev) => {
@@ -51,6 +54,7 @@ const BucketEditPhase = ({
             value={userAnswers.title}
             onChange={updateTitle}
             className="text-center caret-gray-400 outline-none"
+            ref={inputRef}
           />
         </div>
       </div>

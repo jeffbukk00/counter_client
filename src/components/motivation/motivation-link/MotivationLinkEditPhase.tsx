@@ -9,6 +9,7 @@ import CreationActionButton from "@/components/ui/creation-action/CreationAction
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 import useBoxValidationContext from "@/contexts/feedback/validation/box-validation/hooks/useBoxValidationContext";
 import { below15Letters, required, validate } from "@/shared/utils/validation";
+import useInputFocus from "@/shared/hooks/useInputFocus";
 
 const MotivationLinkEditPhase = ({
   boxId,
@@ -20,6 +21,8 @@ const MotivationLinkEditPhase = ({
     title: motivationLinkData.title,
     link: motivationLinkData.link,
   });
+
+  const { inputRef } = useInputFocus();
 
   const updateTitle: ChangeEventHandler<HTMLInputElement> = (event) =>
     setUserAnswers((prev) => {
@@ -60,6 +63,7 @@ const MotivationLinkEditPhase = ({
               value={userAnswers.title}
               onChange={updateTitle}
               className="text-xs outline-none caret-gray-400 text-center w-56"
+              ref={inputRef}
             />
             <div className="flex justify-center items-center">
               <p className="text-xs font-medium text-gray-300">

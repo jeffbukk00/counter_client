@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 const MainPageTop = () => {
   const location = useLocation();
-  console.log(location.pathname);
+
   return (
     <div className="h-full flex justify-between items-center relative">
       <UserProfile />

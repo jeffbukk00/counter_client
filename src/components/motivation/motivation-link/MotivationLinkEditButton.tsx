@@ -7,13 +7,14 @@ const MotivationLinkEditButton = ({
   openEditPhase: () => void;
 }) => {
   return (
-    <span className="">
-      <HoverWrapper classes="inline-block">
-        <button onClick={openEditPhase}>
-          <EditControlVector classes="w-4 h-4 inline-block" />
-        </button>
-      </HoverWrapper>
-    </span>
+    <HoverWrapper classes="inline-block p-[1px]">
+      <button
+        onClick={openEditPhase}
+        className="flex justify-center items-center"
+      >
+        <EditControlVector classes="w-5 h-5 inline-block" />
+      </button>
+    </HoverWrapper>
   );
 };
 

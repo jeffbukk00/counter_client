@@ -88,9 +88,9 @@ export const linkIsNotPasted = (link: string) => ({
 
 export const isValidUrl = (url: string) => {
   const regex =
-    /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?\/[a-zA-Z0-9]{2,}/;
+    /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?/;
   const urlTester = new RegExp(regex);
-
+  console.log(urlTester.test(url));
   return {
     isValid: urlTester.test(url),
     message: "유효하지 않은 URL 형식입니다",

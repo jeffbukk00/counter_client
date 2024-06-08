@@ -14,18 +14,17 @@ const MotivationText = ({
   motivationTextId,
 }: MotivationTextPropsType) => {
   const [isEditPhase, setisEditPhase] = useState(false);
-  const [isEditButtonVisible, setIsEditButtonVisible] = useState(false);
-  const [isRemoveButtonVisible, setIsRemoveButtonVisible] = useState(false);
+
+  const [areButtonsVisible, setAreButtonsVisible] = useState(false);
 
   const { motivationTextData, isLoading, isFetching } =
     useQueryMotivationText(motivationTextId);
 
   const openEditPhase = () => setisEditPhase(true);
   const closeEditPhase = () => setisEditPhase(false);
-  const showEditButton = () => setIsEditButtonVisible(true);
-  const hideEditButton = () => setIsEditButtonVisible(false);
-  const showRemoveButton = () => setIsRemoveButtonVisible(true);
-  const hideRemoveButton = () => setIsRemoveButtonVisible(false);
+
+  const showButtons = () => setAreButtonsVisible(true);
+  const hideButtons = () => setAreButtonsVisible(false);
 
   if (isLoading) return <LoadingFeedbackBox />;
 
@@ -44,29 +43,27 @@ const MotivationText = ({
         <>
           <div
             className="w-full h-full flex justify-center"
-            onMouseOver={showRemoveButton}
-            onMouseOut={hideRemoveButton}
+            onMouseOver={showButtons}
+            onMouseOut={hideButtons}
           >
-            <div
-              className="w-9/10 h-[55%] mt-10 pt-3 pb-2 px-2 border border-gray-300 overflow-y-scroll"
-              onMouseOver={showEditButton}
-              onMouseOut={hideEditButton}
-            >
+            <div className="w-9/10 h-[55%] mt-10 pt-3 pb-2 px-2 border border-gray-300 overflow-y-scroll">
               <p className="text-xs whitespace-pre-wrap break-words">
                 {motivationTextData?.text}
-                {isEditButtonVisible && (
-                  <MotivationTextEditButton openEditPhase={openEditPhase} />
-                )}
               </p>
             </div>
           </div>
-          {(isRemoveButtonVisible || isEditButtonVisible) && (
-            <MotivationTextRemoveButton
-              boxData={boxData}
-              motivationTextId={motivationTextId}
-              showRemoveButton={showRemoveButton}
-              hideRemoveButton={hideRemoveButton}
-            />
+          {areButtonsVisible && (
+            <div
+              className="absolute bottom-1 left-0 w-full flex justify-center items-center gap-1"
+              onMouseOver={showButtons}
+              onMouseOut={hideButtons}
+            >
+              <MotivationTextEditButton openEditPhase={openEditPhase} />
+              <MotivationTextRemoveButton
+                boxData={boxData}
+                motivationTextId={motivationTextId}
+              />
+            </div>
           )}
         </>
       )}
