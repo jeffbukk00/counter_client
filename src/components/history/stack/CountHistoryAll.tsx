@@ -18,7 +18,7 @@ const CountHistoryAll = ({
       {countHistoryAll!.length <= 0 && (
         <>
           {isFetching && <LoadingFeedbackGeneral />}
-          <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-lg">
+          <div className="sm:absolute sm:top-[50%] sm:left-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] lg:text-lg semi-lg:text-base my-[10%]  sm:my-0 text-center">
             아직 카운트 변화 이력이 없습니다
           </div>
         </>

@@ -12,7 +12,7 @@ const CenterContainerWide = ({ children }: HasChildren) => {
   const { modalGuide } = useNotBoxGuideContext();
 
   return (
-    <div className="w-[80vw] h-[80vh] absolute top-[10vh] left-[10vw] z-[102] border border-gray-300 bg-white">
+    <div className="xl:w-[80vw] xl:h-[80vh] lg:w-[80vw] lg:h-[80vh] semi-lg:w-[85vw] semi-lg:h-[80vh] md:w-[90vw] md:h-[80vh] sm:w-[90vw] sm:h-[80vh]  w-[80vw]  absolute sm:top-[50%] top-[10%]  left-[50%] translate-x-[-50%] sm:translate-y-[-50%] z-[102] border border-gray-300 bg-white">
       <div className="w-full h-full relative">
         {modalIsLoading && <LoadingFeedbackModal />}
         <div className="absolute top-0 -right-4 translate-x-[100%] bg-white z-[1] flex flex-col gap-3">

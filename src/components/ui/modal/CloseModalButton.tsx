@@ -5,7 +5,7 @@ const CloseModalButton = ({ closeModal }: { closeModal: () => void }) => {
   return (
     <HoverWrapper classes="p-1">
       <button onClick={closeModal}>
-        <CloseVector classes="w-6 h-6 inline-block" />
+        <CloseVector classes="sm:w-6 sm:h-6 w-4 h-4 inline-block" />
       </button>
     </HoverWrapper>
   );

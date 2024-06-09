@@ -74,6 +74,22 @@ export default {
       bounceX: "bounceX 1s infinite",
       bounceY: "bounceY 1s infinite",
     },
+
+    screens: {
+      sm: "760px",
+      // => @media (min-width: 640px) { ... }
+
+      md: "900px",
+      // => @media (min-width: 768px) { ... }
+
+      "semi-lg": "1100px",
+
+      lg: "1280px",
+      // => @media (min-width: 1024px) { ... }
+
+      xl: "1400px",
+      // => @media (min-width: 1280px) { ... }
+    },
   },
 
   plugins: [],

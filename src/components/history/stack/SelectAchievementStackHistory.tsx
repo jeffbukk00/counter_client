@@ -33,9 +33,9 @@ const SelectAchievementStackHistory = ({
   }, [selectedAchievementStackHistory]);
 
   return (
-    <div className="w-full h-full grid grid-cols-2 grid-rows-1">
-      <div className="overflow-y-scroll p-20">
-        <ul className="grid grid-cols-5 border border-gray-400 border-collapse">
+    <div className="w-full h-full sm:grid sm:grid-cols-2 sm:grid-rows-1">
+      <div className="sm:overflow-y-scroll md:p-20 sm:p-10 p-5 sm:border-none border-b-[1px] border-b-gray-400">
+        <ul className="grid lg:grid-cols-5 grid-cols-4 border border-gray-400 border-collapse">
           {achievementStackHistoryIds.map((e, i) => {
             return (
               <li key={e}>
@@ -54,10 +54,10 @@ const SelectAchievementStackHistory = ({
         </ul>
       </div>
       <div>
-        <div className="w-full h-full grid grid-cols-1 grid-rows-[2fr_3fr]">
+        <div className="w-full h-full sm:grid sm:grid-cols-1 sm:grid-rows-[2fr_3fr]">
           <div
             ref={achievementStackHistoryInformationRef}
-            className="overflow-y-scroll relative border-b-[1px] border-b-gray-400"
+            className="sm:overflow-y-scroll relative border-b-[1px] border-b-gray-400"
           >
             <SelectedAchievementStackHistoryInformation
               selectedAchievementStackHistoryId={
@@ -65,7 +65,10 @@ const SelectAchievementStackHistory = ({
               }
             />
           </div>
-          <div ref={countHistoryAllRef} className="overflow-y-scroll relative">
+          <div
+            ref={countHistoryAllRef}
+            className="sm:overflow-y-scroll relative"
+          >
             <CountHistoryAll
               selectedAchievementStackHistoryId={
                 selectedAchievementStackHistory
