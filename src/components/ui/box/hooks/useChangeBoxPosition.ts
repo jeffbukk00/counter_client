@@ -1,7 +1,7 @@
 import { DragEventHandler } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { boxConstants } from "../constants";
 import { api } from "@/tanstack-query/api";
 import { queryKeys, constantsInQueryKeys } from "@/tanstack-query/queryKeys";
@@ -20,7 +20,7 @@ const changeBoxPosition = (boxType: number, bucketId?: string) => {
         ? { counterIds: boxIds }
         : { bucketIds: boxIds };
 
-    return await axiosInstance.post(url, body);
+    return await axiosInstance().post(url, body);
   };
 };
 

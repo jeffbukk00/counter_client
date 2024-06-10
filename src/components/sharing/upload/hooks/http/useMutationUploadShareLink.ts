@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
@@ -8,7 +8,7 @@ import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorCont
 const uploadShareLink: (
   bucketId: string
 ) => Promise<{ shareLink: string }> = async (bucketId) => {
-  const { data } = await axiosInstance.post(api.sharing.uploadShareLink, {
+  const { data } = await axiosInstance().post(api.sharing.uploadShareLink, {
     bucketId,
   });
   return data;

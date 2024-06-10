@@ -1,10 +1,10 @@
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const updateUnreadGuideIds = async (checkedGuideId: string) => {
-  return await axiosInstance.patch(api.user.updateUnreadGuideIds, {
+  return await axiosInstance().patch(api.user.updateUnreadGuideIds, {
     checkedGuideId,
   });
 };

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import { constantsInQueryKeys } from "@/tanstack-query/queryKeys";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
@@ -8,7 +8,7 @@ import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/us
 
 const downloadFromShareLink = (downloadLink: string) => {
   return async (downloadType: number) => {
-    return await axiosInstance.post(
+    return await axiosInstance().post(
       api.sharing.downloadFromShareLink(downloadLink, downloadType)
     );
   };

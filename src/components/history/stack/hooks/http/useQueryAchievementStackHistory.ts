@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
@@ -16,7 +16,7 @@ const getAchievementStackHistory: (achievementStackId: string) => Promise<{
     latestCountAt: Date | null;
   };
 }> = async (achievementStackId) => {
-  const { data } = await axiosInstance.get(
+  const { data } = await axiosInstance().get(
     api.history.getAchievementStackHistory(achievementStackId)
   );
 

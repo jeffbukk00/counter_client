@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import { constantsInQueryKeys } from "@/tanstack-query/queryKeys";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 
 const duplicateBucket = async (bucketId: string) => {
-  return await axiosInstance.post(api.bucket.duplicateBucket(bucketId));
+  return await axiosInstance().post(api.bucket.duplicateBucket(bucketId));
 };
 
 const useMutationDuplicateBucket = (bucketId: string) => {

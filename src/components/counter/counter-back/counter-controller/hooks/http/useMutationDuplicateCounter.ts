@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 
 const duplicateCounter = async (bucketId: string, counterId: string) => {
-  return await axiosInstance.post(
+  return await axiosInstance().post(
     api.counter.duplicateCounter(bucketId, counterId)
   );
 };

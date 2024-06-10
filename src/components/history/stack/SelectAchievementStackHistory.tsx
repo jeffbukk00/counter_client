@@ -34,7 +34,7 @@ const SelectAchievementStackHistory = ({
 
   return (
     <div className="w-full h-full sm:grid sm:grid-cols-2 sm:grid-rows-1">
-      <div className="sm:overflow-y-scroll md:p-20 sm:p-10 p-5 sm:border-none border-b-[1px] border-b-gray-400">
+      <div className="sm:overflow-y-scroll md:p-20 sm:p-10 p-5 sm:border-r-[1px] sm:border-b-0 border-b-[1px] border-b-gray-400">
         <ul className="grid lg:grid-cols-5 grid-cols-4 border border-gray-400 border-collapse">
           {achievementStackHistoryIds.map((e, i) => {
             return (

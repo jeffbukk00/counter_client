@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
@@ -8,7 +8,7 @@ import { useEffect } from "react";
 const getAchievementStackHistoryIds: (
   counterId: string
 ) => Promise<{ achievementStackHistoryIds: string[] }> = async (counterId) => {
-  const { data } = await axiosInstance.get(
+  const { data } = await axiosInstance().get(
     api.history.getAchievementStackHistoryIds(counterId)
   );
 

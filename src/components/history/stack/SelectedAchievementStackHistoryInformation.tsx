@@ -30,7 +30,7 @@ const SelectedAchievementStackHistoryInformation = ({
   return (
     <>
       {achievementStackHistory && (
-        <div className="w-full px-10 py-5 relative">
+        <div className="w-full sm:px-10 sm:py-5 px-6 py-3 relative">
           {isFetching && <LoadingFeedbackGeneral />}
           <div className="mb-2">
             <span className="text-xs tracking-wide text-gray-300">

@@ -68,7 +68,10 @@ const PasteShareLinkPhase = ({
           </HoverWrapper>
         </div>
         <div>
-          <FeedbackToPaste isPasted={isPasted} fontSize="text-sm" />
+          <FeedbackToPaste
+            isPasted={isPasted}
+            fontSize="sm:text-sm text-[10px]"
+          />
         </div>
       </div>
       <div className="absolute bottom-1 left-0 w-full flex justify-center items-center">

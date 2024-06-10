@@ -56,7 +56,7 @@ const CountInformation = ({
           </span>
         )}
         <span className="text-sm font-medium">{updatedCurrentCount}</span>
-        <span className="text-xs tracking-tight">
+        <span className="sm:text-xs text-[10px] tracking-tight">
           {" "}
           으로 카운트가 업데이트 되었습니다
         </span>

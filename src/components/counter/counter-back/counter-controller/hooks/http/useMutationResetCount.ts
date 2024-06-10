@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
@@ -8,7 +8,7 @@ import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorCont
 
 const resetCount = (counterId: string) => {
   return async (isResetHistory: boolean) =>
-    await axiosInstance.patch(
+    await axiosInstance().patch(
       api.counter.resetCount(counterId, isResetHistory)
     );
 };

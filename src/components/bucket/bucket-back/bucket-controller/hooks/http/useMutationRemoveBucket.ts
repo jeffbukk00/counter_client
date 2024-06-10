@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import { constantsInQueryKeys } from "@/tanstack-query/queryKeys";
 
@@ -8,7 +8,7 @@ import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoa
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 
 const removeBucket = async (bucketId: string) => {
-  return axiosInstance.delete(api.bucket.deleteBucket(bucketId));
+  return axiosInstance().delete(api.bucket.deleteBucket(bucketId));
 };
 
 const useMutationRemoveBucket = (bucketId: string) => {

@@ -4,9 +4,24 @@ import { SERVER_HOST } from "./constants";
 
 axios.defaults.withCredentials = true;
 
-export function getJWTHeader(userToken: string): Record<string, string> {
+function getToken() {
+  const token = localStorage.getItem("token");
+
+  if (!token) return "";
+  return token;
+}
+
+function getJWTHeader(userToken: string): Record<string, string> {
   return { Authorization: `Bearer ${userToken}` };
 }
 
-const config: AxiosRequestConfig = { baseURL: SERVER_HOST };
-export const axiosInstance = axios.create(config);
+const getAxiosInstance = () => {
+  const config: AxiosRequestConfig = {
+    baseURL: SERVER_HOST,
+    headers: getJWTHeader(getToken()),
+  };
+
+  return axios.create(config);
+};
+
+export default getAxiosInstance;

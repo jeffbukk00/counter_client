@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
@@ -7,7 +7,7 @@ import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorCont
 
 const editMotivationText = (motivationTextId: string) => {
   return async (text: string) => {
-    return await axiosInstance.put(
+    return await axiosInstance().put(
       api.motivationText.editMotivationText(motivationTextId),
       { text }
     );

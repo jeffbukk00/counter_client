@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 import { api } from "@/tanstack-query/api";
@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const createMotivationLink = (boxId: string, boxType: number) => {
   return async (motivationLinkData: { title: string; link: string }) => {
-    return await axiosInstance.post(
+    return await axiosInstance().post(
       api.motivationLink.createMotivationLink(boxId, boxType),
       { title: motivationLinkData.title, link: motivationLinkData.link }
     );

@@ -1,15 +1,20 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { constantsInQueryKeys } from "@/tanstack-query/queryKeys";
 import { api } from "@/tanstack-query/api";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 
-const postAuthorizationCode: (provider: string) => Promise<void> = async (
+const postAuthorizationCode: (
+  provider: string
+) => Promise<{ loggedIn: boolean; token: string }> = async (
   provider: string
 ) => {
-  await axiosInstance.post(api.auth.postAuthorizationCode(provider));
+  const { data } = await axiosInstance().post(
+    api.auth.postAuthorizationCode(provider)
+  );
+  return data;
 };
 
 const useMutationPostAuthorizationCode = () => {
@@ -18,8 +23,13 @@ const useMutationPostAuthorizationCode = () => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: postAuthorizationCode,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [constantsInQueryKeys.auth] });
+    onSuccess: (data) => {
+      const { token } = data;
+      localStorage.setItem("token", token);
+      console.log(1);
+      queryClient.invalidateQueries({
+        queryKey: [constantsInQueryKeys.auth],
+      });
       navigate("/main/buckets");
     },
     onError: () => {

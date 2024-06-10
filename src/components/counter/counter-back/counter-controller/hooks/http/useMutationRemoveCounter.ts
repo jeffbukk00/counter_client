@@ -1,13 +1,13 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 
 const removeCounter = async (bucketId: string, counterId: string) => {
-  return await axiosInstance.delete(
+  return await axiosInstance().delete(
     api.counter.removeCounter(bucketId, counterId)
   );
 };

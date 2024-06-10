@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
@@ -8,7 +8,7 @@ import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorCont
 
 const editMotivationLink = (motivationLinkId: string) => {
   return async (motivationLinkData: { title: string; link: string }) => {
-    return axiosInstance.put(
+    return axiosInstance().put(
       api.motivationLink.editMotivationLink(motivationLinkId),
       { title: motivationLinkData.title, link: motivationLinkData.link }
     );

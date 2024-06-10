@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
 
@@ -9,7 +9,7 @@ import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoa
 
 const updateCount = (counterId: string) => {
   return async (updatedCurrentCount: number) => {
-    return axiosInstance.patch(api.counter.updateCount(counterId), {
+    return axiosInstance().patch(api.counter.updateCount(counterId), {
       updatedCurrentCount,
     });
   };

@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 import { api } from "@/tanstack-query/api";
@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const editCommentOfAchievementStackHistory = (achievementStackId: string) => {
   return async (updatedComment: string) => {
-    return await axiosInstance.patch(
+    return await axiosInstance().patch(
       api.history.editCommentOfAchievementStackHistory(achievementStackId),
       { updatedComment }
     );

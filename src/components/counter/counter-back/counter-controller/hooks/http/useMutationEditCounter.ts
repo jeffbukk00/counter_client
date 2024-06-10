@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
@@ -12,7 +12,7 @@ const editCounter = (counterId: string) => {
     startCount: number;
     endCount: number;
   }) => {
-    return await axiosInstance.put(
+    return await axiosInstance().put(
       api.counter.editCounter(counterId),
       counterData
     );

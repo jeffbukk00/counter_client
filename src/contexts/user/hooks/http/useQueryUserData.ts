@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { UserContextType } from "@/contexts/user/types";
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { queryKeys } from "@/tanstack-query/queryKeys";
 import { api } from "@/tanstack-query/api";
 
 const getUserData: () => Promise<{ userData: UserContextType }> = async () => {
-  const { data } = await axiosInstance.get(api.user.getUserData);
+  const { data } = await axiosInstance().get(api.user.getUserData);
   return data;
 };
 

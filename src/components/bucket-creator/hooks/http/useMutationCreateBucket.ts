@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { BucketDataType } from "../../types";
 import { api } from "@/tanstack-query/api";
 import { constantsInQueryKeys } from "@/tanstack-query/queryKeys";
@@ -8,7 +8,7 @@ import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/us
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 
 const createBucket = async (bucketData: BucketDataType) => {
-  return await axiosInstance.post(api.bucket.createBucket, {
+  return await axiosInstance().post(api.bucket.createBucket, {
     data: { title: bucketData.title },
   });
 };

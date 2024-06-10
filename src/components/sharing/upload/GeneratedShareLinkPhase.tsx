@@ -34,7 +34,7 @@ const GeneratedShareLinkPhase = ({
           </HoverWrapper>
         </div>
         <div>
-          <FeedbackToCopy isCopied={isCopied} fontSize="text-sm" />
+          <FeedbackToCopy isCopied={isCopied} fontSize="sm:text-sm text-xs" />
         </div>
       </div>
       <div className="absolute bottom-1 left-0 w-full flex justify-center items-center">

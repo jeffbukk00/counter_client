@@ -16,12 +16,12 @@ const GuideModal = ({ unreadGuideId }: { unreadGuideId: string }) => {
   return (
     <div
       key={unreadGuideId}
-      className="border border-positive rounded-md w-96 p-2 flex flex-col"
+      className="border border-positive rounded-md  p-2 flex flex-col w-full"
     >
       <div className="flex justify-start items-center gap-1 mb-2 w-full">
         <WarnTriangleVector classes="w-7 h-7 inline-block" color="#7FD69D" />
         <div className="border border-gray-300 px-1 w-full flex justify-between items-center gap-2">
-          <p className="text-xs font-medium">
+          <p className="sm:text-xs font-medium text-[10px]">
             다음부터 이 가이드를 표시하지 않길 원합니다
           </p>
           <span className="mt-[3px]">

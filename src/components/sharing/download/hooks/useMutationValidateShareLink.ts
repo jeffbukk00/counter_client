@@ -1,13 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 
 const validateShareLink: (
   shareLink: string
 ) => Promise<{ isValid: boolean; username: string }> = async (shareLink) => {
-  const { data } = await axiosInstance.post(
+  const { data } = await axiosInstance().post(
     api.sharing.validateShareLink(shareLink)
   );
   return data;

@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 import { api } from "@/tanstack-query/api";
@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const updateAchievementStack = (counterId: string) => {
   return async (updatedAchievementStack: number) => {
-    return await axiosInstance.patch(
+    return await axiosInstance().patch(
       api.counter.updateAchievementStack(counterId),
       { updatedAchievementStack }
     );

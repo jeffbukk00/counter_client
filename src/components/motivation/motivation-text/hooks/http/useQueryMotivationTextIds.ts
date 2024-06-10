@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
@@ -9,7 +9,7 @@ const getMotivationTextIds: (
   boxId: string,
   boxType: number
 ) => Promise<{ motivationTextIds: string[] }> = async (boxId, boxType) => {
-  const { data } = await axiosInstance.get(
+  const { data } = await axiosInstance().get(
     api.motivationText.getMotivationTextIds(boxId, boxType)
   );
   return data;

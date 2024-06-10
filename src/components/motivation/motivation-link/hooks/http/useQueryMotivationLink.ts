@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
@@ -11,7 +11,7 @@ const getMotivationLink: (
 ) => Promise<{ motivationLink: { title: string; link: string } }> = async (
   motivationLinkId
 ) => {
-  const { data } = await axiosInstance.get(
+  const { data } = await axiosInstance().get(
     api.motivationLink.getMotivationLink(motivationLinkId)
   );
   return data;

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { CounterDataType } from "../../types";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
@@ -10,7 +10,7 @@ import { useEffect } from "react";
 const getCounter: (
   counterId: string
 ) => Promise<{ counter: CounterDataType }> = async (counterId) => {
-  const { data } = await axiosInstance.get(api.counter.getCounter(counterId));
+  const { data } = await axiosInstance().get(api.counter.getCounter(counterId));
 
   return data;
 };

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const getBuckets: () => Promise<{
   buckets: { _id: string; title: string }[];
 }> = async () => {
-  const { data } = await axiosInstance.get(api.bucket.getBuckets);
+  const { data } = await axiosInstance().get(api.bucket.getBuckets);
 
   return data;
 };

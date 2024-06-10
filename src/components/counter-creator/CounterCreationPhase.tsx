@@ -86,7 +86,7 @@ const CounterCreationPhase = ({
       {!isInFirstPhase && (
         <span className="absolute top-[50%] -left-10 translate-y-[-50%]">
           <GotoPrevPhaseButton
-            classes="w-7 h-7 inline-block "
+            classes="sm:w-7 sm:h-7 w-6 h-6 inline-block "
             gotoPrevPhase={gotoPrevPhase}
           />
         </span>

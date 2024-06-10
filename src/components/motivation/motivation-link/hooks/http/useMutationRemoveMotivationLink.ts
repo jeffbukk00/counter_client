@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { axiosInstance } from "@/axios/axiosInstance";
+import axiosInstance from "@/axios/axiosInstance";
 import { api } from "@/tanstack-query/api";
 import queryKeys from "@/tanstack-query/queryKeys";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
@@ -11,7 +11,7 @@ const removeMotivationLink = (
   boxType: number,
   motivationLinkId: string
 ) => {
-  return axiosInstance.delete(
+  return axiosInstance().delete(
     api.motivationLink.removeMotivationLink(boxId, boxType, motivationLinkId)
   );
 };
