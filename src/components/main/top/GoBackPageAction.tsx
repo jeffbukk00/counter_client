@@ -36,9 +36,7 @@ const GoBackPageAction = () => {
         className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex justify-center items-center sm:invisible visible"
       >
         <DoubleArrowLeftVector
-          classes={`w-8 h-8 inline-block stroke-2 ${
-            isHovered ? "stroke-positive animate-bounceX" : "stroke-default"
-          }`}
+          classes={`w-8 h-8 inline-block stroke-2 active:stroke-positive active:animate-bounceX stroke-default`}
         />
       </button>
     </>

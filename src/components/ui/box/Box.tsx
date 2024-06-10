@@ -63,7 +63,9 @@ const Box = ({
             />
           )}
         </div>
-
+        {!isVisible && (
+          <FlipButton flip={flip} classes="sm:invisible visible" />
+        )}
         {isVisible && <FlipButton flip={flip} />}
         {boxType === boxConstants.boxType.bucket && (
           <Bucket bucketId={boxId} isFront={isFront} isVisible={isVisible} />
