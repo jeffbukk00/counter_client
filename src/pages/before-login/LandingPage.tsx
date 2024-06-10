@@ -1,10 +1,10 @@
-import Container from "@/components/landing/Container";
+import LandingContainer from "@/components/landing/LandingContainer";
 import { Outlet } from "react-router-dom";
 
 const LandingPage = () => {
   return (
     <>
-      <Container />;
+      <LandingContainer />
       <Outlet />
     </>
   );

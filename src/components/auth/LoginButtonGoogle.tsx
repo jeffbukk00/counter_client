@@ -7,7 +7,7 @@ const LoginButtonGoogle = () => {
   return (
     <HoverWrapper classes="p-2">
       <button onClick={() => getOauthLoginPage("google")}>
-        <img src={GoogleLoginImg} className="w-40 h-9 inline-block" />
+        <img src={GoogleLoginImg} className="w-40 h-10 inline-block" />
       </button>
     </HoverWrapper>
   );

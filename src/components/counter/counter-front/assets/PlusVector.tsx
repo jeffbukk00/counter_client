@@ -1,6 +1,12 @@
 import { counterFrontConstants } from "../constants";
 
-const PlusVector = ({ direction }: { direction: number }) => {
+const PlusVector = ({
+  direction,
+  classes = "w-6 h-6 inline-block",
+}: {
+  direction?: number;
+  classes?: string;
+}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +18,7 @@ const PlusVector = ({ direction }: { direction: number }) => {
           ? "green"
           : "red"
       }`}
-      className="w-6 h-6 inline-block"
+      className={classes}
     >
       <path
         strokeLinecap="round"

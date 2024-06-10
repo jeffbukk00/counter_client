@@ -2,7 +2,7 @@ const ChangeToHistoryButtonVector = ({
   onSelected,
   classes,
 }: {
-  onSelected: string;
+  onSelected?: string;
   classes: string;
 }) => {
   return (

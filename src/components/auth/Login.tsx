@@ -7,8 +7,8 @@ import HoverWrapper from "../styles/HoverWrapper";
 
 const Login = ({ closeAuthPhase }: { closeAuthPhase: () => void }) => {
   return (
-    <div className="border border-gray-300 w-56 h-64 flex flex-col justify-center items-center gap-1 relative">
-      <span className="absolute top-0 right-0">
+    <div className="p-4 rounded-xl border border-gray-300 bg-white w-[100%] h-64 flex flex-col justify-center items-center gap-1 absolute top-0 left-0">
+      <span className="absolute top-1 right-1">
         <button onClick={closeAuthPhase}>
           <HoverWrapper classes="p-1 flex justify-center items-center">
             <CloseVector classes="w-5 h-5 inline-block" />
