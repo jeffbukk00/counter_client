@@ -16,13 +16,13 @@ const Login = ({ closeAuthPhase }: { closeAuthPhase: () => void }) => {
         </button>
       </span>
       <div>
-        <LoginButtonGoogle />
+        <LoginButtonKakao />
       </div>
       <div>
         <LoginButtonNaver />
       </div>
       <div>
-        <LoginButtonKakao />
+        <LoginButtonGoogle />
       </div>
     </div>
   );
