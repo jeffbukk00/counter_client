@@ -1,3 +1,4 @@
+// 유저의 클립보드에 저장 된 데이터를 붙여 넣을 때, 피드백으로서 보여지는 컴포넌트.
 const FeedbackToPaste = ({
   isPasted,
   fontSize,

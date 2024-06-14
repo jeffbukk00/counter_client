@@ -10,6 +10,7 @@ import CopyMotivationLinkPart from "./CopyMotivationLinkPart";
 import MotivationLinkRemoveButton from "./MotivationLinkRemoveButton";
 import LoadingFeedbackBox from "@/components/ui/user-feedback/loading/LoadingFeedbackBox";
 
+// 단일 motivationLink에 대한 최상위 컴포넌트.
 const MotivationLink = ({
   boxData,
   motivationLinkId,
@@ -17,19 +18,27 @@ const MotivationLink = ({
   boxData: BoxDataType;
   motivationLinkId: string;
 }) => {
+  // motivationLink를 수정할지 여부를 관리하는 상태.
   const [isEditPhase, setisEditPhase] = useState(false);
 
+  // motivationLink를 수정하고 삭제하는 버튼들이 보여질지 여부를 관리하는 상태.
   const [areButtonsVisible, setAreButtonsVisible] = useState(false);
 
+  // 단일 motivationLink의 데이터를 불러오는 비동기 요청을 호출하는 커스텀 훅.
   const { motivationLinkData, isLoading, isFetching } =
     useQueryMotivationLink(motivationLinkId);
 
-  const openEditPhase = () => setisEditPhase(true);
-  const closeEditPhase = () => setisEditPhase(false);
-
+  // motivationLink를 수정하고 삭제하는 버튼들 보여줌.
   const showButtons = () => setAreButtonsVisible(true);
+  // motivationLink를 수정하고 삭제하는 버튼들 숨김.
   const hideButtons = () => setAreButtonsVisible(false);
 
+  // motivationLink 수정 시작.
+  const openEditPhase = () => setisEditPhase(true);
+  // motivationLink 수정 종료.
+  const closeEditPhase = () => setisEditPhase(false);
+
+  // 단일 motivationLink의 데이터를 불러오는 비동기 요청이 로딩 상태일 때, 유저 피드백.
   if (isLoading) return <LoadingFeedbackBox />;
 
   return (

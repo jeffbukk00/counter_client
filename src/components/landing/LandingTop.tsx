@@ -1,6 +1,7 @@
-import DoubleArrowTopVector from "@/shared/DoubleArrowTopVector";
+import DoubleArrowTopVector from "@/shared/assets/DoubleArrowTopVector";
 import CounterLogoVector from "./assets/CounterLogoVector";
 
+// 랜딩 페이지의 상단을 구성하는 컴포넌트.
 const LandingTop = () => {
   const scrollUp = () => {
     if (window.scroll) {

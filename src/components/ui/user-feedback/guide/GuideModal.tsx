@@ -1,13 +1,17 @@
+import { guideConstants } from "./constants";
+
 import useNotBoxGuideContext from "@/contexts/feedback/guide/not-box-guide/hooks/useNotBoxGuideContext";
 import useMutationUpdateUnreadGuideIds from "@/contexts/user/hooks/http/useMutationUpdateUnreadGuideIds";
-import { guideConstants } from "./constants";
+
 import WarnCircleVector from "@/shared/assets/warn/WarnCircleVector";
 import WarnTriangleVector from "@/shared/assets/warn/WarnTriangleVector";
 
+// modal에 대한 유저 가이드를 보여주는 컴포넌트.
 const GuideModal = ({ unreadGuideId }: { unreadGuideId: string }) => {
   const { mutateUpdateUnreadGuideIds } = useMutationUpdateUnreadGuideIds();
   const { updateModalGuide } = useNotBoxGuideContext();
 
+  // 현재 modal에 표시 된 유저 가이드를 "읽음 처리"하는 함수.
   const check = () => {
     mutateUpdateUnreadGuideIds(unreadGuideId);
     updateModalGuide(false, "");

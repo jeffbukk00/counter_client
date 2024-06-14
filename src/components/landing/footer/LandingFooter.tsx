@@ -1,5 +1,6 @@
 import GithubVector from "@/shared/assets/GithubVector";
 
+// 랜딩 페이지의 하단을 구성하는 컴포넌트.
 const LandingFooter = () => {
   return (
     <footer className="w-full h-[80vh]">

@@ -1,18 +1,23 @@
+import { useEffect, useRef } from "react";
+
 import useNotBoxValidationContext from "@/contexts/feedback/validation/not-box-validation/hooks/useNotBoxValidationContext";
+
 import WarnCircleVector from "@/shared/assets/warn/WarnCircleVector";
 import WarnTriangleVector from "@/shared/assets/warn/WarnTriangleVector";
 
-import { useEffect, useRef } from "react";
-
+// box-creator에서의 유저 입력이 유효하지 않을 때 유저 피드백으로서 보여주는 컴포넌트.
 const ValidationFeedbackBoxCreator = () => {
   const invalidRef = useRef<HTMLDivElement | null>(null);
 
+  // box-creator가 유효 하지 않은 유저 입력에 대한 유저 피드백을 보여주어야 하는지 확인.
+  // box-creator로부터의 유효하지 않은 유저 입력에 대한 유저 피드백을 업데이트하는 함수.
   const { isBoxCreatorInvalid, updateIsBoxCreatorInvalid } =
     useNotBoxValidationContext();
 
   useEffect(() => {
     const element = invalidRef.current;
 
+    // blur event를 활용하기 위해, 인위적으로 focus.
     if (element) element.focus();
   }, []);
 
@@ -21,6 +26,7 @@ const ValidationFeedbackBoxCreator = () => {
       ref={invalidRef}
       tabIndex={1}
       onBlur={() => {
+        // blur event 발생 시, 유저 피드백 사라짐.
         updateIsBoxCreatorInvalid(false);
       }}
       className="border border-negative rounded-md w-80 pt-2 px-2 flex flex-col"

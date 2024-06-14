@@ -2,20 +2,26 @@ import { downloadConstants } from "./constants";
 import { ReconfirmDownloadPhasePropsType } from "./type";
 
 import useMutationDownloadFromShareLink from "./hooks/useMutationDownloadFromShareLink";
+import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 
 import LinkVector from "@/shared/assets/link/LinkVector";
-import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 import HoverWrapper from "@/components/styles/HoverWrapper";
 
+// 유저가 shareLink로부터 다운로드 하기 전, 마지막으로 재확인한 뒤에 다운로드를 받는 페이즈.
+// 다른 유저로부터의 motivationLink는 100% 안전을 보장할 수 없으므로, 이를 제외해서 다운로드 받을 수 있는 선택지를 둔다.
 const ReconfirmDownloadPhase = ({
   username,
   downloadLink,
   closeModal,
 }: ReconfirmDownloadPhasePropsType) => {
+  // 공유 받은 shareLink로부터 공유된 bucket을 다운로드 받기 위한 비동기 요청을 담고 있는 커스텀 훅.
   const { mutateDownloadFromShareLink } = useMutationDownloadFromShareLink(
     downloadLink,
     closeModal
   );
+
+  // box가 아닌 메인 요소(box-creator, modal)의 로딩 상태에 따른 유저 피드백을 관리하는 커스텀 훅.
+  // 여기서는 modal이 로딩 상태로 전환되었을 때, 유저 피드백을 화면 상에 표시하기 위해 호출하는 함수를 반환.
   const { activateModal } = useNotBoxLoadingContext();
 
   return (
@@ -66,6 +72,7 @@ const ReconfirmDownloadPhase = ({
         <HoverWrapper classes="p-1">
           <button
             onClick={() => {
+              // motivationLink를 포함해서 공유 받음.
               activateModal();
               mutateDownloadFromShareLink(downloadConstants.downloadType.all);
             }}
@@ -78,6 +85,7 @@ const ReconfirmDownloadPhase = ({
         <HoverWrapper classes="p-1">
           <button
             onClick={() => {
+              // motivationLink를 제외해서 공유 받음.
               activateModal();
               mutateDownloadFromShareLink(
                 downloadConstants.downloadType.secure

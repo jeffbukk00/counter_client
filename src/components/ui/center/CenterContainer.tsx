@@ -1,14 +1,20 @@
-import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 import { HasChildren } from "@/shared/types";
-import LoadingFeedbackModal from "../user-feedback/loading/LoadingFeedbackModal";
+
+import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 import useNotBoxValidationContext from "@/contexts/feedback/validation/not-box-validation/hooks/useNotBoxValidationContext";
-import ValidationFeedbackModal from "../user-feedback/validation/ValidationFeedbackModal";
 import useNotBoxGuideContext from "@/contexts/feedback/guide/not-box-guide/hooks/useNotBoxGuideContext";
+
+import LoadingFeedbackModal from "../user-feedback/loading/LoadingFeedbackModal";
+import ValidationFeedbackModal from "../user-feedback/validation/ValidationFeedbackModal";
 import GuideModal from "../user-feedback/guide/GuideModal";
 
+// modal에 대한 컨테이너 역할을 하는 컴포넌트.
 const CenterContainer = ({ children }: HasChildren) => {
+  // modal에서 호출한 비동기 요청이 로딩 상태인지 확인.
   const { modalIsLoading } = useNotBoxLoadingContext();
+  // modal에서 유효하지 않은 유저 입력이 발생했는지 확인.
   const { isModalInvalid } = useNotBoxValidationContext();
+  // modal에서 현재 띄워야 할 유저 가이드 있는지 확인.
   const { modalGuide } = useNotBoxGuideContext();
 
   return (

@@ -3,6 +3,7 @@ interface ValidationResultType {
   message: string;
 }
 
+// 다수의 유효성 검사를 동시에 진행하는 경우, 각 유효성 검사의 유효성 여부와 메시지를 통합하기 위한 함수.
 export const validate = (validationResults: ValidationResultType[]) => {
   const invalidResults = validationResults.filter((e) => !e.isValid);
   if (invalidResults.length === 0) return { isValid: true, messages: [] };
@@ -12,6 +13,10 @@ export const validate = (validationResults: ValidationResultType[]) => {
     messages: invalidResults.map((e) => e.message),
   };
 };
+
+/*
+  이 어플리케이션 내의 유저 입력에 대한 모든 유효성 검사들.
+*/
 
 export const required = (text: string) => ({
   isValid: text.length > 0,

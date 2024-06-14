@@ -1,6 +1,7 @@
 import HoverWrapper from "@/components/styles/HoverWrapper";
 import CloseVector from "../../../shared/assets/CloseVector";
 
+// 클릭하면, modal을 닫는 버튼 컴포넌트.
 const CloseModalButton = ({ closeModal }: { closeModal: () => void }) => {
   return (
     <HoverWrapper classes="p-1">

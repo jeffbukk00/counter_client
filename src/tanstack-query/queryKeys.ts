@@ -1,3 +1,7 @@
+/*
+  이 어플리케이션 내의 모든 query key 목록.
+*/
+
 import { boxConstants } from "@/components/ui/box/constants";
 
 export const queryKeys = {

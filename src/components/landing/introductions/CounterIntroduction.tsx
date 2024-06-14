@@ -4,6 +4,7 @@ import counter2 from "./assets/counter2.png";
 import counter3 from "./assets/counter3.png";
 import MinusVector from "@/components/counter/counter-front/assets/MinusVector";
 
+// counter를 소개하는 컴포넌트.
 const CounterIntroduction = () => {
   return (
     <section className="w-full">

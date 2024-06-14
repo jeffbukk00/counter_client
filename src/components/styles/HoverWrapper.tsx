@@ -1,5 +1,6 @@
 import { HasChildrenWithClasses } from "@/shared/types";
 
+// 버튼 요소가 hover 혹은 active 상태 일 때, ui가 변하도록 하는  wrapper 컴포넌트.
 const HoverWrapper = ({ classes, children }: HasChildrenWithClasses) => {
   return (
     <div

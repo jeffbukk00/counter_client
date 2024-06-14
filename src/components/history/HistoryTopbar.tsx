@@ -2,6 +2,10 @@ import CloseModalButton from "../ui/modal/CloseModalButton";
 // import { historyConstants } from "./constants";
 import { HistoryTopbarPropsType } from "./types";
 
+// counter의 history를 보여주는 컴포넌트의 top.
+// 이 컴포넌트에서 보여줄 history의 타입을 변경할 수 있다.
+// history의 두가지 타입 중, 현재 stack만 업데이트가 된 상태이므로,
+// histroy 타입을 선택하는 기능 자체를 비활성화.
 const HistoryTopbar = ({
   // changeHistoryType,
   title,

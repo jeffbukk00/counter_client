@@ -1,5 +1,6 @@
 import StartCreationButton from "@/components/ui/creator/StartCreationButton";
 
+// motivationLink 생성을 시작하는 컴포넌트.
 const MotivationLinkCreationStart = ({
   startCreation,
 }: {

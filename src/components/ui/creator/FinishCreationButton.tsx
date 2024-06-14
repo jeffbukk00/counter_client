@@ -3,6 +3,7 @@ import { FinishCreationButtonPropsType } from "./types";
 
 import CloseVector from "@/shared/assets/CloseVector";
 
+// 클릭하면 box 생성을 끝내는 버튼 컴포넌트.
 const FinishCreationButton = ({
   finishCreation,
   classes,

@@ -1,6 +1,7 @@
 import ClassificationVector from "@/shared/assets/ClassificationVector";
 import bucket1 from "./assets/bucket1.png";
 
+// bucket을 소개하는 컴포넌트.
 const BucketIntroduction = () => {
   return (
     <section className="w-full">

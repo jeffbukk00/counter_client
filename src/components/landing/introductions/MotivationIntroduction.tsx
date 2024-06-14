@@ -2,6 +2,7 @@ import motivationText1 from "./assets/motivation-text1.png";
 import motivationLink1 from "./assets/motivation-link1.png";
 import ChangeToMotivationButtonVector from "@/shared/assets/box-back-types/ChangeToMotivationButtonVector";
 
+// motivation 기능을 소개하는 컴포넌트.
 const MotivationIntroduction = () => {
   return (
     <section className="w-full">

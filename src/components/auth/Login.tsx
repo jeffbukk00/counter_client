@@ -5,6 +5,7 @@ import CloseVector from "@/shared/assets/CloseVector";
 
 import HoverWrapper from "../styles/HoverWrapper";
 
+// 로그인을 위한 컴포넌트.
 const Login = ({ closeAuthPhase }: { closeAuthPhase: () => void }) => {
   return (
     <div className="p-4 rounded-xl border border-gray-300 bg-white w-[100%] h-64 flex flex-col justify-center items-center gap-1 absolute top-0 left-0">

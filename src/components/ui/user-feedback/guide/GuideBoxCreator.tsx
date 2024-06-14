@@ -1,13 +1,18 @@
-import useNotBoxGuideContext from "@/contexts/feedback/guide/not-box-guide/hooks/useNotBoxGuideContext";
 import { guideConstants } from "./constants";
+
+import useNotBoxGuideContext from "@/contexts/feedback/guide/not-box-guide/hooks/useNotBoxGuideContext";
 import useMutationUpdateUnreadGuideIds from "@/contexts/user/hooks/http/useMutationUpdateUnreadGuideIds";
+
 import WarnTriangleVector from "@/shared/assets/warn/WarnTriangleVector";
 import WarnCircleVector from "@/shared/assets/warn/WarnCircleVector";
 
+// box-creator에 대한 유저 가이드를 보여주는 컴포넌트.
 const GuideBoxCreator = ({ unreadGuideId }: { unreadGuideId: string }) => {
-  const { mutateUpdateUnreadGuideIds } = useMutationUpdateUnreadGuideIds();
   const { updateBoxCreatorGuide } = useNotBoxGuideContext();
 
+  const { mutateUpdateUnreadGuideIds } = useMutationUpdateUnreadGuideIds();
+
+  // 현재 box-creator에 표시 된 유저 가이드를 "읽음 처리"하는 함수.
   const check = () => {
     mutateUpdateUnreadGuideIds(unreadGuideId);
     updateBoxCreatorGuide(false, "");

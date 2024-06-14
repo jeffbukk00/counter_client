@@ -2,9 +2,11 @@ import { guideConstants } from "./constants";
 
 import useMutationUpdateUnreadGuideIds from "@/contexts/user/hooks/http/useMutationUpdateUnreadGuideIds";
 import useBoxGuideContext from "@/contexts/feedback/guide/box-guide/hooks/useBoxGuideContext";
+
 import WarnTriangleVector from "@/shared/assets/warn/WarnTriangleVector";
 import WarnCircleVector from "@/shared/assets/warn/WarnCircleVector";
 
+// box에 대한 유저 가이드를 보여주는 컴포넌트.
 const GuideBox = ({
   unreadGuideId,
   boxId,
@@ -13,8 +15,10 @@ const GuideBox = ({
   boxId: string;
 }) => {
   const { removeUnreadGuide } = useBoxGuideContext();
+
   const { mutateUpdateUnreadGuideIds } = useMutationUpdateUnreadGuideIds();
 
+  // 현재 이 box에 표시 된 유저 가이드를 "읽음 처리"하는 함수.
   const check = (boxId: string, guideId: string) => {
     mutateUpdateUnreadGuideIds(guideId);
     removeUnreadGuide(boxId, guideId);

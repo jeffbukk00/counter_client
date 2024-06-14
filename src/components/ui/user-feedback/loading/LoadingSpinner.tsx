@@ -1,5 +1,6 @@
 import { loadingConstants } from "./constants";
 
+// 로딩 중임을 나타내는 ui.
 const LoadingSpinner = ({ size }: { size: number }) => {
   let loadingSpinner = (
     <div className={`w-[1rem] h-[1rem] relative animate-spinning`}>

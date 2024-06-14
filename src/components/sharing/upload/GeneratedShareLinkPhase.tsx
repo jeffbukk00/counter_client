@@ -1,21 +1,23 @@
 import { GeneratedShareLinkPhasePropsType } from "./types";
 import { creationActionConstants } from "@/components/ui/creation-action/constants";
+import { writeClipboard } from "@/shared/utils/clipboard/writeClipboard";
 
 import useFeedbackToCopy from "@/components/ui/clipboard-feedback/hooks/useFeedbackToCopy";
-
-import { writeClipboard } from "@/shared/utils/clipboard/writeClipboard";
 
 import FeedbackToCopy from "@/components/ui/clipboard-feedback/FeedbackToCopy";
 import LinkVector from "@/shared/assets/link/LinkVector";
 import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
 import HoverWrapper from "@/components/styles/HoverWrapper";
 
+// 생성 된 shareLink를 다른 유저들과 공유하기 위해, 유저가 복사하는 페이즈.
 const GeneratedShareLinkPhase = ({
   createdShareLink,
   closeModal,
 }: GeneratedShareLinkPhasePropsType) => {
+  // 생성 된 shareLink를 유저가 복사했는지 여부를 관리하는 상태.
   const { isCopied, updateIsCopied } = useFeedbackToCopy();
 
+  // 생성 된 shareLink를 유저의 클립보드에 자동으로 저장.
   const copy = async () => {
     await writeClipboard(createdShareLink);
     updateIsCopied(true);

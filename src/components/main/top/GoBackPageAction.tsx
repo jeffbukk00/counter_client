@@ -1,9 +1,12 @@
-import DoubleArrowLeftVector from "@/shared/assets/DoubleArrowLeftVector";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import DoubleArrowLeftVector from "@/shared/assets/DoubleArrowLeftVector";
+
+// 클릭하면 이전 페이지로 이동하는 버튼 컴포넌트.
 const GoBackPageAction = () => {
   const navigate = useNavigate();
+
   const [isHovered, setIsHovered] = useState(false);
 
   const backToBucketsPage = () => navigate("/main/buckets");

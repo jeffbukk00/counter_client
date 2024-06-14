@@ -1,3 +1,5 @@
+// 전역적으로 사용 되는 타입들
+
 import { ReactNode } from "react";
 
 export interface HasChildren {

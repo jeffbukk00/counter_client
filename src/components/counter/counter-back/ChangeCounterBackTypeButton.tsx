@@ -7,11 +7,13 @@ import ChangeToMotivationButtonVector from "@/shared/assets/box-back-types/Chang
 import HoverWrapper from "@/components/styles/HoverWrapper";
 import ChangeToHistoryButtonVector from "@/shared/assets/box-back-types/ChangeToHistoryButtonVector";
 
+// 클릭하면, 스스로가 해당하는 counter 뒷면의 타입으로 전환 시키는 역할을 하는 버튼 컴포넌트.
 const ChangeCounterBackTypeButton = ({
   type,
   currentCounterBackType,
   setCurrentCounterBackType,
 }: ChangeCounterBackButtonPropsType) => {
+  // 이 컴포넌트가 해당 되는 counter 뒷면의 타입이 현재 유저 선택한 counter 뒷면의 타입인지 판별하는 변수.
   const isSelected = type === currentCounterBackType;
 
   return (

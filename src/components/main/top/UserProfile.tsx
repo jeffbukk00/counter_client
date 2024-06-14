@@ -1,14 +1,20 @@
+import { useState } from "react";
+
 import useMutationLogout from "@/contexts/auth/hooks/http/useMutationLogout";
 import useUserContext from "@/contexts/user/hooks/useUserContext";
-import { useState } from "react";
+
 import UserProfileVector from "./assets/UserProfileVector";
 import HoverWrapper from "@/components/styles/HoverWrapper";
 import LogoutVector from "./assets/LogoutVector";
 
+// 로그인 한 유저의 프로필을 보여주고, 로그아웃 기능이 존재하는 컴포넌트.
 const UserProfile = () => {
   const [userProfileIsVisible, setUserProfileIsVisible] = useState(false);
 
+  // 로그아웃을 위한 비동기 요청을 담고 있는 커스텀 훅.
   const { mutatePostLogout } = useMutationLogout();
+
+  // 로그인 한 유저의 정보를 관리하는 커스텀 훅.
   const { email, username, profilePictureUrl } = useUserContext();
 
   return (

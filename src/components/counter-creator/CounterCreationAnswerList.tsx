@@ -1,5 +1,7 @@
 import { CounterCreationAnswerListPropsType } from "./types";
 
+// 이전 페이즈들에서 입력되었던 유저 입력들을 보여주는 컴포넌트.
+// currentPhase 상태에 무엇인지에 따라 변화함.
 const CounterCreationAnswerList = ({
   currentPhase,
   isInLastPhase,

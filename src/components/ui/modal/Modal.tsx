@@ -6,6 +6,7 @@ import BackDrop from "./Backdrop";
 import CenterContainer from "../center/CenterContainer";
 import CenterContainerWide from "../center/CenterContainerWide";
 
+// modal 컴포넌트.
 const Modal = ({ closeModal, isWide = false, children }: ModalPropsType) => {
   const content = (
     <>

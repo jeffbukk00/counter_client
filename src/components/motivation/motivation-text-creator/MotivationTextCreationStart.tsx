@@ -1,5 +1,6 @@
 import StartCreationButton from "@/components/ui/creator/StartCreationButton";
 
+// motivationText 생성을 시작하는 컴포넌트.
 const MotivationTextCreationStart = ({
   startCreation,
 }: {

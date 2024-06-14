@@ -7,6 +7,7 @@ import { queryKeys } from "@/tanstack-query/queryKeys";
 
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
 
+// 단일 bucket을 가져오는 비동기 요청.
 const getBucket: (
   bucketId: string
 ) => Promise<{ bucket: { title: string } }> = async (bucketId) => {
@@ -14,8 +15,10 @@ const getBucket: (
   return data;
 };
 
+// 단일 bucket을 가져오는 비동기 요청을 보내는 커스텀 훅.
 const useQueryBucket = (bucketId: string) => {
   const { openAsyncError } = useAsyncErrorContext();
+
   const { data, isLoading, isFetching, isError } = useQuery({
     queryKey: queryKeys.bucket.useQueryBucket(bucketId),
     queryFn: () => getBucket(bucketId),
@@ -24,6 +27,7 @@ const useQueryBucket = (bucketId: string) => {
 
   useEffect(() => {
     if (isError) {
+      // 비동기 요청에서 에러 발생 시, 유저 피드백.
       openAsyncError("버킷을 가져오는데 실패했습니다");
     }
   }, [isError, openAsyncError]);

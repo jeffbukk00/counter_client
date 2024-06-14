@@ -3,6 +3,7 @@ import { bucketBackConstants } from "./constants";
 
 import ChangeBucketBackTypeButton from "./ChangeBucketBackTypeButton";
 
+// bucket의 뒷면의 top. bucket의 뒷면의 타입을 관리하는 역할을 하는 컴포넌트.
 const BucketBackTop = ({
   currentBucketBackType,
   setCurrentBucketBackType,

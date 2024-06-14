@@ -1,6 +1,8 @@
-import HoverWrapper from "@/components/styles/HoverWrapper";
 import { BucketSelectionPropsType } from "./types";
 
+import HoverWrapper from "@/components/styles/HoverWrapper";
+
+// 클릭하면 특정 bucket을 유저가 선택할 수 있는 버튼 컴포넌트.
 const BucketSelection = ({
   title,
   selectBucketHandler,

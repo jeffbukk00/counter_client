@@ -1,7 +1,9 @@
-import HoverWrapper from "@/components/styles/HoverWrapper";
-import FlipButtonVector from "./assets/FlipButtonVector";
 import { FlipButtonPropsType } from "./types";
 
+import HoverWrapper from "@/components/styles/HoverWrapper";
+import FlipButtonVector from "./assets/FlipButtonVector";
+
+// box의 앞, 뒷면을 뒤집는 역할을 하는 버튼 컴포넌트.
 const FlipButton = ({ flip, classes }: FlipButtonPropsType) => {
   return (
     <span className={`${classes}`}>

@@ -1,30 +1,39 @@
 import { creationActionConstants } from "@/components/ui/creation-action/constants";
 import { CreateShareLinkPhasePropsType } from "./types";
+import { notNull, validate } from "@/shared/utils/validation";
 
 import useMutationUploadShareLink from "./hooks/http/useMutationUploadShareLink";
 import useBucketSelection from "@/components/ui/bucket-selection/hooks/useBucketSelection";
-
-import BucketSelectionList from "@/components/ui/bucket-selection/BucketSelectionList";
-import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
-import { notNull, validate } from "@/shared/utils/validation";
 import useNotBoxValidationContext from "@/contexts/feedback/validation/not-box-validation/hooks/useNotBoxValidationContext";
 import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
 
+import BucketSelectionList from "@/components/ui/bucket-selection/BucketSelectionList";
+import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
+
+// shareLink를 생성하는 페이즈.
 const CreateShareLinkPhase = ({
   gotoNextPhase,
   updateCreatedShareLink,
 }: CreateShareLinkPhasePropsType) => {
+  // 모든 bucket들 중에서 공유할 bucket의 선택 여부를 관리하는 커스텀 훅.
   const { selectedBucket, selectBucket } = useBucketSelection();
 
+  // shareLink 생성을 위한 비동기 요청이 성공한 이후 호출할 함수.
   const onCreationSuccessHandler = (shareLink: string) => {
     updateCreatedShareLink(shareLink);
     gotoNextPhase();
   };
 
+  // shareLink 생성을 위한 비동기 요청을 담고 있는 커스텀 훅.
   const { mutateUploadShareLink } = useMutationUploadShareLink(
     onCreationSuccessHandler
   );
+
+  // box가 아닌 메인 요소(box-creator, modal)의 로딩 상태에 따른 유저 피드백을 관리하는 커스텀 훅.
+  // 여기서는 modal이 로딩 상태로 전환되었을 때, 유저 피드백을 화면 상에 표시하기 위해 호출하는 함수를 반환.
   const { activateModal } = useNotBoxLoadingContext();
+
+  // 유저 입력이 유효하지 않을 경우에 대한 유저 피드백.
   const { updateIsModalInvalid } = useNotBoxValidationContext();
 
   return (
@@ -49,11 +58,15 @@ const CreateShareLinkPhase = ({
           classes="w-7 h-7 inline-block"
           hover="p-1"
           actionHandler={() => {
+            // 유저 입력에 대한 유효성 검사.
             const validationResult = validate([notNull(selectedBucket)]);
             if (!validationResult.isValid)
               return updateIsModalInvalid(true, validationResult.messages);
 
+            // shareLink 생성을 위한 비동기 요청이 호출되었을 때, 로딩 상태에 대한 유저 피드백.
             activateModal();
+
+            // shareLink 생성을 위한 비동기 요청이 호출.
             mutateUploadShareLink(selectedBucket!.id);
           }}
         />

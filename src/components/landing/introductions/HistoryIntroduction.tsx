@@ -1,6 +1,7 @@
 import ChangeToHistoryButtonVector from "@/shared/assets/box-back-types/ChangeToHistoryButtonVector";
 import history1 from "./assets/history1.png";
 
+// history 기능을 소개하는 컴포넌트.
 const HistoryIntroduction = () => {
   return (
     <section className="w-full">

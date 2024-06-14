@@ -1,17 +1,19 @@
 import { sharingConstants } from "./constants";
+import { guideConstants } from "../ui/user-feedback/guide/constants";
+
+import useModalGuide from "../ui/user-feedback/guide/hooks/useModalGuide";
 
 import DownloadVector from "./assets/DownloadVector";
 import UploadVector from "./assets/UploadVector";
-
-import useModalGuide from "../ui/user-feedback/guide/hooks/useModalGuide";
-import { guideConstants } from "../ui/user-feedback/guide/constants";
 import HoverWrapper from "../styles/HoverWrapper";
 
+// sharing 타입을 선택하는 페이즈.
 const SelectSharingTypePhase = ({
   changeSharingType,
 }: {
   changeSharingType: (changedSharingType: number) => void;
 }) => {
+  // 유저가 화면 상에서 이 컴포넌트를 보게 되었을 때, 해당하는 가이드를 동반하여 표시하기 위해 호출.
   useModalGuide(guideConstants.guideIds["guideId10"]);
 
   return (

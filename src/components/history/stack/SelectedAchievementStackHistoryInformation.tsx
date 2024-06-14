@@ -1,20 +1,26 @@
-import LoadingFeedbackGeneral from "@/components/ui/user-feedback/loading/LoadingFeedbackGeneral";
-import useQueryAchievementStackHistory from "./hooks/http/useQueryAchievementStackHistory";
 import { useEffect, useState } from "react";
-import HistoryComment from "./Comment";
+
+import useQueryAchievementStackHistory from "./hooks/http/useQueryAchievementStackHistory";
 import useMutationEditCommentOfAchievementStackHistory from "./hooks/http/useMutationEditCommentOfAchievementStackHistory";
+
+import LoadingFeedbackGeneral from "@/components/ui/user-feedback/loading/LoadingFeedbackGeneral";
+import HistoryComment from "./Comment";
 import TimeVector from "@/shared/assets/TimeVector";
 
+// 선택 된 achievementStackHistory의 상세 정보를 보여주는 컴포넌트.
 const SelectedAchievementStackHistoryInformation = ({
   selectedAchievementStackHistoryId,
 }: {
   selectedAchievementStackHistoryId: string;
 }) => {
+  // 선택 된 achievementStackHistory의 comment를 수정 할지 여부를 관리하는 상태.
   const [isEditingComment, setIsEditingComment] = useState(false);
 
+  // 선택 된 achievementStackHistory의 데이터를 불러오는 비동기 요청을 호출하는 커스텀 훅.
   const { achievementStackHistory, isFetching, isLoading } =
     useQueryAchievementStackHistory(selectedAchievementStackHistoryId);
 
+  // 선택 된 achievementStackHistory의 comment를 수정 하는 비동기 요청을 담고 있는 커스텀 훅.
   const { mutateEditCommentOfAchievementStackHistory } =
     useMutationEditCommentOfAchievementStackHistory(
       selectedAchievementStackHistoryId,
@@ -22,6 +28,7 @@ const SelectedAchievementStackHistoryInformation = ({
     );
 
   useEffect(() => {
+    // 선택 된 achievementStackHistory가 변할 때, comment 수정 종료.
     setIsEditingComment(false);
   }, [selectedAchievementStackHistoryId]);
 

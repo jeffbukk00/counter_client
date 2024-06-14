@@ -7,6 +7,7 @@ import OauthCallbackNaverPage from "@/pages/before-login/OauthCallbackNaverPage"
 import OauthCallbackKakaoPage from "@/pages/before-login/OauthCallbackKakaoPage";
 import BeforeLoginNotFoundPage from "@/pages/before-login/BeforeLoginNoFoundPage";
 
+// 로그인 이전의 라우터.
 const beforeLoginAppRouter = createBrowserRouter([
   {
     errorElement: <BeforeLoginNotFoundPage />,
@@ -32,6 +33,8 @@ const beforeLoginAppRouter = createBrowserRouter([
     ],
   },
 ]);
+
+// 로그인 이전의 라우터를 제공.
 const BeforeLoginApp = () => {
   return <RouterProvider router={beforeLoginAppRouter} />;
 };

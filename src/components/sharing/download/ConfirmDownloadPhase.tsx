@@ -1,8 +1,10 @@
-import HoverWrapper from "@/components/styles/HoverWrapper";
 import { ConfirmDownloadPhasePropsType } from "./type";
 
+import HoverWrapper from "@/components/styles/HoverWrapper";
 import LinkVector from "@/shared/assets/link/LinkVector";
 
+// 유저가 shareLink로부터 다운로드 하기 전, 안전한 공유 상황인지 다시 한 번 확인하는 페이즈.
+// 공유한 유저의 이름을 확인할 수 있음.
 const ConfirmDownloadPhase = ({
   username,
   gotoNextPhase,

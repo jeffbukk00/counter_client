@@ -1,3 +1,7 @@
+/*
+  이 어플리케이션 내에서 호출하는 모든 비동기 요청 URL 목록.
+*/
+
 import { downloadConstants } from "@/components/sharing/download/constants";
 
 export const api = {

@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { counterFrontConstants } from "./constants";
 import { CounterCirclePropsType } from "./types";
 
+// 현재 count의 성취 진행 정도를 시각적으로 표현하는 컴포넌트.
 const CountCircle = ({
   countCircleType,
   startCount,
@@ -10,14 +11,19 @@ const CountCircle = ({
   endCount,
   direction,
 }: CounterCirclePropsType) => {
+  // html canvas에 대한 참조를 저장.
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  // CountCircle의 타입 판별.
   const isPositive =
     countCircleType === counterFrontConstants.countCircleType.positive;
 
+  // 성취하기 위해 count를 업데이트 해야하는 총 양.
   const total = Math.abs(startCount - endCount);
+  // 현재까지의 count 변화량.
   let quantity: number;
 
+  // counter의 direction과 CountCircle의 타입을 고려하여 현재까지의 count 변화량을 판별 및 할당.
   if (direction === counterFrontConstants.counterDirection.up) {
     if (countCircleType === counterFrontConstants.countCircleType.positive) {
       quantity = currentCount - startCount;
@@ -33,6 +39,7 @@ const CountCircle = ({
   }
 
   useEffect(() => {
+    // "성취하기 위해 count를 업데이트 해야하는 총 양" 대비 "현재까지의 count 변화량"을 html canvas를 이용해 시각적으로 표현.
     const canvas = canvasRef.current;
     if (!canvas) {
       return;
@@ -69,10 +76,14 @@ const CountCircle = ({
     };
     draw();
 
+    // 브라우저에서 창 전환할 때마다 html canvas가 초기화 됨.
+    // 이를 해결 하기 위해, 창이 다시 포커스 될 때마다 새롭게 그리도록 함.
     window.addEventListener("focus", draw);
 
     return () => {
+      // 이벤트 리스너 클린업.
       window.removeEventListener("focus", draw);
+      // html canvs 초기화.
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
   }, [quantity, isPositive, total]);

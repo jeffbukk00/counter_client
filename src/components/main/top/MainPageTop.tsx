@@ -1,9 +1,11 @@
+import { useLocation } from "react-router-dom";
+
 import UserProfile from "@/components/main/top/UserProfile";
 import OpenSharingModalButton from "./OpenSharingModalButton";
 import HttpErrorFeedback from "./HttpErrorFeedback";
 import GoBackPageAction from "./GoBackPageAction";
-import { useLocation } from "react-router-dom";
 
+// MainPage의 상단을 구성하는 컴포넌트.
 const MainPageTop = () => {
   const location = useLocation();
 

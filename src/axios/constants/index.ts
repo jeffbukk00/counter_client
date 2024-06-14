@@ -1,3 +1,4 @@
+// 서버 호스트 주소를 반환하는 함수.
 const getServerHost = () => {
   let SERVER_HOST;
 

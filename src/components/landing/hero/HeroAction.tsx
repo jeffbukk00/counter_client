@@ -1,7 +1,9 @@
-import Login from "@/components/auth/Login";
-import ArrowRightVector from "@/shared/assets/ArrowRightVector";
 import { useState } from "react";
 
+import Login from "@/components/auth/Login";
+import ArrowRightVector from "@/shared/assets/ArrowRightVector";
+
+// 이 어플리케이션을 처음으로 시작할 때 클릭하는 버튼 컴포넌트.
 const HeroAction = () => {
   const [isAuthPhase, setIsAuthPhase] = useState(false);
 

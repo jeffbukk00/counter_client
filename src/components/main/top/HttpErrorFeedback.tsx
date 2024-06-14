@@ -1,9 +1,12 @@
-import HoverWrapper from "@/components/styles/HoverWrapper";
 import useAsyncErrorContext from "@/contexts/async-error/hooks/useAsyncErrorContext";
+
+import HoverWrapper from "@/components/styles/HoverWrapper";
 import CloseVector from "@/shared/assets/CloseVector";
 import WarnTriangleVector from "@/shared/assets/warn/WarnTriangleVector";
 
+// 어플리케이션 내 모든 비동기 요청들에서 에러 발생 시, 에러의 내용을 표시하는 컴포넌트.
 const HttpErrorFeedback = () => {
+  // 비동기 요청의 에러와 관련한 상태를 관리하는 커스텀 훅.
   const { asyncErrorState, closeAsyncError } = useAsyncErrorContext();
 
   return (

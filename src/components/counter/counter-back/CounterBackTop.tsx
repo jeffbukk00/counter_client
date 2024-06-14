@@ -3,6 +3,7 @@ import { CounterBackTopPropsType } from "./types";
 
 import ChangeCounterBackTypeButton from "./ChangeCounterBackTypeButton";
 
+// counter 뒷면의 top. counter 뒷면의 타입을 관리하는 컴포넌트.
 const CounterBackTop = ({
   currentCounterBackType,
   setCurrentCounterBackType,

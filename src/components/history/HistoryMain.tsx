@@ -1,19 +1,24 @@
 import { useState } from "react";
+
 import { historyConstants } from "./constants";
-import HistoryTopbar from "./HistoryTopbar";
 import { HistoryMainPropsType } from "./types";
+
+import HistoryTopbar from "./HistoryTopbar";
 import HistoryStack from "./stack/HistoryStack";
 // import HistoryGraph from "./graph/HistoryGraph";
 
+// counter의 history를 보여주는 기능의 최상의 컴포넌트.
 const HistoryMain = ({
   counterId,
   title,
   closeModal,
 }: HistoryMainPropsType) => {
+  // 유저에 의해 선택된 history의 타입을 관리하는 상태.
   const [selectedHistoryType, setSelectedHistoryType] = useState(
     historyConstants.historyType.stack
   );
 
+  // history의 타입을 변경하는 함수.
   const changeHistoryType = (historyType: number) =>
     setSelectedHistoryType(historyType);
 

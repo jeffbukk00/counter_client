@@ -1,3 +1,4 @@
+// backdrop 컴포넌트.
 const BackDrop = ({ closeModal }: { closeModal: () => void }) => {
   return (
     <div

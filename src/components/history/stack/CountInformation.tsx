@@ -1,10 +1,14 @@
 import { useState } from "react";
+
 import { CountHistoryType } from "./types";
+
 import useMutationEditCommentOfCountHistory from "./hooks/http/useMutationEditCommentOfCountHistory";
+
 import ToggleVector from "@/shared/assets/ToggleVector";
 import HistoryComment from "./Comment";
 import TimeVector from "@/shared/assets/TimeVector";
 
+// countHistory 각각에 대한 상세 정보를 보여주는 컴포넌트.
 const CountInformation = ({
   countId,
   countHistory: {
@@ -21,9 +25,13 @@ const CountInformation = ({
   countHistory: CountHistoryType;
   selectedAchievementStackHistoryId: string;
 }) => {
+  // countHistory의 comment를 유저에게 보이게 할지 여부를 관리하는 상태.
   const [commentIsOpened, setCommentIsOpened] = useState(false);
+
+  // countHistory의 comment를 수정 시작할지 여부를 관리하는 상태.
   const [isEditingComment, setIsEditingComment] = useState(false);
 
+  // countHistory의 comment를 수정하는 비동기 요청을 담고 있는 커스텀 훅.
   const { mutateEditCommentOfCountHistory } =
     useMutationEditCommentOfCountHistory(
       countId,

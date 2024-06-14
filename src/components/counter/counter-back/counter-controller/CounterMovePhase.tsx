@@ -1,28 +1,36 @@
 import { CounterMovePhasePropsType } from "./types";
 import { creationActionConstants } from "@/components/ui/creation-action/constants";
+import { isSameBucket, notNull, validate } from "@/shared/utils/validation";
 
 import useBucketSelection from "@/components/ui/bucket-selection/hooks/useBucketSelection";
 import useMutationMoveCounter from "./hooks/http/useMutationMoveCounter";
+import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
+import useNotBoxValidationContext from "@/contexts/feedback/validation/not-box-validation/hooks/useNotBoxValidationContext";
 
 import CloseModalButton from "@/components/ui/modal/CloseModalButton";
 import BucketSelectionList from "@/components/ui/bucket-selection/BucketSelectionList";
 import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
-import useNotBoxLoadingContext from "@/contexts/loading/not-box-loading/hooks/useNotBoxLoadingContext";
-import { isSameBucket, notNull, validate } from "@/shared/utils/validation";
-import useNotBoxValidationContext from "@/contexts/feedback/validation/not-box-validation/hooks/useNotBoxValidationContext";
 
+// counter 이동을 위한 페이즈.
 const CounterMovePhase = ({
   closeModal,
   counterBackData,
 }: CounterMovePhasePropsType) => {
+  // 모든 bucket 리스트 중에서, 선택 된 bucket을 관리하는 상태.
+  const { selectedBucket, selectBucket } = useBucketSelection();
+
+  // counter 이동을 위한 비동기 요청을 담고 있는 커스텀 훅.
   const { mutateMoveCounter } = useMutationMoveCounter(
     counterBackData.bucketId,
     counterBackData.id,
     closeModal
   );
 
-  const { selectedBucket, selectBucket } = useBucketSelection();
+  // box가 아닌 메인 요소(box-creator, modal)의 로딩 상태에 따른 유저 피드백을 관리하는 커스텀 훅.
+  // 여기서는 modal이 로딩 상태로 전환되었을 때, 유저 피드백을 화면 상에 표시하기 위해 호출하는 함수를 반환.
   const { activateModal } = useNotBoxLoadingContext();
+
+  // 유저 입력이 유효하지 않을 경우에 대한 유저 피드백.
   const { updateIsModalInvalid } = useNotBoxValidationContext();
 
   return (
@@ -57,18 +65,23 @@ const CounterMovePhase = ({
           classes="w-7 h-7 inline-block"
           hover="p-1"
           actionHandler={() => {
-            // 유효성 검사
+            // counter 이동에 대한 유효성 검사 진행.
+
+            // counter 이동을 위한 유저 입력에 대한 유효성 검사 1.
             let validationResult = validate([notNull(selectedBucket)]);
             if (!validationResult.isValid)
               return updateIsModalInvalid(true, validationResult.messages);
 
+            // counter 이동을 위한 유저 입력에 대한 유효성 검사 2.
             validationResult = validate([
               isSameBucket(counterBackData.bucketId, selectedBucket!.id),
             ]);
             if (!validationResult.isValid)
               return updateIsModalInvalid(true, validationResult.messages);
 
+            // counter 이동을 위한 비동기 요청이 호출 될 때, 로딩 상태에 대한 유저 피드백.
             activateModal();
+            // counter 이동을 위한 비동기 요청 호출.
             mutateMoveCounter(selectedBucket!.id);
           }}
         />

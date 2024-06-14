@@ -2,6 +2,7 @@ import SharingButtonVector from "@/components/main/top/assets/SharingButtonVecto
 import share1 from "./assets/share1.png";
 import share2 from "./assets/share2.png";
 
+// 공유 기능을 소개하는 컴포넌트.
 const ShareIntroduction = () => {
   return (
     <section className="w-full">

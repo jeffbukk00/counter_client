@@ -1,5 +1,6 @@
 import HeroAction from "./HeroAction";
 
+// 이 어플리케이션에 대한 메인 소개 컴포넌트.
 const HeroSection = () => {
   return (
     <div className="w-full flex justify-center">

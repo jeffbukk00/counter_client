@@ -2,15 +2,17 @@ import { ChangeEventHandler, useState } from "react";
 
 import FinishCreationButton from "@/components/ui/creator/FinishCreationButton";
 import { BoxDataType } from "../types";
+import { required, validate } from "@/shared/utils/validation";
+import { creationActionConstants } from "@/components/ui/creation-action/constants";
 
 import useMutationCreateMotivationText from "./hooks/http/useMutationCreateMotivationText";
-import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
-import { creationActionConstants } from "@/components/ui/creation-action/constants";
 import useBoxLoadingContext from "@/contexts/loading/box-loading/hooks/useBoxLoadingContext";
 import useBoxValidationContext from "@/contexts/feedback/validation/box-validation/hooks/useBoxValidationContext";
-import { required, validate } from "@/shared/utils/validation";
 import useTextareaFocus from "@/shared/hooks/useTextAreaFocus";
 
+import CreationActionButton from "@/components/ui/creation-action/CreationActionButton";
+
+// motivationText 생성이 진행 중인 컴포넌트.
 const MotivationTextCreationPhase = ({
   boxData,
   finishCreation,
@@ -18,29 +20,47 @@ const MotivationTextCreationPhase = ({
   boxData: BoxDataType;
   finishCreation: () => void;
 }) => {
+  // motivationText 생성을 위한 모든 유저 입력들을 관리 하는 상태.
   const [userAnswers, setUserAnswers] = useState({ text: "" });
 
+  // motivationText 생성을 위한 유저 입력을 받는 요소에 대한 참조를 저장.
   const { textareaRef } = useTextareaFocus();
+
+  // motivationText 생성을 위한 비동기 요청을 담고 있는 커스텀 훅.
   const { mutateCreateMotivationText } = useMutationCreateMotivationText(
     boxData.boxId,
     boxData.boxType
   );
+
+  // box의 로딩 상태에 따른 유저 피드백을 관리하는 커스텀 훅.
+  // 여기서는 box가 로딩 상태로 전환되었을 때, 유저 피드백을 화면 상에 표시하기 위해 호출하는 함수를 반환.
   const { activate } = useBoxLoadingContext();
+
+  // 유저 입력이 유효하지 않을 경우에 대한 유저 피드백.
   const { addInvalidBox } = useBoxValidationContext();
 
+  // motivationText 생성을 위한 유지 입력들 중, text를 업데이트 하는 함수.
   const updateText: ChangeEventHandler<HTMLTextAreaElement> = (event) =>
     setUserAnswers((prev) => {
       return { ...prev, text: event.target.value };
     });
 
+  // motivationText 생성을 최종적으로 제출하는 함수.
   const submitMotivationTextCreation = () => {
-    // 유효성 검사
+    // motivationText 생성을 위한 유효성 검사 진행.
+
+    // motivationText 생성을 위한 유저 입력들 중, title에 대한 유효성 검사 진행.
     const validationResult = validate([required(userAnswers.text)]);
     if (!validationResult.isValid)
       return addInvalidBox(boxData.boxId, validationResult.messages);
 
+    // motivationText 생성을 위한 비동기 요청이 호출 될 때, 로딩 상태에 대한 유저 피드백.
     activate(boxData.boxId);
+
+    // motivationText 생성을 위한 비동기 요청 호출.
     mutateCreateMotivationText(userAnswers.text);
+
+    // motivationText 생성 종료.
     finishCreation();
   };
 
